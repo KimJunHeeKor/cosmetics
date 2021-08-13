@@ -39,36 +39,3 @@ def userskin_anal_status():
     
 
     return jsonify(json_dict)
-
-# 사용자군의 피부분석결과에 대한 평균값 API
-# @bp.route('/avgval', methods=['GET'])
-# def userskin_avg_val():
-    
-#     json_dict = average_user_skinvalue()
-
-#     return jsonify(json_dict)
-
-
-# #사용자군의 피부분석결과에 대한 중앙값 API
-# @bp.route('/medianval', methods=['GET'])
-# def userskin_med_val():
-    
-#     json_dict = median_users_skinvalue()
-
-#     return jsonify(json_dict)
-
-# # 사용자군의 피부분석결과에 대한 최대값 API
-# @bp.route('/maxval', methods=['GET'])
-# def userskin_max_val():
-    
-#     json_dict = max_user_skinvalue()
-
-#     return jsonify(json_dict)
-
-# # 사용자군의 피부분석결과에 대한 최소값 API
-# @bp.route('/minval', methods=['GET'])
-# def userskin_min_val():
-    
-#     json_dict = min_user_skinvalue()
-
-#     return jsonify(json_dict)
