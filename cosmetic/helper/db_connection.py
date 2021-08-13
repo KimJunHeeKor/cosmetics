@@ -6,7 +6,7 @@ __password__ = 'ncyc0078'
 __db__ = 'curation_service'
 
 
-def db_connect(host, user, password, db, sql):
+def db_connect(sql, host=__host_ip__, user=__user__, password=__password__, db=__db__):
     try:
         # mysql 연결    
         con = pymysql.connect(host=host, user=user, password=password,
