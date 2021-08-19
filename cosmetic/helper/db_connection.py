@@ -1,12 +1,11 @@
 import pymysql
 
-__host_ip__ = '14.39.220.155'
-__user__ = 'ncyc'
-__password__ = 'ncyc0078'
-__db__ = 'curation_service'
+HOST_IP = '14.39.220.155'
+USER = 'ncyc'
+PASSWORD = 'ncyc0078'
+DB_NAME = 'curation_service'
 
-
-def db_connect(sql, host=__host_ip__, user=__user__, password=__password__, db=__db__):
+def db_connect(sql, host=HOST_IP, user=USER, password=PASSWORD, db=DB_NAME):
     try:
         # mysql 연결    
         con = pymysql.connect(host=host, user=user, password=password,
