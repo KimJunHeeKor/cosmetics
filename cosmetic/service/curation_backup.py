@@ -3,6 +3,7 @@ import random
 
 from flask import Blueprint,jsonify
 from ..helper.db_connection import db_connect
+from ..model.db_models import CurKw1, CurKw2
 
 _fail_dict={
     'rt':'fail',
@@ -23,13 +24,13 @@ def curation_msg():
             ]
         rand_idx = random.randint(0, 10)
 
-        sql1 = f'select cur_kw1_msg from cur_kw1 where cur_kw1_code = {rand_code[rand_idx][0]}'
-        sql2 = f'select cur_kw2_msg from cur_kw2 where cur_kw2_code = {rand_code[rand_idx][1]}'
+        sql1 = f'select cur_kw1_msg from cur_kw1 where cur_kw1_id = {rand_code[rand_idx][0]}'
+        sql2 = f'select cur_kw2_msg from cur_kw2 where cur_kw2_id = {rand_code[rand_idx][1]}'
 
-        # mysql 접속하고 SQL 전달
+        #mysql 접속하고 SQL 전달
         kw1_msg = db_connect(sql1)
         kw2_msg = db_connect(sql2)
-        print(kw1_msg)
+
         if kw1_msg == None:
             json_dict = _fail_dict
         else:
