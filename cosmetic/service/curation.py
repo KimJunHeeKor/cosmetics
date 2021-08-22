@@ -2,8 +2,6 @@ import time
 import random
 
 from flask import Blueprint,jsonify
-from ..helper.db_connection import db_connect
-# from .. import db
 from ..model.db_models import CurKw1, CurKw2
 
 _fail_dict={
