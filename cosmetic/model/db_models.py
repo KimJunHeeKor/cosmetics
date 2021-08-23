@@ -215,7 +215,8 @@ class UserInfo(db.Model):
     __tablename__ = 'user_info'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(45), nullable=False)
-    acc_ID = db.Column(db.String(45), nullable=False)
-    password = db.Column(db.String(45), nullable=False)
+    acc_id = db.Column(db.String(45), nullable=False)
+    password = db.Column(db.String(150), nullable=False)
+    jwt = db.Column(db.String(300), nullable=True, default=None)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_date = db.Column(db.DateTime, nullable=False, default=datetime.now)

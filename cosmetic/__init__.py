@@ -1,11 +1,15 @@
+from datetime import timedelta
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
+
 
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
+bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__)
@@ -15,10 +19,13 @@ def create_app():
     # 토큰 생성에 사용될 Secret Key를 flask 환경 변수에 등록
     app.config.update(
 			DEBUG = True,
-			JWT_SECRET_KEY = "NCYCCOPERATION"
+			JWT_SECRET_KEY = "NCYCCOPERATION",
+      JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=10),
+      JWT_REFRESH_TOKEN_EXPIRES = timedelta(seconds=30)
 		)
     jwt.init_app(app) 
-
+    bcrypt.init_app(app)
+    
     #ORM
     db.init_app(app)
     migrate.init_app(app, db)
