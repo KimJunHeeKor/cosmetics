@@ -110,7 +110,7 @@ class Survey(db.Model):
     __tablename__ = 'survey'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     uid = db.Column(db.Integer, db.ForeignKey('user_info.id', ondelete='CASCADE'), nullable=False)
-    create_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     name = db.Column(db.String(45), nullable=False)
     year_of_birth = db.Column(db.Integer, nullable=False)
     marriage = db.Column(db.String(45), nullable=False)
@@ -142,9 +142,6 @@ class Survey(db.Model):
     dry_Q4 = db.Column(db.String(45), nullable=False)
     dry_Q5 = db.Column(db.String(45), nullable=False)
     dry_Q6 = db.Column(db.String(45), nullable=False)
-    sensitive_Q1 = db.Column(db.String(45), nullable=False)
-    sensitive_Q1 = db.Column(db.String(45), nullable=False)
-    sensitive_Q1 = db.Column(db.String(45), nullable=False)
     sensitive_Q1 = db.Column(db.String(45), nullable=False)
     sensitive_Q2 = db.Column(db.String(45), nullable=False)
     sensitive_Q3 = db.Column(db.String(45), nullable=False)

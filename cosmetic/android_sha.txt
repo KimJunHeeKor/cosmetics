@@ -1,0 +1,20 @@
+C:\Users\LENOVO\AndroidStudioProjects\MyApplication>keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+키 저장소 비밀번호 입력:
+별칭 이름: androiddebugkey
+생성 날짜: 2021. 8. 24
+항목 유형: PrivateKeyEntry
+인증서 체인 길이: 1
+인증서[1]:
+소유자: C=US, O=Android, CN=Android Debug
+발행자: C=US, O=Android, CN=Android Debug
+일련 번호: 1
+적합한 시작 날짜: Tue Aug 24 16:52:17 KST 2021 종료 날짜: Thu Aug 17 16:52:17 KST 2051
+인증서 지문:
+         SHA1: 89:E7:64:AE:12:88:03:24:DD:EA:24:F8:3F:15:92:90:74:D6:A8:53
+         SHA256: B6:9E:BB:B2:48:B9:71:4F:38:13:72:42:F2:02:B2:27:BD:3B:B2:86:31:F5:D7:DA:A3:62:05:11:11:E6:D9:B9
+서명 알고리즘 이름: SHA1withRSA(약함)
+주체 공용 키 알고리즘: 2048비트 RSA 키
+버전: 1
+
+Warning:
+인증서이(가) 보안 위험으로 간주된 SHA1withRSA 서명 알고리즘을 사용합니다. 이 알고리즘은 향후 업데이트에서 사용 안함으로 설정됩니다.

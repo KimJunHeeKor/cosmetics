@@ -1,21 +1,9 @@
-import time
-
+from ..helper.methods import time_log, msg_dict
 from datetime import datetime, timedelta
 from ..model.db_models import *
 from flask_jwt_extended import *
 from flask import Blueprint, json, jsonify, request
 from .. import bcrypt
-
-# API 전송 dictionary 선언
-_fail_dict={
-    'rt':'fail',
-    'pubDate':time.strftime('%Y-%M-%d %H:%m:%S')
-    }
-
-_success_dict={
-    'rt':'success',
-    'pubDate':time.strftime('%Y-%M-%d %H:%m:%S')
-}
 
 
 ## 전역변수 설정
@@ -23,13 +11,6 @@ _success_dict={
 bp = Blueprint('log', __name__, url_prefix='/log')
 # 토큰 유지시간
 token_maintain_time=timedelta(minutes=5)
-
-
-def time_log():
-    '''
-    로그 시간을 기록하기 위한 메소드 @20210823 KJH
-    '''
-    return time.strftime('%Y-%M-%d %H:%m:%S')
 
 
 @bp.route('/signup', methods=['POST'])
@@ -40,13 +21,16 @@ def sign_up():
     try:
         #POST 전송 확인
         if request.method != 'POST':
-            return jsonify(rt='fail')
+            return jsonify(msg_dict('fail','POST 전송이 아닙니다.'))
         
         # POST parameters 확인
         acc_id = request.form.get("acc_id", type=str)
         password = request.form.get("password", type=str)
         name = request.form.get("name", type=str)
         created_date = datetime.now()
+
+        if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
+            return jsonify(msg_dict('fail',"아이디가 존재합니다."))
         #hashing password
         password = bcrypt.generate_password_hash(password, 10)
         
@@ -55,13 +39,13 @@ def sign_up():
         db.session.add(query)
         db.session.commit()
 
-        return jsonify(_success_dict)
+        return jsonify(msg_dict('ok')), 200
 
     except Exception as err:
         # 에러메시지 생성
         msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
         print(msg)
-        return jsonify(_fail_dict)
+        return jsonify(msg_dict('fail')), 400
 
 @bp.route('/login', methods=['POST'])
 def login():
@@ -71,44 +55,38 @@ def login():
     try:
         #POST 전송 확인
         if request.method != 'POST':
-            return jsonify(_fail_dict), 400
+            return jsonify(msg_dict('fail', 'POST 전송이 아닙니다.')), 400
 
         #POST parameters 확인
         acc_id = request.form.get("acc_id", type=str)
         password = request.form.get("password", type=str)
 
         #DB에 저장된 user 정보 일치 확인
-        user_info = UserInfo.query.filter(UserInfo.acc_id == acc_id).all()
-        hash_password = bcrypt.check_password_hash(user_info[0].password,password)
+        user_info = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
+        hash_password = bcrypt.check_password_hash(user_info.password,password)
         if user_info is None:
-            return jsonify(rt='no user'), 400
+            return jsonify(msg_dict('fail','없는 사용자입니다.')), 400
         elif not hash_password:
-            return jsonify(rt='mismatch password'), 400
+            return jsonify(msg_dict('fail', 'mismatch password')), 400
 
         #JWT 생성
         access_token = create_access_token(identity=acc_id, fresh=token_maintain_time)
         refresh_token = create_refresh_token(identity=acc_id)
-        user_info[0].jwt=refresh_token
+        user_info.jwt=refresh_token
         #JWT refresh token을 db에 저장(db 수정)
         db.session.commit()
         user_info_dict = {'accToken':access_token, 'refToken':refresh_token}
 
         #login 정보를 DB에 기입
-        log_query = LogInfo(uid=user_info[0].id, login_time=datetime.now(), logout_time=datetime.now())
+        log_query = LogInfo(uid=user_info.id, login_time=datetime.now(), logout_time=datetime.now())
         db.session.add(log_query)
         db.session.commit()
 
-        json_dict={
-            'rt': 'OK', 
-            'contents':user_info_dict,
-            'pubDate':time.strftime('%Y-%M-%d %H:%m:%S')
-        }
-
-        return jsonify(json_dict)
+        return jsonify(msg_dict('ok', user_info_dict))
     except Exception as err:
         msg = f'[LOGIN ERROR] [{time_log()}]: {err}'
         print(msg)
-        return jsonify(_fail_dict)
+        return jsonify(msg_dict('fail'))
 
 @bp.route('/test', methods=['GET'])
 @jwt_required(fresh=True)
@@ -117,7 +95,7 @@ def user_only():
     API test
     '''
     current_user = get_jwt_identity()
-    return jsonify(rt='test ok', user=current_user)
+    return jsonify(msg_dict('ok'))
 
 
 @bp.route("/refresh", methods=["POST"])
@@ -129,16 +107,16 @@ def refresh():
     current_user = get_jwt_identity()
 
     #현재 접속한 유저가 DB에 저장된 유저인지 확인
-    user_check = UserInfo.query.filter(UserInfo.acc_id == current_user).count()
-    if user_check < 1:
-        return jsonify(rt='fail')
+    user_check = UserInfo.query.filter(UserInfo.acc_id == current_user).first()
+    if user_check is None:
+        return jsonify(msg_dict('fail', '없는 유저입니다.'))
     else:
         access_token = create_access_token(identity=current_user, fresh=token_maintain_time)
-        return jsonify(access_token=access_token)
+        return jsonify(msg_dict('ok',{'access_token':access_token}))
 
 
 
-@bp.route('/logout', methods=["GET"])
+@bp.route('/logout', methods=["POST"])
 @jwt_required(fresh=True)
 def logout():
     '''
@@ -146,15 +124,15 @@ def logout():
     '''
     try:
         current_user = get_jwt_identity()
-        user_info =  UserInfo.query.filter(UserInfo.acc_id==current_user).all()
+        user_info =  UserInfo.query.filter(UserInfo.acc_id==current_user).first()
         
         #JWT refresh token 초기화
-        user_info[0].jwt = None
+        user_info.jwt = None
         db.session.commit()
         
-        return jsonify(rt='ok')
+        return jsonify(msg_dict('ok'))
 
     except Exception as err:
         msg = f'[LOGOUT ERRO] [{time_log()}] : {err}'
         print(msg)
-        return jsonify(_fail_dict)
+        return jsonify(msg_dict('fail'))
