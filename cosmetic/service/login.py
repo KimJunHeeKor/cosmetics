@@ -1,4 +1,4 @@
-from ..helper.methods import time_log, msg_dict
+from ..helper.methods import time_log, msg_dict, save_log
 from datetime import datetime, timedelta
 from ..model.db_models import *
 from flask_jwt_extended import *
@@ -38,6 +38,7 @@ def sign_up():
         query = UserInfo(name=name, password=password, acc_id=acc_id, created_date=created_date)
         db.session.add(query)
         db.session.commit()
+        save_log('test')
 
         return jsonify(msg_dict('ok')), 200
 
