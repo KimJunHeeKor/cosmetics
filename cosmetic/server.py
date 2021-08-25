@@ -1,18 +1,89 @@
-import numpy
 import time
-from PIL import Image
-import cv2
-import base64
 
 # 소켓을 사용하기 위해서는 socket을 import해야 한다.
 import socket, threading
+from typing import Tuple
 
-def current_mill_sec():
+def current_mill_sec()->int:
+    '''
+    단위가 ms인 현재시간을 확인하는 메소드 @20210823 KJH
+
+    @return
+    millis(int) : ms 단위의 현재 시간 
+    '''
     millis = int(round(time.time() * 1000))
     return millis
 
-# binder함수는 서버에서 accept가 되면 생성되는 socket 인스턴스를 통해 client로 부터 데이터를 받으면 echo형태로 재송신하는 메소드이다.
-def binder(client_socket, addr):
+def img_save_socket(save_file_path:str, client_socket:socket, buffer_size:int=1024)->Tuple[bool,str]:
+    '''
+    소켓 통신으로 클라이언트로부터 받은 이미지를 저장하는 메소드 @20210825 KJH
+
+    @params
+    save_file_path(str) : 받은 이미지를 저장하는 경로
+    client_socket(socket) : 클라이언트 소켓
+
+    @return
+    tuple(rt, msg)
+        rt(bool) : 저장결과
+        msg(str) : 저장결과 메시지
+    '''
+    try:
+        #저장할 파일 위치 생성
+        file = open(save_file_path, 'wb')
+        rt = False
+        
+        #이미지 데이터 길이를 확인하기 위한 소켓 통신 (클라이언트에서 보내줘야 함.)
+        data = client_socket.recv(4);
+
+        # 클라이언트에게 대답이 없을 경우 false 리턴
+        if data==b'' or data == None:
+            return False
+
+        # 소켓 통신으로 받은 이미지 데이터 길이는 4byte로 형태는 byte이다.
+        # 이를 int형을 변환
+        length = int.from_bytes(data, "little")
+
+        # buffer size만큼 이미지 더미를 받음.(클라이언트가 보낸 크기와 동일해야 함.)
+        image_chunk= client_socket.recv(buffer_size)
+        # 통신받은 데이터의 길이를 확인
+        buffer_length = len(image_chunk)
+
+        
+        # 통신으로 받은 데이터가 있는 경우
+        while image_chunk:
+            # 이미지 더미를 파일에 저장
+            file.write(image_chunk)
+            # 클라이언트가 보내는 이미지 데이터를 계속해서 받음.
+            image_chunk = client_socket.recv(buffer_size)
+            # 통신으로 받은 데이터 길이를 누적
+            buffer_length += len(image_chunk)
+            # 이미지 데이터의 총 길이와 지금까지 받은 데이터의 길이를 비교
+            if buffer_length >= length:
+                rt += True
+                break
+        file.close()
+        msg = f'Image transfer success'
+        
+    except Exception as err:
+        rt = False
+        msg = f'[IMAGE TRANSFER ERROR] : {err}'
+
+    finally:
+        return (rt, msg)
+
+class MessageMapping():
+    def __init__(self):
+        self.FULL_FACE='FULL_FACE'
+        self.OILY_FACE='OILY_FACE'
+
+
+def binder(client_socket:socket, addr:str):
+    '''
+    binder함수는 서버에서 accept가 되면 생성되는 socket 인스턴스를 통해 client로 부터 데이터를 받으면 echo형태로 재송신하는 메소드
+    @params
+    client_socket(socket) : 클라이언트 소켓
+    addr(str) : 클라이언트 주소
+    '''
     # 커넥션이 되면 접속 주소가 나온다.
     print('Connected by', addr)
     try:
@@ -33,32 +104,11 @@ def binder(client_socket, addr):
             msg = data.decode()
 
             # 이미지 전달 메시지를 받았을 경우 코드가 실행
-            if msg == "send_file":
-                #저장되는 이미지의 이름을 정하는 코드
-                file = open('image.jpg', 'wb')
-                #소켓에서 바이트 이미지를 받음.
-                image_chunk= client_socket.recv(1024)
-                while image_chunk:
-                    file.write(image_chunk)
-                    image_chunk = client_socket.recv(1024)
-                    if len(image_chunk) != 1024:
-                        file.write(image_chunk)
-                        print('finish')
-                        break
-                file.close()
-
+            if msg == MessageMapping.FULL_FACE:
+                img_save_socket('test.jpg', client_socket, 1024)
+            
             # 수신된 메시지를 콘솔에 출력한다.
             print(f'Received from [host] {addr[0]}, [PORT] {addr[1]} : ')
-            
-            
-            '''
-            cv를 이용한 접근
-            # ddata = numpy.frombuffer(base64.b64decode(data), numpy.uint8)
-            ddata = numpy.frombuffer(data, numpy.uint8)
-            decimg = cv2.imdecode(ddata, 1)
-            cv2.imwrite('img.jpg', decimg)
-            print('save image')
-            '''
             # 수신된 메시지 앞에 「echo:」 라는 메시지를 붙힌다.
             msg = 'hi'
             # 바이너리(byte)형식으로 변환한다.
