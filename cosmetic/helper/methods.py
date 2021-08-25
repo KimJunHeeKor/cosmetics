@@ -1,6 +1,5 @@
 import os
 import time
-import file
 
 from datetime import datetime
 
