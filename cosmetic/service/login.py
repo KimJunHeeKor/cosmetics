@@ -54,7 +54,7 @@ def sign_up():
         save_log(msg)
         save_error_log(msg)
         print(msg)
-        return jsonify(msg_dict('fail')), 400
+        return jsonify(msg_dict(msg)), 400
 
 @bp.route('/login', methods=['POST'])
 def login():
