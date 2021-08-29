@@ -43,12 +43,16 @@ def sign_up():
         query = UserInfo(name=name, password=password, acc_id=acc_id, created_date=created_date)
         db.session.add(query)
         db.session.commit()
+        msg = f'[SIGNUP] [{time_log()}]: ({request.remote_addr}) 아이디 생성 완료.'
+        save_log(msg)
 
         return jsonify(msg_dict('ok')), 200
 
     except Exception as err:
         # 에러메시지 생성
         msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
+        save_log(msg)
+        save_error_log(msg)
         print(msg)
         return jsonify(msg_dict('fail')), 400
 
