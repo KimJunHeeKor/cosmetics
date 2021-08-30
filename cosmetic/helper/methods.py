@@ -54,7 +54,7 @@ def save_log(log_msg:str, error:bool=False):
         f = open(base_path+'/'+year+'/'+month_day+'/'+log_file_name, 'a+',encoding='utf8')
         f.write(log_msg+'\n')
         f.close()
-        if error:
+        if error is True:
             file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
             file.write(log_msg+"\n")
             file.close()
