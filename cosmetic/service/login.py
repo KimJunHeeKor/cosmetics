@@ -51,7 +51,6 @@ def sign_up():
         # 에러메시지 생성
         log_msg = f'[{time_log()}] [SIGNUP ERROR]: {err}'
         save_log(log_msg, error=True)
-        print(log_msg)
         return jsonify(msg_dict('fail')), 400
 
 
@@ -93,7 +92,7 @@ def login():
         return jsonify(msg_dict('ok', user_info_dict))
     except Exception as err:
         msg = f'[{time_log()}] [LOGIN ERROR]: {err}'
-        print(msg)
+        save_log(msg)
         return jsonify(msg_dict('fail'))
 
 @bp.route('/test', methods=['GET'])
