@@ -70,10 +70,11 @@ def login():
 
         #DB에 저장된 user 정보 일치 확인
         user_info = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
-        hash_password = bcrypt.check_password_hash(user_info.password,password)
         if user_info is None:
             return jsonify(msg_dict('fail','없는 사용자입니다.')), 400
-        elif not hash_password:
+
+        hash_password = bcrypt.check_password_hash(user_info.password, password)
+        if not hash_password:
             return jsonify(msg_dict('fail', 'mismatch password')), 400
 
         #JWT 생성
