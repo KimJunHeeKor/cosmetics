@@ -29,16 +29,18 @@ def msg_dict(rt:str, content:Dict=None) -> Dict:
     return json_dict
 
 
-def save_log(msg:str):
+def save_log(log_msg:str, error:bool=False):
     '''
     로그 저장 @20210823 KJH
     @params
     msg (str) : 저장될 메시지
+    error(bool) :  에러 메시지 저장 여부
     '''
     base_path = os.getcwd()+'/cosmetic/log'
     year = time.strftime('%Y')
     month_day = time.strftime('%m.%d')
-    file_name = 'log.txt'
+    log_file_name = "log.txt"
+    error_log_file_name = "error_log.txt"
     try:
         if not os.path.exists(base_path):
             os.makedirs(base_path)
@@ -49,42 +51,16 @@ def save_log(msg:str):
         if not os.path.exists(base_path+'/'+year+'/'+month_day):
             os.makedirs(base_path+'/'+year+'/'+month_day)
 
-        f = open(base_path+'/'+year+'/'+month_day+'/'+file_name, 'a+',encoding='utf8')
-        f.write(msg+'\n')
+        f = open(base_path+'/'+year+'/'+month_day+'/'+log_file_name, 'a+',encoding='utf8')
+        f.write(log_msg+'\n')
+        if error:
+            file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
+            file.write(log_msg+"\n")
     except Exception as err:
-        err_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
-        print(err_msg)
-        save_error_log(err_msg)
+        log_msg = f'[SAVE LOG ERROR] [{time_log()}]: {err}'
+        file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
+        file.write(log_msg+"\n")
     finally:
         f.close()
-        print(msg)
-
-
-def save_error_log(msg:str):
-    '''
-    에러로그 저장 @20210823 KJH
-    @params
-    msg (str) : 저장될 메시지
-    '''
-    base_path = os.getcwd()+'/cosmetic/log'
-    year = time.strftime('%Y')
-    month_day = time.strftime('%m.%d')
-    file_name = 'error_log.txt'
-    try:
-        if not os.path.exists(base_path):
-            os.makedirs(base_path)
-
-        if not os.path.exists(base_path+'/'+year):
-            os.makedirs(base_path+'/'+year)
-
-        if not os.path.exists(base_path+'/'+year+'/'+month_day):
-            os.makedirs(base_path+'/'+year+'/'+month_day)
-
-        f = open(base_path+'/'+year+'/'+month_day+'/'+file_name, 'a+',encoding='utf8')
-        f.write(msg+'\n')
-        f.close()
-        print(msg)
-    except Exception as err:
-        err_msg = f'[SAVE ERRORLOG ERROR] [{time_log()}]: {err}'
-        print(err_msg)
-        save_error_log(err_msg)
+        file.close()
+        print(log_msg)

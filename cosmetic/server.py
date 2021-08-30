@@ -14,7 +14,26 @@ def current_mill_sec()->int:
     millis = int(round(time.time() * 1000))
     return millis
 
-def img_save_socket(save_file_path:str, client_socket:socket, buffer_size:int=1024)->Tuple[bool,str]:
+
+def rev_msg_socket(client_socket:socket) -> str:
+    '''
+    소켓통신으로 데이터 받는 메소드@20210830 KJH
+    @param
+    client_socket(socket) : 클라이언트 소켓
+    @return
+    msg(str) : 소켓통신으로 받은 메시지
+    '''
+    # server로 부터 전송받을 데이터 길이를 받는다.
+    data = client_socket.recv(4)
+    # 데이터 길이는 리틀 엔디언 형식으로 int를 변환한다.
+    length = int.from_bytes(data, "little")
+    # 데이터 길이를 받는다.
+    data = client_socket.recv(length)
+    # 데이터를 수신한다.
+    msg = data.decode()
+    return msg
+
+def save_img_socket(save_file_path:str, client_socket:socket, buffer_size:int=1024)->Tuple[bool,str]:
     '''
     소켓 통신으로 클라이언트로부터 받은 이미지를 저장하는 메소드 @20210825 KJH
 
@@ -28,16 +47,13 @@ def img_save_socket(save_file_path:str, client_socket:socket, buffer_size:int=10
         msg(str) : 저장결과 메시지
     '''
     try:
+        save_msg = ''
         #저장할 파일 위치 생성
         file = open(save_file_path, 'wb')
         rt = False
         
         #이미지 데이터 길이를 확인하기 위한 소켓 통신 (클라이언트에서 보내줘야 함.)
-        data = client_socket.recv(4);
-
-        # 클라이언트에게 대답이 없을 경우 false 리턴
-        if data==b'' or data == None:
-            return False
+        data = client_socket.recv(4)
 
         # 소켓 통신으로 받은 이미지 데이터 길이는 4byte로 형태는 byte이다.
         # 이를 int형을 변환
@@ -59,22 +75,26 @@ def img_save_socket(save_file_path:str, client_socket:socket, buffer_size:int=10
             buffer_length += len(image_chunk)
             # 이미지 데이터의 총 길이와 지금까지 받은 데이터의 길이를 비교
             if buffer_length >= length:
-                rt += True
+                rt = True
                 break
         file.close()
-        msg = f'Image transfer success'
+        save_msg = f'Image transfer success'
         
     except Exception as err:
         rt = False
-        msg = f'[IMAGE TRANSFER ERROR] : {err}'
+        save_msg = f'[IMAGE TRANSFER ERROR] : {err}'
 
     finally:
-        return (rt, msg)
+        return rt, save_msg
 
 class MessageMapping():
+    '''
+    메시지 매핑 클래스 @20210825 KJH
+    '''
     def __init__(self):
-        self.FULL_FACE='FULL_FACE'
-        self.OILY_FACE='OILY_FACE'
+        self.FULL_FACE="FULL_FACE"
+        self.OIL_PAPER="OIL_PAPER"
+        self.SURVEY = "SURVEY"
 
 
 def binder(client_socket:socket, addr:str):
@@ -91,26 +111,28 @@ def binder(client_socket:socket, addr:str):
         # 만약 접속이 끊기게 된다면 except가 발생해서 접속이 끊기게 된다.
         while True:
             start = current_mill_sec()
-            # socket의 recv함수는 연결된 소켓으로부터 데이터를 받을 대기하는 함수입니다. 최초 4바이트를 대기합니다.
-            data = client_socket.recv(4)
-            if data==b'':
-                return False
-            
-            # 최초 4바이트는 전송할 데이터의 크기이다. 그 크기는 little 엔디언으로 byte에서 int형식으로 변환한다.
-            length = int.from_bytes(data, "little")
-            # 다시 데이터를 수신한다.
-            data = client_socket.recv(length)
-            # 수신된 데이터를 str형식으로 decode한다.
-            msg = data.decode()
-
+            msg = rev_msg_socket(client_socket)
+            if msg == '':
+                return
+            uid = None
+            msg_mapping=MessageMapping()
             # 이미지 전달 메시지를 받았을 경우 코드가 실행
-            if msg == MessageMapping.FULL_FACE:
-                img_save_socket('test.jpg', client_socket, 1024)
+            if msg == msg_mapping.FULL_FACE:
+                acc_id = rev_msg_socket(client_socket)
+                device_info = rev_msg_socket(client_socket)
+                rt, msg1 = save_img_socket(acc_id+'_full.jpg', client_socket)
+            elif msg == msg_mapping.OIL_PAPER:
+                rt, msg2 = save_img_socket(acc_id+'_oily.jpg', client_socket)
+                print(rt, msg2)
+            elif msg == msg_mapping.SURVEY:
+                msg2 = rev_msg_socket(client_socket)
+                print(msg2)
+            
             
             # 수신된 메시지를 콘솔에 출력한다.
-            print(f'Received from [host] {addr[0]}, [PORT] {addr[1]} : ')
+            print(f'Received from [host] {addr[0]}, [PORT] {addr[1]} : {msg}')
             # 수신된 메시지 앞에 「echo:」 라는 메시지를 붙힌다.
-            msg = 'hi'
+            msg = 'finish'
             # 바이너리(byte)형식으로 변환한다.
             data = msg.encode()
             # 바이너리의 데이터 사이즈를 구한다.

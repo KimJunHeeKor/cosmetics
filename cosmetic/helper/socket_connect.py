@@ -1,22 +1,7 @@
-# 소켓을 사용하기 위해서는 socket을 import해야 한다.
 import socket
 
-from flask import request
 from cosmetic.helper.methods import time_log
 from typing import Tuple
-# 로컬은 127.0.0.1의 ip로 접속한다.
-HOST = 'localhost'
-# HOST = '14.39.220.155'
-# port는 위 서버에서 설정한 9999로 접속을 한다.
-PORT = 9999
-# PORT= 34512
-# 소켓을 만든다.
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# connect함수로 접속을 한다.
-client_socket.connect((HOST, PORT))
-
-
-
 
 class MessageMapping():
     '''
@@ -42,15 +27,12 @@ def rev_msg_socket(client_socket:socket) -> str:
         length = int.from_bytes(data, "little")
         # 데이터 길이를 받는다.
         data = client_socket.recv(length)
-        if data == b'':
-            print(f'[RECEIVE ERROR] : receive no data')
-            return ''
         # 데이터를 수신한다.
         msg = data.decode()
-        log_msg = f"[{time_log()}] [RECEIVE SUCCESS]: {msg}"
+        log_msg = f"[RECEIVE SUCCESS] [{time_log()}]: {msg}"
     except Exception as err:
-        log_msg = f"[{time_log()}] [SOCKET ERROR]: {err}"
-        msg = ''
+        log_msg = f"[SOCKET ERROR] [{time_log()}]: {err}"
+        msg = None
     finally:
         print(log_msg)
         return msg
@@ -70,9 +52,9 @@ def send_msg_socket(msg:str, client_socket:socket):
         client_socket.sendall(encode_msg_len.to_bytes(4, byteorder="little"))\
         # 해당 메시지 전달
         client_socket.sendall(encode_msg)
-        log_msg = f'[{time_log()}] [MESSAGE SEND SUCCESS]'
+        log_msg = f'[MESSAGE SEND SUCCESS] [{time_log()}]'
     except Exception as err:
-        log_msg = f'[{time_log()}] [MESSAGE SEND ERROR] : {err}'
+        log_msg = f'[MESSAGE SEND ERROR] [{time_log()}]: {err}'
     finally:
         print(log_msg)
 
@@ -115,35 +97,3 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
     finally:
         send_file.close()
         return rt, msg
-
-try:
-    msg_mapping = MessageMapping()
-    msg_mapping_list = [msg_mapping.FULL_FACE, msg_mapping.OIL_PAPER, msg_mapping.SURVEY]
-    # device_info = request.headers.get('User_Agent')
-    device_info = 'device'
-
-    for msg in msg_mapping_list:
-
-        send_msg_socket(msg, client_socket)
-
-        if msg == msg_mapping.FULL_FACE:
-            send_msg_socket('test_id', client_socket)
-            send_msg_socket(device_info, client_socket)
-            rt, msg = send_img_socket('1.jpg', client_socket)
-
-        elif msg == msg_mapping.OIL_PAPER:
-            rt, msg = send_img_socket('2.jpg', client_socket)
-
-        elif msg == msg_mapping.SURVEY:
-            send_msg_socket('hi', client_socket)
-
-        msg = rev_msg_socket(client_socket)
-        # 데이터를 출력한다.
-        log_msg = f"[{time_log()}] [RECEIVE SUCCESS]: {msg}"
-        print('Received from : ', log_msg)
-
-except Exception as err:
-    log_msg = f"[{time_log()}] [SOCKET ERROR]: {err}"
-    print(log_msg)
-finally:
-    client_socket.close()

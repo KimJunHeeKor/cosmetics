@@ -1,4 +1,4 @@
-from ..helper.methods import save_error_log, time_log, msg_dict, save_log
+from ..helper.methods import time_log, msg_dict, save_log
 from datetime import datetime, timedelta
 from ..model.db_models import *
 from flask_jwt_extended import *
@@ -21,8 +21,8 @@ def sign_up():
     try:
         #POST 전송 확인
         if request.method != 'POST':
-            msg = f'[SIGNUP ERROR] [{time_log()}]: ({request.remote_addr}) POST 전송이 아닙니다'
-            save_error_log(msg)
+            log_msg = f'[SIGNUP ERROR] [{time_log()}]: ({request.remote_addr}) POST 전송이 아닙니다'
+            save_log(log_msg, error=True)
             return jsonify(msg_dict('fail','POST 전송이 아닙니다.'))
         
         # POST parameters 확인
@@ -32,9 +32,8 @@ def sign_up():
         created_date = datetime.now()
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
-            msg = f'[SIGNUP ERROR] [{time_log()}]: ({request.remote_addr}) 아이디가 존재합니다.'
-            save_log(msg)
-            save_error_log(msg)
+            log_msg = f'[SIGNUP ERROR] [{time_log()}]: ({request.remote_addr}) 아이디가 존재합니다.'
+            save_log(log_msg, error=True)
             return jsonify(msg_dict('fail',"아이디가 존재합니다."))
         #hashing password
         password = bcrypt.generate_password_hash(password, 10)
@@ -48,8 +47,9 @@ def sign_up():
 
     except Exception as err:
         # 에러메시지 생성
-        msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
-        print(msg)
+        log_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
+        save_log(log_msg, error=True)
+        print(log_msg)
         return jsonify(msg_dict('fail')), 400
 
 @bp.route('/login', methods=['POST'])
