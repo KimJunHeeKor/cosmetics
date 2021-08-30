@@ -13,11 +13,11 @@ from sqlalchemy import desc
 bp = Blueprint('userskin', __name__, url_prefix='/userskin')
 
 # 로컬은 127.0.0.1의 ip로 접속한다.
-HOST = 'localhost'
-# HOST = '14.39.220.155'
+# HOST = 'localhost'
+HOST = '14.39.220.155'
 # port는 위 서버에서 설정한 9999로 접속을 한다.
-# PORT= 34512
-PORT=9999
+PORT= 34512
+# PORT=9999
 # 소켓을 만든다.
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # connect함수로 접속을 한다.
