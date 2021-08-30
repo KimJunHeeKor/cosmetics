@@ -58,8 +58,9 @@ def save_log(log_msg:str, error:bool=False):
             file.write(log_msg+"\n")
     except Exception as err:
         log_msg = f'[SAVE LOG ERROR] [{time_log()}]: {err}'
-        file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
-        file.write(log_msg+"\n")
+        err_file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
+        err_file.write(log_msg+"\n")
+        err_file.close()
     finally:
         f.close()
         file.close()
