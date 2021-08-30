@@ -63,8 +63,3 @@ def save_log(log_msg:str, error:bool=False):
         except_file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
         except_file.write(log_msg+"\n")
         except_file.close()
-    finally:
-        if not f.closed:
-            f.close()
-        if not err_file.closed:
-            err_file.close()
