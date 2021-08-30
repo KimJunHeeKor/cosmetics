@@ -66,5 +66,5 @@ def save_log(log_msg:str, error:bool=False):
     finally:
         if not f.closed:
             f.close()
-        if not file.closed:
-            file.close()
+        if not err_file.closed:
+            err_file.close()
