@@ -24,7 +24,7 @@ def sign_up():
     try:
         #POST 전송 확인
         if request.method != 'POST':
-            log_msg = f'[SIGNUP ERROR] [{time_log()}]: ({request.remote_addr}) POST 전송이 아닙니다'
+            log_msg = f'[{time_log()}] [SIGNUP ERROR]: ({request.remote_addr}) POST 전송이 아닙니다'
             save_log(log_msg, error=True)
             return jsonify(msg_dict('fail','POST 전송이 아닙니다.'))
         
@@ -57,14 +57,14 @@ def sign_up():
                          hp_no = hp_no, email = email)
         db.session.add(query)
         db.session.commit()
-        msg = f'[SIGNUP] [{time_log()}]: ({request.remote_addr}) 아이디 생성 완료.'
+        msg = f'[{time_log()}] [SIGNUP]: ({request.remote_addr}) 아이디 생성 완료.'
         save_log(msg)
 
         return jsonify(msg_dict('ok')), 200
 
     except Exception as err:
         # 에러메시지 생성
-        log_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
+        log_msg = f'[{time_log()}] [SIGNUP ERROR]: {err}'
         save_log(log_msg, error=True)
         print(log_msg)
 

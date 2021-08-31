@@ -23,7 +23,7 @@ def rev_msg_socket(client_socket:socket) -> str:
     # 데이터를 수신한다.
     msg = data.decode()
     
-    log_msg = f"[RECEIVE SUCCESS] [{time_log()}]: {msg}"
+    log_msg = f"[{time_log()}] [RECEIVE SUCCESS]: {msg}"
     save_log(log_msg)
     print(log_msg)
 
@@ -43,7 +43,7 @@ def send_msg_socket(msg:str, client_socket:socket):
     client_socket.sendall(encode_msg_len.to_bytes(4, byteorder="little"))
     # 해당 메시지 전달
     client_socket.sendall(encode_msg)
-    log_msg = f'[MESSAGE SEND SUCCESS] [{time_log()}]'
+    log_msg = f'[{time_log()}] [MESSAGE SEND SUCCESS]:{msg}'
     save_log(log_msg)
     print(log_msg)
 
@@ -78,6 +78,6 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
         client_socket.send(image_data)
         image_data = send_file.read(buffer_size)
     send_file.close()
-    log_msg = f'[{time_log()}] [IMAGE SEND SUCCESS]'
+    log_msg = f'[{time_log()}] [IMAGE SEND SUCCESS] : {load_file_path}'
     save_log(log_msg)
     print(log_msg)

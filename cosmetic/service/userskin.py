@@ -225,7 +225,7 @@ def suervey():
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
-        log_msg = f'[SURVEY ERROR] [{time_log()}] : {err}'
+        log_msg = f'[{time_log()}] [SURVEY ERROR]: {err}'
         save_log(log_msg, error=True)
         print(log_msg)
 
