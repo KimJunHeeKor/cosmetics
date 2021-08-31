@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 from cosmetic.helper.methods import time_log, msg_dict, save_log
-from cosmetic.model.db_models import *
+from cosmetic.model.db_models import db, UserInfo, LogInfo
 
 from flask_jwt_extended import *
 from flask import Blueprint, jsonify, request
@@ -26,7 +26,7 @@ def sign_up():
         if request.method != 'POST':
             log_msg = f'[{time_log()}] [SIGNUP ERROR]: ({request.remote_addr}) POST 전송이 아닙니다'
             save_log(log_msg, error=True)
-            return jsonify(msg_dict('fail','POST 전송이 아닙니다.'))
+            return jsonify(msg_dict('fail','POST 전송이 아닙니다.')), 400
         
         # POST parameters 확인
         acc_id = request.form.get("acc_id", type=str)
@@ -44,7 +44,7 @@ def sign_up():
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
             log_msg = f'[SIGNUP ERROR] [{time_log()}]: ({request.remote_addr}) 아이디가 존재합니다.'
             save_log(log_msg, error=True)
-            return jsonify(msg_dict('fail',"아이디가 존재합니다."))
+            return jsonify(msg_dict('fail',"아이디가 존재합니다.")), 400
         #hashing password
         password = bcrypt.generate_password_hash(password, 10)
         
@@ -78,7 +78,9 @@ def login():
     try:
         #POST 전송 확인
         if request.method != 'POST':
-            return jsonify(msg_dict('fail', 'POST 전송이 아닙니다.')), 400
+            log_msg = f'[{time_log()}] [SIGNUP ERROR]: ({request.remote_addr}) POST 전송이 아닙니다'
+            save_log(log_msg, error=True)
+            return jsonify(msg_dict('fail','POST 전송이 아닙니다.')), 400
 
         #POST parameters 확인
         acc_id = request.form.get("acc_id", type=str)
@@ -87,11 +89,15 @@ def login():
         #DB에 저장된 user 정보 일치 확인
         user_info = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
         if user_info is None:
+            log_msg = f"[{time_log()}] [LOGIN ERROR] : ({acc_id}) 없는 사용자입니다."
+            save_log(log_msg, error=True)
             return jsonify(msg_dict('fail','없는 사용자입니다.')), 400
 
         hash_password = bcrypt.check_password_hash(user_info.password, password)
         if not hash_password:
-            return jsonify(msg_dict('fail', 'mismatch password')), 400
+            log_msg = f"[{time_log()}] [LOGIN ERROR] : ({acc_id}) 암호가 일치하지 않습니다."
+            save_log(log_msg, error=True)
+            return jsonify(msg_dict('fail', '암호가 일치하지 않습니다.')), 400
 
         #JWT 생성
         access_token = create_access_token(identity=acc_id, fresh=acc_token_maintain_time)
@@ -99,17 +105,27 @@ def login():
         user_info.jwt=refresh_token
         #JWT refresh token을 db에 저장(db 수정)
         db.session.commit()
+        
+        log_msg = f"[{time_log()}] [ACC,REF TOKEN SUCCESS] : ({acc_id}) 토큰 생성 및 DB에 저장 성공"
+        save_log(log_msg)
+
         user_info_dict = {'accToken':access_token, 'refToken':refresh_token}
 
         #login 정보를 DB에 기입
         log_query = LogInfo(uid=user_info.id, login_time=datetime.now(), logout_time=datetime.now())
         db.session.add(log_query)
         db.session.commit()
+        log_msg = f"[{time_log()}] [LOGINFO SUCCESS] : ({acc_id}) 접속 로그 DB에 저장 성공"
+        save_log(log_msg)
+
+        log_msg = f"[{time_log()}] [LOGIN SUCCESS] : ({acc_id}) 로그인 성공"
+        save_log(log_msg)
 
         return jsonify(msg_dict('ok', user_info_dict))
     except Exception as err:
         msg = f'[{time_log()}] [LOGIN ERROR]: {err}'
-        save_log(msg)
+        save_log(msg, error=True)
+
         return jsonify(msg_dict('fail'))
 
 @bp.route('/test', methods=['GET'])
@@ -128,14 +144,20 @@ def refresh():
     '''
     access token 재발행 API
     '''
-    current_user = get_jwt_identity()
+    acc_id = get_jwt_identity()
 
     #현재 접속한 유저가 DB에 저장된 유저인지 확인
-    user_check = UserInfo.query.filter(UserInfo.acc_id == current_user).first()
+    user_check = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
     if user_check is None:
+        log_msg = f"[{time_log()}] [REF TOKEN ERROR] : ({acc_id}) DB에 없는 유저입니다."
+        save_log(log_msg, error=True)
+
         return jsonify(msg_dict('fail', '없는 유저입니다.'))
     else:
         access_token = create_access_token(identity=current_user, fresh=acc_token_maintain_time)
+        log_msg = f"[{time_log()}] [REF TOKEN SUCCESS] : ({acc_id}) refresh token 재발행"
+        save_log(log_msg)
+
         return jsonify(msg_dict('ok',{'access_token':access_token}))
 
 
@@ -147,8 +169,8 @@ def logout():
     로그아웃 API
     '''
     try:
-        current_user = get_jwt_identity()
-        user_info =  UserInfo.query.filter(UserInfo.acc_id==current_user).first()
+        acc_id = get_jwt_identity()
+        user_info =  UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
         
         #JWT refresh token 초기화
         user_info.jwt = None
@@ -157,6 +179,87 @@ def logout():
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
-        msg = f'[{time_log()}] [LOGOUT ERROR]: {err}'
-        print(msg)
+        log_msg = f'[{time_log()}] [LOGOUT ERROR]: {err}'
+        save_log(log_msg, error=True)
+
+        return jsonify(msg_dict('fail'))
+
+
+@bp.route('/userinfo', methods=["GET"])
+@jwt_required(fresh=True)
+def userinfo():
+    try:
+        acc_id = get_jwt_identity()
+        user_info =  UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
+
+        if user_check is None:
+            log_msg = f"[{time_log()}] [GET USERINFO ERROR] : ({acc_id}) DB에 없는 유저입니다."
+            save_log(log_msg, error=True)
+
+            return jsonify(msg_dict('fail', '없는 유저입니다.'))
+
+        user_info_json = jsonify(msg_dict('ok',{
+            'name' : user_info.name,
+            'year_of_birth' : user_info.year_of_birth,
+            'marriage' : user_info.marriage,
+            'childbirth' : user_info.childbirth,
+            'job' : user_info.job,
+            'education' : user_info.education,
+            'hp_no' : user_info.hp_no,
+            'email' : user_info.email,
+        }))
+        log_msg = f"[{time_log()}] [GET USERINFO SUCCESS] : ({acc_id}) DB에서 유저 정보를 찾았습니다."
+        save_log(log_msg)
+        
+        return user_info_json
+    except Exception as err:
+        log_msg = f'[{time_log()}] [GET USERINFO ERROR]: {err}'
+        save_log(log_msg, error=True)
+
+        return jsonify(msg_dict('fail'))
+
+
+@bp.route('/update', methods=["PUT"])
+@jwt_required(fresh=True)
+def update():
+    '''
+    개인정보 수정
+    '''
+    try:
+        acc_id = get_jwt_identity()
+        user_info =  UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
+
+        name = request.form.get("name", type=str)
+        password = request.form.get("password", type=str)
+        year_of_birth = request.form.get("year_of_birth", type=str)
+        marriage = request.form.get("marriage", type=str)
+        childbirth = request.form.get("childbirth", type=str)
+        job = request.form.get("job", type=str)
+        education = request.form.get("education", type=str)
+        hp_no = request.form.get("hp_no", type=str)
+        email = request.form.get("email", type=str)
+
+        user_info.name = name
+        hash_password = bcrypt.check_password_hash(user_info.password, password)
+        if hash_password:
+            log_msg = f'[{time_log()}] [USER UPDATE ERROR]: 이전의 비밀번호와 동일합니다.'
+            save_log(log_msg, error=True)
+
+            return jsonify(msg_dict('fail', '이전의 비밀번호와 동일합니다.')), 400
+        user_info.password = password
+        user_info.year_of_birth = year_of_birth
+        user_info.marriage = marriage
+        user_info.childbirth = childbirth
+        user_info.job = job
+        user_info.education = education
+        user_info.hp_no = hp_no
+        user_info.email = email
+        db.session.commit()
+        log_msg = f'[{time_log()}] [USER UPDATE SUCCESS]: 유저 정보 수정 완료'
+        save_log(log_msg)
+
+    except Exception as err:
+        log_msg = f'[{time_log()}] [USER UPDATE ERROR]: {err}'
+        save_log(log_msg, error=True)
+
         return jsonify(msg_dict('fail'))
