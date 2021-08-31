@@ -1,9 +1,11 @@
-from ..helper.methods import time_log, msg_dict, save_log
 from datetime import datetime, timedelta
-from ..model.db_models import *
+
+from cosmetic.helper.methods import time_log, msg_dict, save_log
+from cosmetic.model.db_models import *
+
 from flask_jwt_extended import *
-from flask import Blueprint, json, jsonify, request
-from .. import bcrypt
+from flask import Blueprint, jsonify, request
+from cosmetic import bcrypt
 
 
 ## 전역변수 설정

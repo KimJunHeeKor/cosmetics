@@ -180,6 +180,7 @@ class TotalScoreOutput(db.Model):
     pore = db.Column(db.Integer, nullable=False)
     oily = db.Column(db.Integer, nullable=False)
     pigment = db.Column(db.Integer, nullable=False)
+    sensitivie = db.Column(db.Integer, nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 class UserInfo(db.Model):
