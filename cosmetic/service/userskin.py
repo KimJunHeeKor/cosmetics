@@ -232,7 +232,7 @@ def suervey():
                 print(msg)
                 
             elif msg == msg_mapping.SURVEY:
-                msg = send_msg_socket(bytes(socket_json,encoding="utf-8"), client_socket)
+                msg = send_msg_socket(socket_json, client_socket)
 
             msg = rev_msg_socket(client_socket)
             if msg == '':
