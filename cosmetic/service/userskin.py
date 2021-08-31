@@ -55,7 +55,7 @@ def suervey():
     try:
         acc_id = get_jwt_identity()
         user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
-        s_id = Submit.query.filter(Submit.uid == user.id).order_by(desc(Submit.id)).first()
+        user_id = user.id
         name = user.name
         year_of_birth = request.form.get('year_of_birth')
         marriage = request.form.get('marriage')
@@ -134,9 +134,7 @@ def suervey():
         # db.session.add(query)
         # db.session.commit()
         socket_json = {
-            "acc_id" : acc_id,
-            "user" : user,
-            "s_id" : s_id,
+            "user_id" : user_id,
             "name" : name,
             "year_of_birth" : year_of_birth,
             "marriage" : marriage,
