@@ -49,22 +49,14 @@ def sign_up():
 
     except Exception as err:
         # 에러메시지 생성
-<<<<<<< HEAD
         log_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
-=======
-        log_msg = f'[{time_log()}] [SIGNUP ERROR]: {err}'
->>>>>>> 08622f3d0a2d3b3cb8c926671c67c99d00474511
         save_log(log_msg, error=True)
         return jsonify(msg_dict('fail')), 400
-<<<<<<< HEAD
     finally:
         msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
         save_log(msg)
         print(msg)
         return jsonify(msg_dict(msg)), 400
-=======
-
->>>>>>> 08622f3d0a2d3b3cb8c926671c67c99d00474511
 
 @bp.route('/login', methods=['POST'])
 def login():
