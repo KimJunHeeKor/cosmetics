@@ -52,11 +52,6 @@ def sign_up():
         log_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
         save_log(log_msg, error=True)
         return jsonify(msg_dict('fail')), 400
-    finally:
-        msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
-        save_log(msg)
-        print(msg)
-        return jsonify(msg_dict(msg)), 400
 
 @bp.route('/login', methods=['POST'])
 def login():

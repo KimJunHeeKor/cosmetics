@@ -131,8 +131,7 @@ def suervey():
         etc_Q15 = request.form.get('etc_Q15')
         etc_Q16 = request.form.get('etc_Q16')
         etc_Q17 = request.form.get('etc_Q17')
-        # db.session.add(query)
-        # db.session.commit()
+        
         socket_json = {
             "user_id" : user_id,
             "name" : name,
