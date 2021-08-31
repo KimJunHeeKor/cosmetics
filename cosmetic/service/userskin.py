@@ -14,15 +14,9 @@ from sqlalchemy import desc
 bp = Blueprint('userskin', __name__, url_prefix='/userskin')
 
 # 로컬은 127.0.0.1의 ip로 접속한다.
-# HOST = 'localhost'
 HOST = '14.39.220.155'
 # port는 위 서버에서 설정한 9999로 접속을 한다.
 PORT= 34512
-# PORT=9999
-# 소켓을 만든다.
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# connect함수로 접속을 한다.
-client_socket.connect((HOST, PORT))
 
 @bp.route('/values', methods=['POST'])
 def userskin_anal_status():
@@ -54,20 +48,15 @@ def suervey():
     설문조사 결과를 받는 API
     '''
     try:
+        # 소켓을 만든다.
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # connect함수로 접속을 한다.
+        client_socket.connect((HOST, PORT))
+
         acc_id = get_jwt_identity()
-        user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
-        user_id = user.id
-        name = user.name
-        year_of_birth = request.form.get('year_of_birth')
-        marriage = request.form.get('marriage')
-        childbirth = request.form.get('childbirth')
-        job = request.form.get('job')
         student_env = request.form.get('student_env')
         work_env = request.form.get('work_env')
         freel_env = request.form.get('freel_env')
-        education = request.form.get('education')
-        hp_no = request.form.get('hp_no')
-        email = request.form.get('email')
         env_Q1 = request.form.get('env_Q1')
         env_Q2 = request.form.get('env_Q2')
         env_Q3 = request.form.get('env_Q3')
@@ -134,18 +123,9 @@ def suervey():
         etc_Q17 = request.form.get('etc_Q17')
 
         socket_json = {
-            "user_id" : user_id,
-            "name" : name,
-            "year_of_birth" : year_of_birth,
-            "marriage" : marriage,
-            "childbirth" : childbirth,
-            "job" : job,
             "student_env" : student_env,
             "work_env" : work_env,
             "freel_env" : freel_env,
-            "education" : education,
-            "hp_no" : hp_no,
-            "email" : email,
             "env_Q1" : env_Q1,
             "env_Q2" : env_Q2,
             "env_Q3" : env_Q3,
@@ -213,39 +193,40 @@ def suervey():
         }
         
         socket_json = json.dumps(socket_json)
-        msg_mapping = MessageMapping()
-        msg_mapping_list = [msg_mapping.FULL_FACE, msg_mapping.OIL_PAPER, msg_mapping.SURVEY]
+        msg_mapping_list = [FULL_FACE, OIL_PAPER, SURVEY]
         device_info = request.headers.get('User_Agent')
 
         for msg in msg_mapping_list:
 
             send_msg_socket(msg, client_socket)
 
-            if msg == msg_mapping.FULL_FACE:
+            if msg == FULL_FACE:
                 send_msg_socket(acc_id, client_socket)
                 send_msg_socket(device_info, client_socket)
-                _, msg = send_img_socket(os.getcwd()+'/cosmetic/1.jpg', client_socket)
-                print(msg)
+                send_img_socket(os.getcwd()+'/cosmetic/1.jpg', client_socket)
 
-            elif msg == msg_mapping.OIL_PAPER:
-                _, msg = send_img_socket(os.getcwd()+'/cosmetic/2.jpg', client_socket)
-                print(msg)
+            elif msg == OIL_PAPER:
+                send_img_socket(os.getcwd()+'/cosmetic/2.jpg', client_socket)
                 
-            elif msg == msg_mapping.SURVEY:
-                msg = send_msg_socket(socket_json, client_socket)
+            elif msg == SURVEY:
+                send_msg_socket(socket_json, client_socket)
 
             msg = rev_msg_socket(client_socket)
             if msg == '':
                 print('no data')
                 raise Exception
+            
             # 데이터를 출력한다.
-            log_msg = f"[RECEIVE SUCCESS] [{time_log()}]: {msg}"
-            print('Received from : ', log_msg)
+            log_msg = f"[{time_log()}] [SURVEY SOCKET SUCCESS]: {msg}"
+            save_log(log_msg)
+            print(log_msg)
 
-    except Exception as err:
-        msg = f'[SURVEY ERROR] [{time_log()}] : {err}'
-        print(msg)
-        return jsonify(msg_dict('fail'))
-    finally:
         client_socket.close()
         return jsonify(msg_dict('ok'))
+
+    except Exception as err:
+        log_msg = f'[SURVEY ERROR] [{time_log()}] : {err}'
+        save_log(log_msg, error=True)
+        print(log_msg)
+
+        return jsonify(msg_dict('fail'))

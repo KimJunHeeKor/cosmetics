@@ -1,4 +1,4 @@
-from ..__init__ import db
+from cosmetic import db
 from datetime import datetime
 
 class BimgCurRel(db.Model):
@@ -95,18 +95,9 @@ class Survey(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     s_id = db.Column(db.Integer, db.ForeignKey('submit.id', ondelete='CASCADE'), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    updated_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    name = db.Column(db.String(45), nullable=False)
-    year_of_birth = db.Column(db.Integer, nullable=False)
-    marriage = db.Column(db.String(45), nullable=False)
-    childbirth = db.Column(db.String(45), nullable=False)
-    job = db.Column(db.String(45), nullable=False)
     student_env = db.Column(db.String(45), nullable=True, default=None)
     work_env = db.Column(db.String(45), nullable=True, default=None)
     freel_env = db.Column(db.String(45), nullable=True, default=None)
-    education = db.Column(db.String(45), nullable=False)
-    hp_no = db.Column(db.String(45), nullable=False)
-    email = db.Column(db.String(45), nullable=False)
     env_Q1 = db.Column(db.String(45), nullable=False)
     env_Q2 = db.Column(db.String(45), nullable=False)
     env_Q3 = db.Column(db.String(45), nullable=False)
@@ -199,5 +190,12 @@ class UserInfo(db.Model):
     password = db.Column(db.String(150), nullable=False)
     jwt = db.Column(db.String(300), nullable=True, default=None)
     token = db.Column(db.String(300), nullable=True, default=None)
+    year_of_birth = db.Column(db.Integer, nullable=False)
+    marriage = db.Column(db.String(45), nullable=False)
+    childbirth = db.Column(db.String(45), nullable=False)
+    job = db.Column(db.String(45), nullable=False)
+    education = db.Column(db.String(45), nullable=False)
+    hp_no = db.Column(db.String(45), nullable=False)
+    email = db.Column(db.String(45), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_date = db.Column(db.DateTime, nullable=False, default=datetime.now)

@@ -29,6 +29,13 @@ def sign_up():
         acc_id = request.form.get("acc_id", type=str)
         password = request.form.get("password", type=str)
         name = request.form.get("name", type=str)
+        year_of_birth = request.form.get("year_of_birth", type=int)
+        marriage = request.form.get("marriage", type=str)
+        childbirth = request.form.get("childbirth", type=str)
+        job = request.form.get("job", type=str)
+        education = request.form.get("education", type=str)
+        hp_no = request.form.get("hp_no", type=str)
+        email = request.form.get("email", type=str)
         created_date = datetime.now()
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
@@ -39,7 +46,12 @@ def sign_up():
         password = bcrypt.generate_password_hash(password, 10)
         
         #sql을 db에 적용(데이터 추가 작업)
-        query = UserInfo(name=name, password=password, acc_id=acc_id, created_date=created_date)
+        query = UserInfo(name=name, password=password,
+                         acc_id=acc_id, created_date=created_date,
+                         year_of_birth = year_of_birth,
+                         marriage = marriage, childbirth = childbirth,
+                         job = job, education = education,
+                         hp_no = hp_no, email = email)
         db.session.add(query)
         db.session.commit()
         msg = f'[SIGNUP] [{time_log()}]: ({request.remote_addr}) 아이디 생성 완료.'
@@ -51,6 +63,8 @@ def sign_up():
         # 에러메시지 생성
         log_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
         save_log(log_msg, error=True)
+        print(log_msg)
+
         return jsonify(msg_dict('fail')), 400
 
 @bp.route('/login', methods=['POST'])

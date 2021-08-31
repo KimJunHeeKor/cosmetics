@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f580af0bdcab
-Revises: f8251bc6fd82
-Create Date: 2021-08-30 15:20:42.497557
+Revision ID: 8c93cc0db145
+Revises: 
+Create Date: 2021-08-31 16:54:03.220767
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f580af0bdcab'
-down_revision = 'f8251bc6fd82'
+revision = '8c93cc0db145'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -46,6 +46,13 @@ def upgrade():
     sa.Column('password', sa.String(length=150), nullable=False),
     sa.Column('jwt', sa.String(length=300), nullable=True),
     sa.Column('token', sa.String(length=300), nullable=True),
+    sa.Column('year_of_birth', sa.Integer(), nullable=False),
+    sa.Column('marriage', sa.String(length=45), nullable=False),
+    sa.Column('childbirth', sa.String(length=45), nullable=False),
+    sa.Column('job', sa.String(length=45), nullable=False),
+    sa.Column('education', sa.String(length=45), nullable=False),
+    sa.Column('hp_no', sa.String(length=45), nullable=False),
+    sa.Column('email', sa.String(length=45), nullable=False),
     sa.Column('created_date', sa.DateTime(), nullable=False),
     sa.Column('updated_date', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id')
@@ -141,18 +148,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('s_id', sa.Integer(), nullable=False),
     sa.Column('created_date', sa.DateTime(), nullable=False),
-    sa.Column('updated_date', sa.DateTime(), nullable=False),
-    sa.Column('name', sa.String(length=45), nullable=False),
-    sa.Column('year_of_birth', sa.Integer(), nullable=False),
-    sa.Column('marriage', sa.String(length=45), nullable=False),
-    sa.Column('childbirth', sa.String(length=45), nullable=False),
-    sa.Column('job', sa.String(length=45), nullable=False),
     sa.Column('student_env', sa.String(length=45), nullable=True),
     sa.Column('work_env', sa.String(length=45), nullable=True),
     sa.Column('freel_env', sa.String(length=45), nullable=True),
-    sa.Column('education', sa.String(length=45), nullable=False),
-    sa.Column('hp_no', sa.String(length=45), nullable=False),
-    sa.Column('email', sa.String(length=45), nullable=False),
     sa.Column('env_Q1', sa.String(length=45), nullable=False),
     sa.Column('env_Q2', sa.String(length=45), nullable=False),
     sa.Column('env_Q3', sa.String(length=45), nullable=False),
