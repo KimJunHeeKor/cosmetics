@@ -49,15 +49,22 @@ def sign_up():
 
     except Exception as err:
         # 에러메시지 생성
+<<<<<<< HEAD
         log_msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
+=======
+        log_msg = f'[{time_log()}] [SIGNUP ERROR]: {err}'
+>>>>>>> 08622f3d0a2d3b3cb8c926671c67c99d00474511
         save_log(log_msg, error=True)
-        print(log_msg)
         return jsonify(msg_dict('fail')), 400
+<<<<<<< HEAD
     finally:
         msg = f'[SIGNUP ERROR] [{time_log()}]: {err}'
         save_log(msg)
         print(msg)
         return jsonify(msg_dict(msg)), 400
+=======
+
+>>>>>>> 08622f3d0a2d3b3cb8c926671c67c99d00474511
 
 @bp.route('/login', methods=['POST'])
 def login():
@@ -75,10 +82,11 @@ def login():
 
         #DB에 저장된 user 정보 일치 확인
         user_info = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
-        hash_password = bcrypt.check_password_hash(user_info.password,password)
         if user_info is None:
             return jsonify(msg_dict('fail','없는 사용자입니다.')), 400
-        elif not hash_password:
+
+        hash_password = bcrypt.check_password_hash(user_info.password, password)
+        if not hash_password:
             return jsonify(msg_dict('fail', 'mismatch password')), 400
 
         #JWT 생성
@@ -96,8 +104,8 @@ def login():
 
         return jsonify(msg_dict('ok', user_info_dict))
     except Exception as err:
-        msg = f'[LOGIN ERROR] [{time_log()}]: {err}'
-        print(msg)
+        msg = f'[{time_log()}] [LOGIN ERROR]: {err}'
+        save_log(msg)
         return jsonify(msg_dict('fail'))
 
 @bp.route('/test', methods=['GET'])
@@ -145,6 +153,6 @@ def logout():
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
-        msg = f'[LOGOUT ERRO] [{time_log()}] : {err}'
+        msg = f'[{time_log()}] [LOGOUT ERROR]: {err}'
         print(msg)
         return jsonify(msg_dict('fail'))
