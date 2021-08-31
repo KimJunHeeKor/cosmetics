@@ -1,5 +1,6 @@
 import socket
 import os
+import json
 
 from ..helper.methods import time_log, msg_dict
 from ..helper.socket_connect import *
@@ -131,7 +132,7 @@ def suervey():
         etc_Q15 = request.form.get('etc_Q15')
         etc_Q16 = request.form.get('etc_Q16')
         etc_Q17 = request.form.get('etc_Q17')
-        
+
         socket_json = {
             "user_id" : user_id,
             "name" : name,
@@ -210,7 +211,8 @@ def suervey():
             "etc_Q16" : etc_Q16,
             "etc_Q17" : etc_Q17
         }
-        socket_json = str(socket_json)
+        
+        socket_json = json.dumps(socket_json)
         msg_mapping = MessageMapping()
         msg_mapping_list = [msg_mapping.FULL_FACE, msg_mapping.OIL_PAPER, msg_mapping.SURVEY]
         device_info = request.headers.get('User_Agent')
@@ -230,7 +232,7 @@ def suervey():
                 print(msg)
                 
             elif msg == msg_mapping.SURVEY:
-                msg = send_msg_socket(socket_json, client_socket)
+                msg = send_msg_socket(bytes(socket_json,encoding="utf-8"), client_socket)
 
             msg = rev_msg_socket(client_socket)
             if msg == '':
