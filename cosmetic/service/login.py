@@ -12,7 +12,8 @@ from cosmetic import bcrypt
 # 블루프린트
 bp = Blueprint('log', __name__, url_prefix='/log')
 # 토큰 유지시간
-token_maintain_time=timedelta(minutes=5)
+acc_token_maintain_time=timedelta(minutes=10)
+refresh_token_maintain_time = timedelta(minutes=30)
 
 
 @bp.route('/signup', methods=['POST'])
@@ -93,8 +94,8 @@ def login():
             return jsonify(msg_dict('fail', 'mismatch password')), 400
 
         #JWT 생성
-        access_token = create_access_token(identity=acc_id, fresh=token_maintain_time)
-        refresh_token = create_refresh_token(identity=acc_id)
+        access_token = create_access_token(identity=acc_id, fresh=acc_token_maintain_time)
+        refresh_token = create_refresh_token(identity=acc_id, expires_delta=refresh_token_maintain_time)
         user_info.jwt=refresh_token
         #JWT refresh token을 db에 저장(db 수정)
         db.session.commit()
@@ -134,7 +135,7 @@ def refresh():
     if user_check is None:
         return jsonify(msg_dict('fail', '없는 유저입니다.'))
     else:
-        access_token = create_access_token(identity=current_user, fresh=token_maintain_time)
+        access_token = create_access_token(identity=current_user, fresh=acc_token_maintain_time)
         return jsonify(msg_dict('ok',{'access_token':access_token}))
 
 
