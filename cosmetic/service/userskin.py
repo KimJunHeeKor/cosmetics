@@ -5,11 +5,12 @@ import json
 from cosmetic.helper.methods import msg_dict
 from cosmetic.helper.socket_connect import *
 from cosmetic.lib.userskin_mths import analyzed_skin_status, average_user_skinvalue, median_users_skinvalue, max_user_skinvalue, min_user_skinvalue
-from cosmetic.model.db_models import Survey, UserInfo, Submit, db
+from cosmetic.model.db_models import Survey, TotalScoreOutput, UserInfo, Submit, db
 
 from flask import Blueprint, json, jsonify, request
 from flask_jwt_extended import *
 from sqlalchemy import desc
+from sqlalchemy.sql import func
 
 bp = Blueprint('userskin', __name__, url_prefix='/userskin')
 
@@ -28,6 +29,62 @@ def userskin_anal_status():
 
     analyzed_dict = analyzed_skin_status()
     average_dict = average_user_skinvalue()
+    median_dict = median_users_skinvalue()
+    max_dict = max_user_skinvalue()
+    min_dict = min_user_skinvalue()
+
+    return jsonify(msg_dict('ok', {
+            'anal': analyzed_dict,
+            'avg': average_dict,
+            'med': median_dict,
+            'max': max_dict,
+            'min': min_dict
+        }))
+
+#TODO: 실험중
+
+@bp.route('/test/<acc_id>/<search_date>', methods=['GET'])
+def test(acc_id, search_date):
+    user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
+    print(type(search_date))
+    print(search_date)
+    #최신값
+    total_score_output = TotalScoreOutput.query.join(Submit, TotalScoreOutput.s_id == Submit.id)\
+                        .filter(Submit.uid == user.id) \
+                        .filter(TotalScoreOutput.created_date.strftime("%Y%m%d%H%M%S") is search_date)\
+                        .order_by(Submit.created_date.desc()).first()
+    
+    analyzed_dict={
+        'Tot' : total_score_output.total_score, #Total skin value : 피부상태분석결과값
+        'Mois' : total_score_output.moisture,   #Moisture : 수분값
+        'Oily' : total_score_output.oily,       #Oily : 유분값
+        'Pore' : total_score_output.pore,       #Pore : 모공값
+        'Pigm' : total_score_output.pigment,    #Pigmentation : 색소침착값
+        'Sen' : total_score_output.sensitivity  #Sensitivity : 민감도
+    }
+
+    # select avg(total) from totalscoreoutput join submit on total.s_id ~ submit.id join where user_info.birth == select birth from user_info where id = {}; 
+    avg_total_score = db.session.query(func.avg(TotalScoreOutput.total_score).label("avg_total_skin_val"),\
+                        func.avg(TotalScoreOutput.moisture).label("avg_moisture_val"),\
+                        func.avg(TotalScoreOutput.oily).label("avg_oily_val"),\
+                        func.avg(TotalScoreOutput.pore).label("avg_pore_val"),\
+                        func.avg(TotalScoreOutput.pigment).label("avg_pigm_val"),\
+                        func.avg(TotalScoreOutput.sensitivity).label("avg_sen_val"),\
+                        UserInfo, Submit, TotalScoreOutput). \
+                        join(UserInfo, UserInfo.id == Submit.uid). \
+                        join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
+                        filter(UserInfo.year_of_birth == user.year_of_birth). \
+                        all()
+    print(avg_total_score)
+    average_dict = {
+        'avgTot' : avg_total_score.avg_total_skin_val,  #Average total skin value : 평균 피부상태분석결과값
+        'avgMois' : avg_total_score.avg_moisture_val,   #Average moisture : 평균 수분값
+        'avgOily' : avg_total_score.avg_oily_val,       #Average oily : 평균 유분값
+        'avgPore' : avg_total_score.avg_pore_val,       #Average pore : 평균 모공값
+        'avgPigm' : avg_total_score.avg_pigm_val,        #Average pigmentation : 평균 색소침착값
+        'avgSen' : avg_total_score.avg_sen_val         #Average sensitivity : 평균 민감도
+    }
+    
     median_dict = median_users_skinvalue()
     max_dict = max_user_skinvalue()
     min_dict = min_user_skinvalue()
