@@ -2,10 +2,10 @@ import socket
 import os
 import json
 
-from ..helper.methods import time_log, msg_dict
-from ..helper.socket_connect import *
-from ..lib.userskin_mths import analyzed_skin_status, average_user_skinvalue, median_users_skinvalue, max_user_skinvalue, min_user_skinvalue
-from ..model.db_models import Survey, UserInfo, Submit, db
+from cosmetic.helper.methods import msg_dict
+from cosmetic.helper.socket_connect import *
+from cosmetic.lib.userskin_mths import analyzed_skin_status, average_user_skinvalue, median_users_skinvalue, max_user_skinvalue, min_user_skinvalue
+from cosmetic.model.db_models import Survey, UserInfo, Submit, db
 
 from flask import Blueprint, json, jsonify, request
 from flask_jwt_extended import *
@@ -122,6 +122,7 @@ def suervey():
         etc_Q16 = request.form.get('etc_Q16')
         etc_Q17 = request.form.get('etc_Q17')
 
+        # 설문조사 정보를 dictionary로 저장
         socket_json = {
             "student_env" : student_env,
             "work_env" : work_env,
@@ -192,41 +193,48 @@ def suervey():
             "etc_Q17" : etc_Q17
         }
         
+        #소켓통신 준비
         socket_json = json.dumps(socket_json)
         msg_mapping_list = [FULL_FACE, OIL_PAPER, SURVEY]
+        
+        # 디바이스 정보
         device_info = request.headers.get('User_Agent')
 
+        # AI 서버와 소켓통신
         for msg in msg_mapping_list:
 
             send_msg_socket(msg, client_socket)
 
             if msg == FULL_FACE:
+                # 아이디 정보 전달
                 send_msg_socket(acc_id, client_socket)
+                # 디바이스 정보 전달
                 send_msg_socket(device_info, client_socket)
+                # 전체 얼굴 이미지 전달
                 send_img_socket(os.getcwd()+'/cosmetic/1.jpg', client_socket)
 
             elif msg == OIL_PAPER:
+                # 기름종이 이미지 전달
                 send_img_socket(os.getcwd()+'/cosmetic/2.jpg', client_socket)
                 
             elif msg == SURVEY:
+                # 설문조사 정보 전달
                 send_msg_socket(socket_json, client_socket)
 
+            # AI서버로 전송 결과 받기
             msg = rev_msg_socket(client_socket)
             if msg == '':
                 print('no data')
                 raise Exception
             
-            # 데이터를 출력한다.
-            log_msg = f"[{time_log()}] [SURVEY SOCKET SUCCESS]: {msg}"
-            save_log(log_msg)
-            print(log_msg)
+            # 로그 기록
+            save_log("SURVEY SOCKET SUCCESS", msg)
 
         client_socket.close()
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
-        log_msg = f'[{time_log()}] [SURVEY ERROR]: {err}'
-        save_log(log_msg, error=True)
-        print(log_msg)
+        #로그 기록
+        save_log("SURVEY ERROR", err, error=True)
 
-        return jsonify(msg_dict('fail'))
+        return jsonify(msg_dict('fail', "전송 실패"))

@@ -33,11 +33,11 @@ class ImgDesc(db.Model):
     __tablename__ = 'img_desc'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     s_id = db.Column(db.Integer, db.ForeignKey('submit.id', ondelete="CASCADE"), nullable=False)
-    full_face = db.Column(db.String(45), nullable=False)
-    oil_paper = db.Column(db.String(45), nullable=False)
-    crop_cheek = db.Column(db.String(45), nullable=True)
-    crop_undereye = db.Column(db.String(45), nullable=False)
-    extract_oilpaper = db.Column(db.String(45), nullable=True)
+    full_face = db.Column(db.String(100), nullable=False)
+    oil_paper = db.Column(db.String(100), nullable=False)
+    crop_cheek = db.Column(db.String(100), nullable=True)
+    crop_undereye = db.Column(db.String(100), nullable=False)
+    extract_oilpaper = db.Column(db.String(100), nullable=True)
     device_type = db.Column(db.String(45), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
@@ -180,7 +180,7 @@ class TotalScoreOutput(db.Model):
     pore = db.Column(db.Integer, nullable=False)
     oily = db.Column(db.Integer, nullable=False)
     pigment = db.Column(db.Integer, nullable=False)
-    sensitivie = db.Column(db.Integer, nullable=False)
+    sensitivity = db.Column(db.Integer, nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 class UserInfo(db.Model):

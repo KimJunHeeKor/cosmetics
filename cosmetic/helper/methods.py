@@ -4,14 +4,19 @@ import time
 from typing import Dict
 
 
-def time_log() -> str:
-    '''
-    로그 시간을 기록하기 위한 메소드 @20210823 KJH
-    @return
-    time (str) : %Y-%m-%d %H:%m:%S 형태의 시간
-    '''
-    return time.strftime('%Y-%m-%d %H:%m:%S')
 
+def make_log_msg(log_result:str, log_msg:str)->str:
+    '''
+    log 메시지 기본 포멧 제공 메서드 @20210902 KJH
+    @params
+    log_result(str) - 실행 결과 메시지
+    log_msg(str)    - 실행 결과 상세 메시지
+    
+    @return
+    log_msg(str) : 로그 메시지
+    '''
+    log_msg = f'[{time_log()}] [{log_result}] : {log_msg}'
+    return log_msg
 
 def msg_dict(rt:str, content:Dict=None) -> Dict:
     '''
@@ -29,11 +34,12 @@ def msg_dict(rt:str, content:Dict=None) -> Dict:
     return json_dict
 
 
-def save_log(log_msg:str, error:bool=False):
+def save_log(log_msg:str, log_result:str, error:bool=False):
     '''
     로그 저장 @20210823 KJH
     @params
-    msg (str) : 저장될 메시지
+    log_result(str) - 실행 결과 메시지
+    log_msg(str)    - 실행 결과 상세 메시지
     error(bool) :  에러 메시지 저장 여부
     '''
     base_path = os.getcwd()+'/cosmetic/log'
@@ -50,16 +56,32 @@ def save_log(log_msg:str, error:bool=False):
 
         if not os.path.exists(base_path+'/'+year+'/'+month_day):
             os.makedirs(base_path+'/'+year+'/'+month_day)
-
+        log_msg = make_log_msg(log_msg, log_result)
         f = open(base_path+'/'+year+'/'+month_day+'/'+log_file_name, 'a+',encoding='utf8')
         f.write(log_msg+'\n')
         f.close()
+
         if error:
+            err_log_msg = make_log_msg(log_msg, log_result)
             err_file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
-            err_file.write(log_msg+"\n")
+            err_file.write(err_log_msg+"\n")
             err_file.close()
+
+        print(log_msg)
+
     except Exception as err:
-        log_msg = f'[SAVE LOG ERROR] [{time_log()}]: {err}'
+        
+        exc_log_msg = make_log_msg('SAVE LOG ERROR', err)
         except_file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
-        except_file.write(log_msg+"\n")
+        except_file.write(exc_log_msg+"\n")
         except_file.close()
+
+        print(exc_log_msg)
+
+def time_log() -> str:
+    '''
+    로그 시간을 기록하기 위한 메소드 @20210823 KJH
+    @return
+    time (str) : %Y-%m-%d %H:%m:%S 형태의 시간
+    '''
+    return time.strftime('%Y-%m-%d %H:%m:%S')

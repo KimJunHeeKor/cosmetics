@@ -1,4 +1,5 @@
 from datetime import timedelta
+from cosmetic.service.test import test
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -30,10 +31,11 @@ def create_app():
     from cosmetic.model import db_models
 
     #Blueprint
-    from .service import userskin, curation, recommend, login
+    from .service import userskin, curation, recommend, user, test
     app.register_blueprint(userskin.bp)
     app.register_blueprint(curation.bp)
     app.register_blueprint(recommend.bp)
-    app.register_blueprint(login.bp)
+    app.register_blueprint(user.bp)
+    app.register_blueprint(test.bp)
 
     return app
