@@ -7,6 +7,6 @@ SQLALCHEMY_DATABASE_URI =  f"mysql+mysqlconnector://{db['user']}:{db['password']
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SECRET_KEY = b'f\xabx\xe7\xca\x8eC\x87\xb8\xa47\x85\xea4\\d'
 
-cred_path = os.path.join(BASE_DIR+"\\cosmetic\\data\\", "serviceAccountKey.json")
+cred_path = os.path.join(BASE_DIR+"/cosmetic/data/", "serviceAccountKey.json")
 cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
