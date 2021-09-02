@@ -2,7 +2,7 @@ import time
 import random
 
 from flask import Blueprint,jsonify
-from ..model.db_models import CurKw1, CurKw2
+from cosmetic.model.db_models import CurKw1, CurKw2
 
 _fail_dict={
     'rt':'fail',

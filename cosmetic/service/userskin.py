@@ -1,16 +1,17 @@
+from datetime import datetime
 import socket
 import os
 import json
 
-from cosmetic.helper.methods import msg_dict
+from cosmetic.helper.methods import msg_dict, calculate_average_user_skinvalue,calculate_max_user_skinvalue, calculate_min_user_skinvalue, calculate_user_skin_status, convert_url_to_timeformat
 from cosmetic.helper.socket_connect import *
 from cosmetic.lib.userskin_mths import analyzed_skin_status, average_user_skinvalue, median_users_skinvalue, max_user_skinvalue, min_user_skinvalue
-from cosmetic.model.db_models import Survey, TotalScoreOutput, UserInfo, Submit, db
+from cosmetic.model.db_models import UserInfo
+
+
 
 from flask import Blueprint, json, jsonify, request
 from flask_jwt_extended import *
-from sqlalchemy import desc
-from sqlalchemy.sql import func
 
 bp = Blueprint('userskin', __name__, url_prefix='/userskin')
 
@@ -41,61 +42,44 @@ def userskin_anal_status():
             'min': min_dict
         }))
 
-#TODO: 실험중
 
-@bp.route('/test/<acc_id>/<search_date>', methods=['GET'])
-def test(acc_id, search_date):
-    user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
-    print(type(search_date))
-    print(search_date)
-    #최신값
-    total_score_output = TotalScoreOutput.query.join(Submit, TotalScoreOutput.s_id == Submit.id)\
-                        .filter(Submit.uid == user.id) \
-                        .filter(TotalScoreOutput.created_date.strftime("%Y%m%d%H%M%S") is search_date)\
-                        .order_by(Submit.created_date.desc()).first()
-    
-    analyzed_dict={
-        'Tot' : total_score_output.total_score, #Total skin value : 피부상태분석결과값
-        'Mois' : total_score_output.moisture,   #Moisture : 수분값
-        'Oily' : total_score_output.oily,       #Oily : 유분값
-        'Pore' : total_score_output.pore,       #Pore : 모공값
-        'Pigm' : total_score_output.pigment,    #Pigmentation : 색소침착값
-        'Sen' : total_score_output.sensitivity  #Sensitivity : 민감도
-    }
+@bp.route('/values/<compared_column>/<search_date>', methods=['GET'])
+@jwt_required(fresh=True)
+def seach_user_skin_values(compared_column, search_date):
+    '''
+    사용자 개별에 대한 피부정보를 전달해주는 API
+    '''
+    try:
+        if compared_column != "yearofbirth" and compared_column != "job" and compared_column!="marriage":
+            return jsonify(msg_dict('fail')), 400
 
-    # select avg(total) from totalscoreoutput join submit on total.s_id ~ submit.id join where user_info.birth == select birth from user_info where id = {}; 
-    avg_total_score = db.session.query(func.avg(TotalScoreOutput.total_score).label("avg_total_skin_val"),\
-                        func.avg(TotalScoreOutput.moisture).label("avg_moisture_val"),\
-                        func.avg(TotalScoreOutput.oily).label("avg_oily_val"),\
-                        func.avg(TotalScoreOutput.pore).label("avg_pore_val"),\
-                        func.avg(TotalScoreOutput.pigment).label("avg_pigm_val"),\
-                        func.avg(TotalScoreOutput.sensitivity).label("avg_sen_val"),\
-                        UserInfo, Submit, TotalScoreOutput). \
-                        join(UserInfo, UserInfo.id == Submit.uid). \
-                        join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
-                        filter(UserInfo.year_of_birth == user.year_of_birth). \
-                        all()
-    print(avg_total_score)
-    average_dict = {
-        'avgTot' : avg_total_score.avg_total_skin_val,  #Average total skin value : 평균 피부상태분석결과값
-        'avgMois' : avg_total_score.avg_moisture_val,   #Average moisture : 평균 수분값
-        'avgOily' : avg_total_score.avg_oily_val,       #Average oily : 평균 유분값
-        'avgPore' : avg_total_score.avg_pore_val,       #Average pore : 평균 모공값
-        'avgPigm' : avg_total_score.avg_pigm_val,        #Average pigmentation : 평균 색소침착값
-        'avgSen' : avg_total_score.avg_sen_val         #Average sensitivity : 평균 민감도
-    }
-    
-    median_dict = median_users_skinvalue()
-    max_dict = max_user_skinvalue()
-    min_dict = min_user_skinvalue()
+        #유저 id를 토큰으로 얻고 전달받은 시간정보를 설정된 datetime 형태로 변환
+        acc_id = get_jwt_identity()
+        search_datetime = convert_url_to_timeformat(search_date)
 
-    return jsonify(msg_dict('ok', {
-            'anal': analyzed_dict,
-            'avg': average_dict,
-            'med': median_dict,
-            'max': max_dict,
-            'min': min_dict
-        }))
+        # 해당 유저의 정보를 DB에서 찾는다.
+        user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first_or_404()
+        if user is None:
+            save_log("SEARCH USER SKIN VALUES ERROR", "사용자를 검색하지 못했습니다.", error=True)
+            return jsonify(msg_dict('fail')), 400
+        
+        
+        #DB에서 값 받아오기
+        analyzed_dict = calculate_user_skin_status(user, search_datetime)
+        average_dict = calculate_average_user_skinvalue(compared_column,user, search_datetime)
+        max_dict = calculate_max_user_skinvalue(compared_column,user, search_datetime)
+        min_dict = calculate_min_user_skinvalue(compared_column,user, search_datetime)
+        save_log("SEARCH USER SKIN VALUES SUCCESS", "사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.")
+
+        return jsonify(msg_dict('ok', {
+                'anal': analyzed_dict,
+                'avg': average_dict,
+                'max': max_dict,
+                'min': min_dict
+            }))
+    except Exception as err:
+        save_log("SEARCH USER SKIN VALUES ERROR", err, error=True)
+        return jsonify(msg_dict('fail')), 400
 
 
 @bp.route('/survey-and-img', methods=['POST'])
