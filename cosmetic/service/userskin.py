@@ -72,7 +72,10 @@ def seach_user_skin_values(compared_column, search_date):
     사용자에 대한 피부정보를 전달해주는 API
     '''
     try:
-        if compared_column != "yearofbirth" and compared_column != "job" and compared_column!="marriage":
+        if compared_column != "yearofbirth" and compared_column != "sex" \
+            and compared_column!="residence" and compared_column!="nation"\
+            and compared_column!="marriage" and compared_column!="job"\
+            and compared_column!="education":
             return jsonify(msg_dict('fail')), 400
 
         #유저 id를 토큰으로 얻고 전달받은 시간정보를 설정된 datetime 형태로 변환

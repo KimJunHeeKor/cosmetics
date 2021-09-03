@@ -1,6 +1,6 @@
-from datetime import datetime
 import os
 import time
+from datetime import datetime
 
 from cosmetic.model.db_models import TotalScoreOutput, Submit, UserInfo, db
 from sqlalchemy import and_
@@ -10,7 +10,16 @@ from sqlalchemy.sql import func
 from typing import Dict
 
 def calculate_user_skin_history(acc_id:str)->list:
-    skin_history = db.session.query(TotalScoreOutput.created_date.label('date')) \
+    '''
+    유저가 피부 평가를 받은 히스토리를 DB에서 리스트로 불러오는 메소드 @20210903 KJH
+    @params
+    acc_id(str) : 유저 아이디
+    
+    @return
+    skin_history(list) : 유저의 피부측정 히스토리
+    '''
+    #SQL
+    skin_history = db.session.query(Submit.created_date.label('date')) \
                         .select_from(Submit) \
                         .join(UserInfo, UserInfo.id == Submit.uid) \
                         .join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id) \
@@ -23,7 +32,15 @@ def calculate_user_skin_history(acc_id:str)->list:
     return skin_history
 
 def calculate_user_skin_status(user:UserInfo, search_datetime:datetime) -> Dict:
-
+    '''
+    피부 평가를 받고 나온 점수 결과를 DB에서 가져오는 메소드   @20210903 KJH
+    @params
+    user(UserInfo) : DB에서 가져온 user정보 개체
+    search_datetime(datetime) : 검색하고자 하는 시간
+    
+    @return
+    analyzed_dict(Dict) : 결과 값
+    '''
     total_score_output = TotalScoreOutput.query.join(Submit, TotalScoreOutput.s_id == Submit.id)\
                         .filter(and_(Submit.uid == user.id, Submit.created_date == search_datetime )) \
                         .order_by(Submit.created_date.desc()).first_or_404()
@@ -39,7 +56,16 @@ def calculate_user_skin_status(user:UserInfo, search_datetime:datetime) -> Dict:
 
 
 def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:datetime) -> Dict:
-    
+    '''
+    해당 카테고리에 대한 피부 평가 평균 점수를 DB에서 가져오는 메소드   @20210903 KJH
+    @params
+    column(str) : 비교 카테고리
+    user(UserInfo) : DB에서 가져온 user정보 개체
+    search_datetime(datetime) : 검색하고자 하는 시간
+
+    @return
+    average_dict(Dict) : 결과 값
+    '''
     if column == "yearofbirth":
         user_info = UserInfo.year_of_birth
         compared_user_info = user.year_of_birth
@@ -97,6 +123,16 @@ def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:
         
 
 def calculate_max_user_skinvalue(column:str, user:UserInfo, search_datetime:datetime) -> Dict:
+    '''
+    해당 카테고리에 대한 피부 평가 최대 점수를 DB에서 가져오는 메소드   @20210903 KJH
+    @params
+    column(str) : 비교 카테고리
+    user(UserInfo) : DB에서 가져온 user정보 개체
+    search_datetime(datetime) : 검색하고자 하는 시간
+
+    @return
+    max_dict(Dict) : 결과 값
+    '''
     if column == "yearofbirth":
         user_info = UserInfo.year_of_birth
         compared_user_info = user.year_of_birth
@@ -154,6 +190,16 @@ def calculate_max_user_skinvalue(column:str, user:UserInfo, search_datetime:date
 
 
 def calculate_min_user_skinvalue(column:str, user:UserInfo, search_datetime:datetime) -> Dict:
+    '''
+    해당 카테고리에 대한 피부 평가 최소 점수를 DB에서 가져오는 메소드   @20210903 KJH
+    @params
+    column(str) : 비교 카테고리
+    user(UserInfo) : DB에서 가져온 user정보 개체
+    search_datetime(datetime) : 검색하고자 하는 시간
+
+    @return
+    min_dict(Dict) : 결과 값
+    '''
     if column == "yearofbirth":
         user_info = UserInfo.year_of_birth
         compared_user_info = user.year_of_birth
@@ -210,10 +256,25 @@ def calculate_min_user_skinvalue(column:str, user:UserInfo, search_datetime:date
     return min_dict
 
 def convert_datetime_to_str(input_datetime:datetime)->str:
+    '''
+    datetime을 설정된 문자열로 변환하는 메소드 @20210903 KJH
+    @params
+    input_datetime(datetime) : datetime 입력값
+
+    @return
+    (str) : datetime 포멧의 설정된 문자열
+    '''
     return datetime.strftime(input_datetime, "%Y-%m-%d %H:%M:%S")
      
 def convert_url_to_timeformat(input_url:str)->datetime:
-    
+    '''
+    문자열을 설정된 포멧의 datetime로 변환하는 메소드 @20210903 KJH
+    @params
+    input_url(str) : 입력문자열 (년도월일시분초)
+
+    @return
+    search_datetime(datetime) : 설정된 포멧의 datetime
+    '''
     year = input_url[:4]
     month = input_url[4:6]
     day = input_url[6:8]

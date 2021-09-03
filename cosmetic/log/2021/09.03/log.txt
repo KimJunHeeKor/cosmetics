@@ -30,3 +30,23 @@ WHERE user_info.year_of_birth = %(year_of_birth_1)s AND submit.created_date <= %
 [2021-09-03 11:09:45] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
 [2021-09-03 11:09:55] [SEARCH USER SKIN HISTORY SUCCESS] : (ncyc1) 사용자의 피부 히스토리를 불러왔습니다.
 [2021-09-03 11:09:04] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:08] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 20:09:08] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 20:09:59] [SEARCH USER SKIN HISTORY SUCCESS] : (ncyc1) 사용자의 피부 히스토리를 불러왔습니다.
+[2021-09-03 20:09:25] [SEARCH USER SKIN VALUES ERROR] : 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2021-09-03 20:09:28] [SEARCH USER SKIN HISTORY SUCCESS] : (ncyc1) 사용자의 피부 히스토리를 불러왔습니다.
+[2021-09-03 20:09:03] [SEARCH USER SKIN VALUES ERROR] : 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2021-09-03 20:09:28] [SEARCH USER SKIN VALUES ERROR] : 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2021-09-03 20:09:09] [SEARCH USER SKIN VALUES ERROR] : 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2021-09-03 20:09:09] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 20:09:09] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 20:09:26] [SEARCH USER SKIN HISTORY SUCCESS] : (ncyc1) 사용자의 피부 히스토리를 불러왔습니다.
+[2021-09-03 20:09:43] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:30] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:08] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:23] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 20:09:23] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 20:09:38] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:46] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:54] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 20:09:05] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
