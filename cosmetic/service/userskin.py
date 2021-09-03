@@ -117,6 +117,8 @@ def suervey():
         client_socket.connect((HOST, PORT))
 
         acc_id = get_jwt_identity()
+        town = request.form.get('town')
+        air_condition = request.form.get('air_condition')
         student_env = request.form.get('student_env')
         work_env = request.form.get('work_env')
         freel_env = request.form.get('freel_env')
@@ -187,6 +189,8 @@ def suervey():
 
         # 설문조사 정보를 dictionary로 저장
         socket_json = {
+            "town" : town,
+            "air_condition" : air_condition,
             "student_env" : student_env,
             "work_env" : work_env,
             "freel_env" : freel_env,
