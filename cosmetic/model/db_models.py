@@ -16,6 +16,8 @@ class BaumannOutput(db.Model):
     dry_oily_score = db.Column(db.Integer, nullable=False)
     sen_res_score = db.Column(db.Integer, nullable=False)
     pig_nopig_score = db.Column(db.Integer, nullable=False)
+    moisture_score = db.Column(db.Integer, nullable=False)
+    oily_score = db.Column(db.Integer, nullable=False)
     wrinkle_tight_score = db.Column(db.Integer, nullable=False)
     dry_lvl = db.Column(db.String(10), nullable=False)
     oily_lvl = db.Column(db.String(10), nullable=False)
