@@ -1,0 +1,17 @@
+[2021-09-03 10:09:12] [[2021-09-03 10:09:12] [SEARCH USER SKIN VALUES ERROR] : (mysql.connector.errors.DatabaseError) 1525 (HY000): Incorrect DATETIME value: '20'
+[SQL: SELECT avg(total_score_output.total_score) AS avg_total_skin_val, avg(total_score_output.moisture) AS avg_moisture_val, avg(total_score_output.oily) AS avg_oily_val, avg(total_score_output.pore) AS avg_pore_val, avg(total_score_output.pigment) AS avg_pigm_val, avg(total_score_output.sensitivity) AS avg_sen_val 
+FROM submit INNER JOIN user_info ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
+WHERE user_info.year_of_birth = %(year_of_birth_1)s AND submit.created_date <= %(created_date_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'year_of_birth_1': 2010, 'created_date_1': '20', 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/4xp6)] : (mysql.connector.errors.DatabaseError) 1525 (HY000): Incorrect DATETIME value: '20'
+[SQL: SELECT avg(total_score_output.total_score) AS avg_total_skin_val, avg(total_score_output.moisture) AS avg_moisture_val, avg(total_score_output.oily) AS avg_oily_val, avg(total_score_output.pore) AS avg_pore_val, avg(total_score_output.pigment) AS avg_pigm_val, avg(total_score_output.sensitivity) AS avg_sen_val 
+FROM submit INNER JOIN user_info ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
+WHERE user_info.year_of_birth = %(year_of_birth_1)s AND submit.created_date <= %(created_date_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'year_of_birth_1': 2010, 'created_date_1': '20', 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/4xp6)
+[2021-09-03 10:09:33] [[2021-09-03 10:09:33] [SEARCH USER SKIN HISTORY ERROR] : can only concatenate tuple (not "str") to tuple] : can only concatenate tuple (not "str") to tuple
+[2021-09-03 10:09:11] [[2021-09-03 10:09:11] [SEARCH USER SKIN HISTORY ERROR] : can only concatenate tuple (not "str") to tuple] : can only concatenate tuple (not "str") to tuple
+[2021-09-03 11:09:21] [[2021-09-03 11:09:21] [SEARCH USER SKIN HISTORY ERROR] : strptime() argument 1 must be str, not datetime.datetime] : strptime() argument 1 must be str, not datetime.datetime
+[2021-09-03 11:09:36] [[2021-09-03 11:09:36] [SEARCH USER SKIN HISTORY ERROR] : strptime() argument 1 must be str, not datetime.datetime] : strptime() argument 1 must be str, not datetime.datetime

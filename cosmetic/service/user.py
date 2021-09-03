@@ -41,7 +41,7 @@ def sign_up():
         created_date = datetime.now()
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
-            save_log("SIGNUP ERROR", "아이디가 존재합니다.",error=True)
+            save_log("SIGNUP ERROR", f"({acc_id})아이디가 존재합니다.",error=True)
             return jsonify(msg_dict('fail',"아이디가 존재합니다.")), 400
 
         #hashing password
@@ -56,7 +56,7 @@ def sign_up():
                          hp_no = hp_no, email = email)
         db.session.add(query)
         db.session.commit()
-        save_log("SIGNUP SUCCESS", "아이디 생성 완료")
+        save_log("SIGNUP SUCCESS", f"({acc_id})아이디 생성 완료")
 
         return jsonify(msg_dict('ok')), 200
 
@@ -169,7 +169,7 @@ def logout():
         user_info.jwt = None
         db.session.commit()
         #로그 기록
-        save_log("LOGOUT SUCCESS", "Ref token 삭제 및 로그아웃 완료")
+        save_log("LOGOUT SUCCESS", f"({acc_id})Ref token 삭제 및 로그아웃 완료")
         
         return jsonify(msg_dict('ok'))
 
@@ -189,8 +189,7 @@ def userinfo():
         user_info =  UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
 
         if user_info is None:
-            log_msg = f"[{time_log()}] [GET USERINFO ERROR] : ({acc_id}) DB에 없는 유저입니다."
-            save_log(log_msg, error=True)
+            save_log("GET USERINFO ERROR",f"({acc_id}) DB에 없는 유저입니다.", error=True)
 
             return jsonify(msg_dict('fail', '없는 유저입니다.'))
 
@@ -204,13 +203,13 @@ def userinfo():
             'hp_no' : user_info.hp_no,
             'email' : user_info.email,
         }))
-        log_msg = f"[{time_log()}] [GET USERINFO SUCCESS] : ({acc_id}) DB에서 유저 정보를 찾았습니다."
-        save_log(log_msg)
+        save_log("GET USERINFO SUCCESS", f"({acc_id}) DB에서 유저 정보를 찾았습니다.")
         
         return user_info_json
+
     except Exception as err:
-        log_msg = f'[{time_log()}] [GET USERINFO ERROR]: {err}'
-        save_log(log_msg, error=True)
+
+        save_log("GET USERINFO ERROR", err, error=True)
 
         return jsonify(msg_dict('fail'))
 
@@ -239,7 +238,7 @@ def update():
         hash_password = bcrypt.check_password_hash(user_info.password, password)
 
         if hash_password:
-            save_log("USER UPDATE ERROR", f"이전의 비밀번호와 동일합니다.", error=True)
+            save_log("USER UPDATE ERROR", f"({acc_id})이전의 비밀번호와 동일합니다.", error=True)
 
             return jsonify(msg_dict('fail', '이전의 비밀번호와 동일합니다.')), 400
 
@@ -253,7 +252,7 @@ def update():
         user_info.email = email
         db.session.commit()
         #로그 저장
-        save_log("USER UPDATE SUCCESS", "유저 정보 수정 완료")
+        save_log("USER UPDATE SUCCESS", f"({acc_id})유저 정보 수정 완료")
 
     except Exception as err:
         save_log("USER UPDATE ERROR", err, error=True)

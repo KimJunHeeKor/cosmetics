@@ -3,7 +3,7 @@ import socket
 import os
 import json
 
-from cosmetic.helper.methods import msg_dict, calculate_average_user_skinvalue,calculate_max_user_skinvalue, calculate_min_user_skinvalue, calculate_user_skin_status, convert_url_to_timeformat
+from cosmetic.helper.methods import *
 from cosmetic.helper.socket_connect import *
 from cosmetic.lib.userskin_mths import analyzed_skin_status, average_user_skinvalue, median_users_skinvalue, max_user_skinvalue, min_user_skinvalue
 from cosmetic.model.db_models import UserInfo
@@ -43,11 +43,33 @@ def userskin_anal_status():
         }))
 
 
+@bp.route("/values/history", methods=["GET"])
+@jwt_required(fresh=True)
+def search_user_skin_history():
+    '''
+    사용자에 대한 피부정보 측정 히스토리 전달 API
+    '''
+    try:
+        acc_id = get_jwt_identity()
+        user_history_date=[]
+        
+        user_history = calculate_user_skin_history(acc_id)
+        
+        for history in user_history:
+            user_history_date.append(datetime.strftime(history.date, "%Y-%m-%d %H:%M:%S"))
+        save_log("SEARCH USER SKIN HISTORY SUCCESS", f"({acc_id}) 사용자의 피부 히스토리를 불러왔습니다.")
+        return jsonify(msg_dict("ok", {'history':user_history_date})), 200
+
+    except Exception as err:
+        save_log("SEARCH USER SKIN HISTORY ERROR", err, error=True)
+        return jsonify(msg_dict('fail')), 400
+
+
 @bp.route('/values/<compared_column>/<search_date>', methods=['GET'])
 @jwt_required(fresh=True)
 def seach_user_skin_values(compared_column, search_date):
     '''
-    사용자 개별에 대한 피부정보를 전달해주는 API
+    사용자에 대한 피부정보를 전달해주는 API
     '''
     try:
         if compared_column != "yearofbirth" and compared_column != "job" and compared_column!="marriage":
@@ -60,7 +82,7 @@ def seach_user_skin_values(compared_column, search_date):
         # 해당 유저의 정보를 DB에서 찾는다.
         user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first_or_404()
         if user is None:
-            save_log("SEARCH USER SKIN VALUES ERROR", "사용자를 검색하지 못했습니다.", error=True)
+            save_log("SEARCH USER SKIN VALUES ERROR", f"({acc_id})사용자를 검색하지 못했습니다.", error=True)
             return jsonify(msg_dict('fail')), 400
         
         
@@ -69,7 +91,7 @@ def seach_user_skin_values(compared_column, search_date):
         average_dict = calculate_average_user_skinvalue(compared_column,user, search_datetime)
         max_dict = calculate_max_user_skinvalue(compared_column,user, search_datetime)
         min_dict = calculate_min_user_skinvalue(compared_column,user, search_datetime)
-        save_log("SEARCH USER SKIN VALUES SUCCESS", "사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.")
+        save_log("SEARCH USER SKIN VALUES SUCCESS", f"({acc_id})사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.")
 
         return jsonify(msg_dict('ok', {
                 'anal': analyzed_dict,
@@ -269,7 +291,7 @@ def suervey():
                 raise Exception
             
             # 로그 기록
-            save_log("SURVEY SOCKET SUCCESS", msg)
+            save_log("SURVEY SOCKET SUCCESS", f"({acc_id})"+msg)
 
         client_socket.close()
         return jsonify(msg_dict('ok'))

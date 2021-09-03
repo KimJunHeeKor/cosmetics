@@ -8,3 +8,21 @@
 [2021-09-03 00:09:02] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
 [2021-09-03 01:09:40] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
 [2021-09-03 01:09:40] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 10:09:40] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 10:09:40] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 10:09:12] [SEARCH USER SKIN VALUES ERROR] : (mysql.connector.errors.DatabaseError) 1525 (HY000): Incorrect DATETIME value: '20'
+[SQL: SELECT avg(total_score_output.total_score) AS avg_total_skin_val, avg(total_score_output.moisture) AS avg_moisture_val, avg(total_score_output.oily) AS avg_oily_val, avg(total_score_output.pore) AS avg_pore_val, avg(total_score_output.pigment) AS avg_pigm_val, avg(total_score_output.sensitivity) AS avg_sen_val 
+FROM submit INNER JOIN user_info ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
+WHERE user_info.year_of_birth = %(year_of_birth_1)s AND submit.created_date <= %(created_date_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'year_of_birth_1': 2010, 'created_date_1': '20', 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/4xp6)
+[2021-09-03 10:09:40] [SEARCH USER SKIN VALUES SUCCESS] : 사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-03 10:09:46] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 10:09:46] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 10:09:33] [SEARCH USER SKIN HISTORY ERROR] : can only concatenate tuple (not "str") to tuple
+[2021-09-03 10:09:11] [SEARCH USER SKIN HISTORY ERROR] : can only concatenate tuple (not "str") to tuple
+[2021-09-03 11:09:21] [SEARCH USER SKIN HISTORY ERROR] : strptime() argument 1 must be str, not datetime.datetime
+[2021-09-03 11:09:26] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 11:09:26] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 11:09:36] [SEARCH USER SKIN HISTORY ERROR] : strptime() argument 1 must be str, not datetime.datetime

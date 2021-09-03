@@ -9,6 +9,19 @@ from sqlalchemy.sql import func
 
 from typing import Dict
 
+def calculate_user_skin_history(acc_id:str)->list:
+    skin_history = db.session.query(TotalScoreOutput.created_date.label('date')) \
+                        .select_from(Submit) \
+                        .join(UserInfo, UserInfo.id == Submit.uid) \
+                        .join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id) \
+                        .filter(UserInfo.acc_id == acc_id)  \
+                        .order_by(Submit.created_date.desc()) \
+                        .all()
+    if skin_history == None:
+        return
+    
+    return skin_history
+
 def calculate_user_skin_status(user:UserInfo, search_datetime:datetime) -> Dict:
 
     total_score_output = TotalScoreOutput.query.join(Submit, TotalScoreOutput.s_id == Submit.id)\
@@ -32,6 +45,16 @@ def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:
         compared_user_info = user.year_of_birth
     else:
         return
+
+    '''
+    SELECT avg(total_score_output.total_score) AS avg_total_skin_val, 
+    avg(total_score_output.moisture) AS avg_moisture_val, avg(total_score_output.oily) AS avg_oily_val, 
+    avg(total_score_output.pore) AS avg_pore_val, avg(total_score_output.pigment) AS avg_pigm_val, 
+    avg(total_score_output.sensitivity) AS avg_sen_val FROM submit INNER JOIN user_info 
+    ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
+    WHERE user_info.year_of_birth = '{user.year_of_birth} AND date_format(submit.created_date, '%Y-%m-%d %H:%i:%S') <= 
+    '{search_datetime}' LIMIT 1;
+    '''
     avg_total_score = db.session.query(func.avg(TotalScoreOutput.total_score).label("avg_total_skin_val"),\
                         func.avg(TotalScoreOutput.moisture).label("avg_moisture_val"),\
                         func.avg(TotalScoreOutput.oily).label("avg_oily_val"),\
@@ -61,6 +84,15 @@ def calculate_max_user_skinvalue(column:str, user:UserInfo, search_datetime:date
         compared_user_info = user.year_of_birth
     else:
         return
+    '''
+    SELECT max(total_score_output.total_score) AS max_total_skin_val, 
+    max(total_score_output.moisture) AS max_moisture_val, max(total_score_output.oily) AS max_oily_val, 
+    max(total_score_output.pore) AS max_pore_val, avg(total_score_output.pigment) AS max_pigm_val, 
+    max(total_score_output.sensitivity) AS max_sen_val FROM submit INNER JOIN user_info 
+    ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
+    WHERE user_info.year_of_birth = '{user.year_of_birth} AND date_format(submit.created_date, '%Y-%m-%d %H:%i:%S') <= 
+    '{search_datetime}' LIMIT 1;
+    '''
     max_total_score = db.session.query(func.max(TotalScoreOutput.total_score).label("max_total_skin_val"),
                         func.max(TotalScoreOutput.moisture).label("max_moisture_val"),
                         func.max(TotalScoreOutput.oily).label("max_oily_val"),
@@ -91,6 +123,16 @@ def calculate_min_user_skinvalue(column:str, user:UserInfo, search_datetime:date
         compared_user_info = user.year_of_birth
     else:
         return
+
+    '''
+    SELECT min(total_score_output.total_score) AS min_total_skin_val, 
+    min(total_score_output.moisture) AS min_moisture_val, min(total_score_output.oily) AS min_oily_val, 
+    min(total_score_output.pore) AS min_pore_val, avg(total_score_output.pigment) AS min_pigm_val, 
+    min(total_score_output.sensitivity) AS min_sen_val FROM submit INNER JOIN user_info 
+    ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
+    WHERE user_info.year_of_birth = '{user.year_of_birth} AND date_format(submit.created_date, '%Y-%m-%d %H:%i:%S') <= 
+    '{search_datetime}' LIMIT 1;
+    '''
     min_total_score = db.session.query(func.min(TotalScoreOutput.total_score).label("min_total_skin_val"),
                         func.min(TotalScoreOutput.moisture).label("min_moisture_val"),
                         func.min(TotalScoreOutput.oily).label("min_oily_val"),
@@ -113,7 +155,9 @@ def calculate_min_user_skinvalue(column:str, user:UserInfo, search_datetime:date
 
     return min_dict
 
-
+def convert_datetime_to_str(input_datetime:datetime)->str:
+    return datetime.strftime(input_datetime, "%Y-%m-%d %H:%M:%S")
+     
 def convert_url_to_timeformat(input_url:str)->datetime:
     
     year = input_url[:4]
