@@ -40,6 +40,7 @@ def sign_up():
         email = request.form.get("email", type=str)
         sex = request.form.get("sex", type=str)
         residence = request.form.get("residence", type=str)
+        nation = request.form.get("nation", type=str)
         created_date = datetime.now()
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
@@ -56,7 +57,8 @@ def sign_up():
                          marriage = marriage, childbirth = childbirth,
                          job = job, education = education,
                          hp_no = hp_no, email = email,
-                         sex = sex, residence = residence)
+                         sex = sex, residence = residence,
+                         nation = nation)
         db.session.add(query)
         db.session.commit()
         save_log("SIGNUP SUCCESS", f"({acc_id})아이디 생성 완료")
@@ -206,7 +208,8 @@ def userinfo():
             'hp_no' : user_info.hp_no,
             'email' : user_info.email,
             "sex" : user_info.sex,
-            "residence" : user_info.residence
+            "residence" : user_info.residence,
+            "nation" : user_info.nation
         }))
         save_log("GET USERINFO SUCCESS", f"({acc_id}) DB에서 유저 정보를 찾았습니다.")
         
@@ -240,6 +243,7 @@ def update():
         email = request.form.get("email", type=str)
         sex = request.form.get("sex", type=str)
         residence = request.form.get("residence", type=str)
+        nation = request.form.get("nation", type=str)
 
         user_info.name = name
         hash_password = bcrypt.check_password_hash(user_info.password, password)
@@ -259,6 +263,7 @@ def update():
         user_info.email = email
         user_info.sex = sex
         user_info.residence = residence
+        user_info.nation = nation
         db.session.commit()
         #로그 저장
         save_log("USER UPDATE SUCCESS", f"({acc_id})유저 정보 수정 완료")

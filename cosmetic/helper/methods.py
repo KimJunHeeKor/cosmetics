@@ -43,6 +43,24 @@ def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:
     if column == "yearofbirth":
         user_info = UserInfo.year_of_birth
         compared_user_info = user.year_of_birth
+    elif column == "sex":
+        user_info = UserInfo.sex
+        compared_user_info = user.sex
+    elif column == "residence":
+        user_info = UserInfo.residence
+        compared_user_info = user.residence
+    elif column == "nation":
+        user_info = UserInfo.nation
+        compared_user_info = user.nation
+    elif column == "marriage":
+        user_info = UserInfo.marriage
+        compared_user_info = user.marriage
+    elif column == "job":
+        user_info = UserInfo.job
+        compared_user_info = user.job
+    elif column == "education":
+        user_info = UserInfo.education
+        compared_user_info = user.education
     else:
         return
 
@@ -82,6 +100,24 @@ def calculate_max_user_skinvalue(column:str, user:UserInfo, search_datetime:date
     if column == "yearofbirth":
         user_info = UserInfo.year_of_birth
         compared_user_info = user.year_of_birth
+    elif column == "sex":
+        user_info = UserInfo.sex
+        compared_user_info = user.sex
+    elif column == "residence":
+        user_info = UserInfo.residence
+        compared_user_info = user.residence
+    elif column == "nation":
+        user_info = UserInfo.nation
+        compared_user_info = user.nation
+    elif column == "marriage":
+        user_info = UserInfo.marriage
+        compared_user_info = user.marriage
+    elif column == "job":
+        user_info = UserInfo.job
+        compared_user_info = user.job
+    elif column == "education":
+        user_info = UserInfo.education
+        compared_user_info = user.education
     else:
         return
     '''
@@ -121,6 +157,24 @@ def calculate_min_user_skinvalue(column:str, user:UserInfo, search_datetime:date
     if column == "yearofbirth":
         user_info = UserInfo.year_of_birth
         compared_user_info = user.year_of_birth
+    elif column == "sex":
+        user_info = UserInfo.sex
+        compared_user_info = user.sex
+    elif column == "residence":
+        user_info = UserInfo.residence
+        compared_user_info = user.residence
+    elif column == "nation":
+        user_info = UserInfo.nation
+        compared_user_info = user.nation
+    elif column == "marriage":
+        user_info = UserInfo.marriage
+        compared_user_info = user.marriage
+    elif column == "job":
+        user_info = UserInfo.job
+        compared_user_info = user.job
+    elif column == "education":
+        user_info = UserInfo.education
+        compared_user_info = user.education
     else:
         return
 
