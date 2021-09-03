@@ -38,6 +38,8 @@ def sign_up():
         education = request.form.get("education", type=str)
         hp_no = request.form.get("hp_no", type=str)
         email = request.form.get("email", type=str)
+        sex = request.form.get("sex", type=str)
+        residence = request.form.get("residence", type=str)
         created_date = datetime.now()
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
@@ -53,7 +55,8 @@ def sign_up():
                          year_of_birth = year_of_birth,
                          marriage = marriage, childbirth = childbirth,
                          job = job, education = education,
-                         hp_no = hp_no, email = email)
+                         hp_no = hp_no, email = email,
+                         sex = sex, residence = residence)
         db.session.add(query)
         db.session.commit()
         save_log("SIGNUP SUCCESS", f"({acc_id})아이디 생성 완료")
@@ -181,7 +184,7 @@ def logout():
         return jsonify(msg_dict('fail'))
 
 
-@bp.route('/userinfo', methods=["GET"])
+@bp.route('/userinfo/get', methods=["GET"])
 @jwt_required(fresh=True)
 def userinfo():
     try:
@@ -202,6 +205,8 @@ def userinfo():
             'education' : user_info.education,
             'hp_no' : user_info.hp_no,
             'email' : user_info.email,
+            "sex" : user_info.sex,
+            "residence" : user_info.residence
         }))
         save_log("GET USERINFO SUCCESS", f"({acc_id}) DB에서 유저 정보를 찾았습니다.")
         
@@ -214,7 +219,7 @@ def userinfo():
         return jsonify(msg_dict('fail'))
 
 
-@bp.route('/update', methods=["PUT"])
+@bp.route('/userinfo/update', methods=["PUT"])
 @jwt_required(fresh=True)
 def update():
     '''
@@ -233,6 +238,8 @@ def update():
         education = request.form.get("education", type=str)
         hp_no = request.form.get("hp_no", type=str)
         email = request.form.get("email", type=str)
+        sex = request.form.get("sex", type=str)
+        residence = request.form.get("residence", type=str)
 
         user_info.name = name
         hash_password = bcrypt.check_password_hash(user_info.password, password)
@@ -250,6 +257,8 @@ def update():
         user_info.education = education
         user_info.hp_no = hp_no
         user_info.email = email
+        user_info.sex = sex
+        user_info.residence = residence
         db.session.commit()
         #로그 저장
         save_log("USER UPDATE SUCCESS", f"({acc_id})유저 정보 수정 완료")

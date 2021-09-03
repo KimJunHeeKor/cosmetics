@@ -17,6 +17,10 @@ class BaumannOutput(db.Model):
     sen_res_score = db.Column(db.Integer, nullable=False)
     pig_nopig_score = db.Column(db.Integer, nullable=False)
     wrinkle_tight_score = db.Column(db.Integer, nullable=False)
+    dry_lvl = db.Column(db.String(10), nullable=False)
+    oily_lvl = db.Column(db.String(10), nullable=False)
+    sen_lvl = db.Column(db.String(10), nullable=False)
+    pig_lvl = db.Column(db.String(10), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 class CurKw1(db.Model):
@@ -49,6 +53,10 @@ class ImgOutput(db.Model):
     pore_score = db.Column(db.Integer, nullable=False)
     oily_score = db.Column(db.Integer, nullable=False)
     pigment_score = db.Column(db.Integer, nullable=False)
+    moisture_lvl = db.Column(db.String(10), nullable=False)
+    pore_lvl = db.Column(db.String(10), nullable=False)
+    oily_lvl = db.Column(db.String(10), nullable=False)
+    pigment_lvl = db.Column(db.String(10), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now) 
 
 class LogInfo(db.Model):
@@ -94,6 +102,8 @@ class Survey(db.Model):
     __tablename__ = 'survey'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     s_id = db.Column(db.Integer, db.ForeignKey('submit.id', ondelete='CASCADE'), nullable=False)
+    town = db.Column(db.String(45), nullable=True, default=None)
+    air_condition = db.Column(db.String(45), nullable=True, default=None)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     student_env = db.Column(db.String(45), nullable=True, default=None)
     work_env = db.Column(db.String(45), nullable=True, default=None)
@@ -198,5 +208,8 @@ class UserInfo(db.Model):
     education = db.Column(db.String(45), nullable=False)
     hp_no = db.Column(db.String(45), nullable=False)
     email = db.Column(db.String(45), nullable=False)
+    sex = db.Column(db.String(10), nullable=False)
+    residence = db.Column(db.String(45), nullable=False)
+    nation = db.Column(db.String(45), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_date = db.Column(db.DateTime, nullable=False, default=datetime.now)

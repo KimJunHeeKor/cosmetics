@@ -2,6 +2,15 @@ from flask import Blueprint
 from flask.json import jsonify
 from firebase_admin import messaging
 
+import os
+import firebase_admin
+
+from firebase_admin import credentials
+
+cred_path = os.path.join("cosmetic/data/", "serviceAccountKey.json")
+cred = credentials.Certificate(cred_path)
+firebase_admin.initialize_app(cred)
+
 SERVER_API_KEY = "AAAA82vbQso:APA91bGoMlx434BzWaxeF5xQmUKOnXOz7LpWfOCLXZ7vyWMYkFTQufkfKAleBbzFlYI92Ru1hLsvyKUNf49Akqkr0hPqvZs-asGze15DGOtQv3-S080rvXRDrTjev_FsUHCE0eaP63KG"
 SENDER_ID = "1045486584522"
 bp = Blueprint('test', __name__, url_prefix='/test')
@@ -17,20 +26,16 @@ def test():
         A1
     ]
 
-    message = messaging.MulticastMessage(
-        data={'score': '850', 'time': '2:45'},
-        tokens=registration_tokens,
+    message = messaging.Message(
+    notification=messaging.Notification(
+        title='안녕하세요 타이틀 입니다',
+        body='안녕하세요 메세지 입니다',
+    ),
+    token=A1,
     )
-    print(message)
-    response = messaging.send_multicast(message)
-    print(response)
-    if response.failure_count > 0:
-        responses = response.responses
-        failed_tokens = []
-        for idx, resp in enumerate(responses):
-            if not resp.success:
-                # The order of responses corresponds to the order of the registration tokens.
-                failed_tokens.append(registration_tokens[idx])
-        print('List of tokens that caused failures: {0}'.format(failed_tokens))
+
+    response = messaging.send(message)
+    # Response is a message ID string.
+    print('Successfully sent message:', response)
 
     return jsonify(rt="망했다")

@@ -26,3 +26,7 @@ WHERE user_info.year_of_birth = %(year_of_birth_1)s AND submit.created_date <= %
 [2021-09-03 11:09:26] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
 [2021-09-03 11:09:26] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
 [2021-09-03 11:09:36] [SEARCH USER SKIN HISTORY ERROR] : strptime() argument 1 must be str, not datetime.datetime
+[2021-09-03 11:09:45] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-03 11:09:45] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-03 11:09:55] [SEARCH USER SKIN HISTORY SUCCESS] : (ncyc1) 사용자의 피부 히스토리를 불러왔습니다.
+[2021-09-03 11:09:04] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
