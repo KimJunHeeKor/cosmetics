@@ -13,7 +13,7 @@ firebase_admin.initialize_app(cred)
 
 SERVER_API_KEY = "AAAA82vbQso:APA91bGoMlx434BzWaxeF5xQmUKOnXOz7LpWfOCLXZ7vyWMYkFTQufkfKAleBbzFlYI92Ru1hLsvyKUNf49Akqkr0hPqvZs-asGze15DGOtQv3-S080rvXRDrTjev_FsUHCE0eaP63KG"
 SENDER_ID = "1045486584522"
-bp = Blueprint('test', __name__, url_prefix='/test')
+bp = Blueprint('pushmessage', __name__, url_prefix='/pushmessage')
 
 @bp.route('/real', methods=["GET"])
 def test():

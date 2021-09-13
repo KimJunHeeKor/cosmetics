@@ -1,0 +1,7 @@
+[2021-09-13 18:09:40] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-13 18:09:40] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-13 18:09:59] [ACC,REF TOKEN SUCCESS] : (ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-13 18:09:59] [LOGIN SUCCESS] : (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-13 18:09:37] [GET USERINFO SUCCESS] : (ncyc1) DB에서 유저 정보를 찾았습니다.
+[2021-09-13 18:09:25] [SEARCH USER SKIN HISTORY SUCCESS] : (ncyc1) 사용자의 피부 히스토리를 불러왔습니다.
+[2021-09-13 18:09:35] [SEARCH USER SKIN VALUES SUCCESS] : (ncyc1)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
