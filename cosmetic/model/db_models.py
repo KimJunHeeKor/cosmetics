@@ -19,10 +19,12 @@ class BaumannOutput(db.Model):
     moisture_score = db.Column(db.Integer, nullable=False)
     oily_score = db.Column(db.Integer, nullable=False)
     wrinkle_tight_score = db.Column(db.Integer, nullable=False)
+    pore_score = db.Column(db.Integer, nullable=False)
     dry_lvl = db.Column(db.String(10), nullable=False)
     oily_lvl = db.Column(db.String(10), nullable=False)
     sen_lvl = db.Column(db.String(10), nullable=False)
     pig_lvl = db.Column(db.String(10), nullable=False)
+    pore_lvl = db.Column(db.String(10), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 class CurKw1(db.Model):
