@@ -117,11 +117,11 @@ def suervey():
                 # 디바이스 정보 전달
                 send_msg_socket(device_info, client_socket)
                 # 전체 얼굴 이미지 전달
-                send_img_socket(request.form.get('fullface'), client_socket)
+                send_img_socket(request.files['fullface'], client_socket)
 
             elif msg == OIL_PAPER:
                 # 기름종이 이미지 전달
-                send_img_socket(request.form.get('oilyface'), client_socket)
+                send_img_socket(request.files['oilpaper'], client_socket)
                 
             elif msg == SURVEY:
                 # 설문조사 정보 전달
