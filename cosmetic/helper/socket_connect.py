@@ -1,4 +1,5 @@
 import socket
+from io import BytesIO
 
 from cosmetic.helper.methods import save_log, time_log
 
@@ -23,9 +24,7 @@ def rev_msg_socket(client_socket:socket) -> str:
     # 데이터를 수신한다.
     msg = data.decode()
     
-    log_msg = f"[{time_log()}] [RECEIVE SUCCESS]: {msg}"
-    save_log(log_msg)
-    print(log_msg)
+    save_log("RECEIVE SUCCESS",msg)
 
     return msg
 
@@ -43,9 +42,7 @@ def send_msg_socket(msg:str, client_socket:socket):
     client_socket.sendall(encode_msg_len.to_bytes(4, byteorder="little"))
     # 해당 메시지 전달
     client_socket.sendall(encode_msg)
-    log_msg = f'[{time_log()}] [MESSAGE SEND SUCCESS]:{msg}'
-    save_log(log_msg)
-    print(log_msg)
+    save_log("MESSAGE SEND SUCCESS",msg)
 
 def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=1024):
     '''
@@ -61,8 +58,13 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
         rt(bool) : 보낸결과
         msg(str) : 보낸결과 메시지
     '''
-    # 보낼 파일 선언
-    send_file = open(load_file_path, 'rb')
+
+    if type(load_file_path) == bytes:
+        send_file = BytesIO(load_file_path)
+    else:
+        # 보낼 파일 선언
+        send_file = open(load_file_path, 'rb')
+    print(type(send_file))
     # 이미지 데이터 정보가 변수
     image_data = send_file.read()
     # 이미지 데이터의 전체 길이
@@ -78,6 +80,5 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
         client_socket.send(image_data)
         image_data = send_file.read(buffer_size)
     send_file.close()
-    log_msg = f'[{time_log()}] [IMAGE SEND SUCCESS] : {load_file_path}'
-    save_log(log_msg)
-    print(log_msg)
+    # save_log("IMAGE SEND SUCCESS", load_file_path)
+    save_log("IMAGE SEND SUCCESS", f"completed")

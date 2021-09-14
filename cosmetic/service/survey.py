@@ -105,42 +105,55 @@ def suervey():
         
         # 디바이스 정보
         device_info = request.headers.get('User_Agent')
-
+        print('test1')
+        
         # AI 서버와 소켓통신
         for msg in msg_mapping_list:
 
             send_msg_socket(msg, client_socket)
 
             if msg == FULL_FACE:
+                print('test2')
                 # 아이디 정보 전달
                 send_msg_socket(acc_id, client_socket)
+                print('test3')
                 # 디바이스 정보 전달
                 send_msg_socket(device_info, client_socket)
+                print('test4')
                 # 전체 얼굴 이미지 전달
-                send_img_socket(request.files['fullface'], client_socket)
+                send_img_socket(request.files["fullface"].stream.read(), client_socket)
+                # send_img_socket(os.getcwd()+"\cosmetic\\1.jpg", client_socket)
+                print('test5')
 
             elif msg == OIL_PAPER:
                 # 기름종이 이미지 전달
-                send_img_socket(request.files['oilpaper'], client_socket)
+                print('test6')
+                send_img_socket(request.files['oilpaper'].stream.read(), client_socket)
+                print('test7')
                 
             elif msg == SURVEY:
                 # 설문조사 정보 전달
+                print('test8')
                 send_msg_socket(socket_json, client_socket)
+                print('test9')
 
             # AI서버로 전송 결과 받기
             msg = rev_msg_socket(client_socket)
+            print('test10')
             if msg == '':
                 print('no data')
                 raise Exception
             
             # 로그 기록
-            save_log("SURVEY SOCKET SUCCESS", f"({acc_id})"+msg)
+            print('test11')
+            save_log("SURVEY SOCKET SUCCESS", f"({acc_id}) {msg}")
 
         client_socket.close()
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
         #로그 기록
+        print('test12')
         save_log("SURVEY ERROR", err, error=True)
 
         return jsonify(msg_dict('fail', "전송 실패"))

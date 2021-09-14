@@ -1,0 +1,26 @@
+[2021-09-14 12:09:34] [[2021-09-14 12:09:34] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:18] [[2021-09-14 12:09:18] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:38] [[2021-09-14 12:09:38] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:22] [[2021-09-14 12:09:22] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:08] [[2021-09-14 12:09:08] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:54] [[2021-09-14 12:09:54] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:09] [[2021-09-14 12:09:09] [SURVEY ERROR] : save_log() missing 1 required positional argument: 'log_result'] : save_log() missing 1 required positional argument: 'log_result'
+[2021-09-14 12:09:07] [[2021-09-14 12:09:07] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not NoneType] : expected str, bytes or os.PathLike object, not NoneType
+[2021-09-14 12:09:00] [[2021-09-14 12:09:00] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 12:09:11] [[2021-09-14 12:09:11] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 13:09:08] [[2021-09-14 13:09:08] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 13:09:12] [[2021-09-14 13:09:12] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 13:09:12] [[2021-09-14 13:09:12] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 13:09:26] [[2021-09-14 13:09:26] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 13:09:44] [[2021-09-14 13:09:44] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 13:09:58] [[2021-09-14 13:09:58] [SURVEY ERROR] : [Errno 2] No such file or directory: '1.jpg'] : [Errno 2] No such file or directory: '1.jpg'
+[2021-09-14 13:09:01] [[2021-09-14 13:09:01] [SURVEY ERROR] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"
+[2021-09-14 13:09:18] [[2021-09-14 13:09:18] [SURVEY ERROR] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"
+[2021-09-14 13:09:08] [[2021-09-14 13:09:08] [SURVEY ERROR] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"
+[2021-09-14 13:09:24] [[2021-09-14 13:09:24] [SURVEY ERROR] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"] : [Errno 22] Invalid argument: "<FileStorage: '1.jpg' ('image/jpeg')>"
+[2021-09-14 13:09:55] [[2021-09-14 13:09:55] [SURVEY ERROR] : local variable 'send_file' referenced before assignment] : local variable 'send_file' referenced before assignment
+[2021-09-14 13:09:31] [[2021-09-14 13:09:31] [SURVEY ERROR] : 'bytes' object has no attribute 'read'] : 'bytes' object has no attribute 'read'
+[2021-09-14 13:09:33] [[2021-09-14 13:09:33] [SURVEY ERROR] : [Errno 2] No such file or directory: 'C:\\projects\\cosmetics/1.jpg'] : [Errno 2] No such file or directory: 'C:\\projects\\cosmetics/1.jpg'
+[2021-09-14 13:09:51] [[2021-09-14 13:09:51] [SURVEY ERROR] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\x01.jpg'] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\x01.jpg'
+[2021-09-14 13:09:39] [[2021-09-14 13:09:39] [SURVEY ERROR] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\\cosmetic\x01.jpg'] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\\cosmetic\x01.jpg'
+[2021-09-14 13:09:08] [[2021-09-14 13:09:08] [SURVEY ERROR] : 'bytes' object has no attribute 'read'] : 'bytes' object has no attribute 'read'

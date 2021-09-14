@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from cosmetic.helper.methods import msg_dict, save_log
 from cosmetic.model.db_models import db, UserInfo, LogInfo
 
-from flask_jwt_extended import *
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 from flask import Blueprint, jsonify, request
 from cosmetic import bcrypt
 
@@ -87,7 +87,7 @@ def refresh():
     else: #성공시
 
         #토큰 재생성
-        access_token = create_access_token(identity=current_user, fresh=acc_token_maintain_time)
+        access_token = create_access_token(identity=acc_id, fresh=acc_token_maintain_time)
         #로그 기록
         save_log("REF TOKEN SUCCESS", f"({acc_id}) refresh token 재발행")
         #json 형태의 결과값 return
