@@ -104,3 +104,109 @@
 [2021-09-14 13:09:52] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
 [2021-09-14 13:09:52] [RECEIVE SUCCESS] : finish
 [2021-09-14 13:09:52] [SURVEY SOCKET SUCCESS] : (ncyc6) finish
+[2021-09-14 14:09:15] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:15] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:15] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:15] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:16] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:16] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:16] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:16] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:16] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:16] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:16] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:16] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:16] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:16] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:30] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:30] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:30] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:31] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:31] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:31] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:31] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:31] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:31] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:31] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:31] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:31] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:31] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:31] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:26] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:26] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:26] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:26] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:26] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:26] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:26] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:27] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:27] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:27] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:27] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:27] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:27] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:27] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:55] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:55] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:55] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:56] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:56] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:56] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:56] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:56] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:56] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:56] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:56] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:56] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:56] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:56] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:43] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:43] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:43] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:44] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:44] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:44] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:44] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:44] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:44] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:44] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:44] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:44] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:44] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:44] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:24] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:24] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:24] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:24] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:24] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:24] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:24] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:24] [IMAGE SEND SUCCESS] : completed
+[2021-09-14 14:09:24] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:24] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:24] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:24] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:24] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:24] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:39] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:39] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:39] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:39] [SURVEY ERROR] : 'SpooledTemporaryFile' object has no attribute 'filename'
+[2021-09-14 14:09:22] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:22] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:22] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:22] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage
+[2021-09-14 14:09:50] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-14 14:09:50] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-14 14:09:50] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-14 14:09:50] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-14 14:09:50] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:50] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:50] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-14 14:09:51] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-14 14:09:51] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:51] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-14 14:09:51] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-14 14:09:51] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-14 14:09:51] [RECEIVE SUCCESS] : finish
+[2021-09-14 14:09:51] [SURVEY SOCKET SUCCESS] : (ncyc5) finish

@@ -59,8 +59,8 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
         msg(str) : 보낸결과 메시지
     '''
 
-    if type(load_file_path) == bytes:
-        send_file = BytesIO(load_file_path)
+    if str(type(load_file_path)) == "<class 'werkzeug.datastructures.FileStorage'>":
+        send_file = BytesIO(load_file_path.stream.read())
     else:
         # 보낼 파일 선언
         send_file = open(load_file_path, 'rb')
@@ -81,4 +81,4 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
         image_data = send_file.read(buffer_size)
     send_file.close()
     # save_log("IMAGE SEND SUCCESS", load_file_path)
-    save_log("IMAGE SEND SUCCESS", f"completed")
+    save_log("IMAGE SEND SUCCESS", load_file_path.filename)

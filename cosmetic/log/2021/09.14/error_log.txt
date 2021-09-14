@@ -24,3 +24,5 @@
 [2021-09-14 13:09:51] [[2021-09-14 13:09:51] [SURVEY ERROR] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\x01.jpg'] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\x01.jpg'
 [2021-09-14 13:09:39] [[2021-09-14 13:09:39] [SURVEY ERROR] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\\cosmetic\x01.jpg'] : [Errno 22] Invalid argument: 'C:\\projects\\cosmetics\\cosmetic\x01.jpg'
 [2021-09-14 13:09:08] [[2021-09-14 13:09:08] [SURVEY ERROR] : 'bytes' object has no attribute 'read'] : 'bytes' object has no attribute 'read'
+[2021-09-14 14:09:39] [[2021-09-14 14:09:39] [SURVEY ERROR] : 'SpooledTemporaryFile' object has no attribute 'filename'] : 'SpooledTemporaryFile' object has no attribute 'filename'
+[2021-09-14 14:09:22] [[2021-09-14 14:09:22] [SURVEY ERROR] : expected str, bytes or os.PathLike object, not FileStorage] : expected str, bytes or os.PathLike object, not FileStorage
