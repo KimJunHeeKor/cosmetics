@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from cosmetic.helper.methods import msg_dict, save_log
 from cosmetic.model.db_models import db, UserInfo, LogInfo
 
-from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token
 from flask import Blueprint, jsonify, request
 from cosmetic import bcrypt
 
