@@ -100,7 +100,7 @@ def suervey():
         )
 
         s_id = find_or_create_subtmit(acc_id)
-        
+
         #소켓통신 준비
         msg_mapping_list = []
 
@@ -115,10 +115,12 @@ def suervey():
             if value is None or value == '':
                 come_data_complete = False
                 # return jsonify(msg_dict(rt="fail", content="입력값을 확인하세요"))
-
+        print(type(socket_json))
         if come_data_complete:
             socket_json = json.dumps(socket_json)
             msg_mapping_list.append('SURVEY')
+        print(type(socket_json))
+        print(socket_json)
 
         # 디바이스 정보
         device_info = request.headers.get('User_Agent')
