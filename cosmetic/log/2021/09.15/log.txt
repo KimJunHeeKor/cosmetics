@@ -1,0 +1,158 @@
+[2021-09-15 11:09:58] [SURVEY ERROR] : [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2021-09-15 11:09:43] [SURVEY ERROR] : [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2021-09-15 11:09:55] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:21] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:48] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:10] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:15] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:44] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:03] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:21] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:54] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:14] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:28] [SURVEY ERROR] : send_msg_socket() missing 2 required positional arguments: 'msg' and 'client_socket'
+[2021-09-15 11:09:54] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 11:09:54] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 11:09:54] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 11:09:55] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-15 11:09:55] [RECEIVE SUCCESS] : finish
+[2021-09-15 11:09:55] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 11:09:55] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-15 11:09:55] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-15 11:09:55] [RECEIVE SUCCESS] : finish
+[2021-09-15 11:09:55] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 11:09:55] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-15 11:09:55] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-15 11:09:55] [RECEIVE SUCCESS] : finish
+[2021-09-15 11:09:55] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 11:09:58] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 11:09:58] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 11:09:58] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 11:09:59] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-15 11:09:00] [RECEIVE SUCCESS] : finish
+[2021-09-15 11:09:00] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 11:09:00] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-15 11:09:00] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-15 11:09:00] [RECEIVE SUCCESS] : finish
+[2021-09-15 11:09:00] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 11:09:00] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-15 11:09:00] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "etc172", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-15 11:09:00] [RECEIVE SUCCESS] : finish
+[2021-09-15 11:09:00] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 11:09:11] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 11:09:11] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 11:09:11] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 11:09:11] [IMAGE SEND SUCCESS] : 
+[2021-09-15 11:09:26] [SURVEY ERROR] : 'str' object has no attribute 'values'
+[2021-09-15 11:09:43] [SURVEY ERROR] : 'list' object has no attribute 'appned'
+[2021-09-15 11:09:38] [SURVEY ERROR] : 'list' object has no attribute 'appned'
+[2021-09-15 11:09:49] [SURVEY ERROR] : 'list' object has no attribute 'appned'
+[2021-09-15 11:09:06] [SURVEY ERROR] : 'list' object has no attribute 'appned'
+[2021-09-15 12:09:09] [ACC,REF TOKEN SUCCESS] : (ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-15 12:09:09] [LOGIN SUCCESS] : (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-15 12:09:20] [SURVEY ERROR] : 'list' object attribute 'append' is read-only
+[2021-09-15 12:09:55] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 12:09:55] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 12:09:55] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 12:09:55] [IMAGE SEND SUCCESS] : 
+[2021-09-15 12:09:30] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 12:09:30] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 12:09:30] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 12:09:30] [IMAGE SEND SUCCESS] : 
+[2021-09-15 12:09:51] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 12:09:51] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 12:09:51] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 12:09:51] [IMAGE SEND SUCCESS] : 
+[2021-09-15 12:09:34] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 12:09:34] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 12:09:34] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 12:09:34] [IMAGE SEND SUCCESS] : 
+[2021-09-15 13:09:37] [ACC,REF TOKEN SUCCESS] : (ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-15 13:09:37] [LOGIN SUCCESS] : (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-15 13:09:23] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 13:09:23] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 13:09:23] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 13:09:23] [IMAGE SEND SUCCESS] : 
+[2021-09-15 13:09:58] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 13:09:58] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 13:09:58] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 13:09:58] [IMAGE SEND SUCCESS] : 
+[2021-09-15 13:09:43] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 13:09:43] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 13:09:43] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 13:09:43] [IMAGE SEND SUCCESS] : 
+[2021-09-15 13:09:08] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 13:09:08] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 13:09:08] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 13:09:08] [IMAGE SEND SUCCESS] : 
+[2021-09-15 13:09:25] [MESSAGE SEND SUCCESS] : SURVEY
+[2021-09-15 13:09:25] [MESSAGE SEND SUCCESS] : {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "123", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-15 13:09:25] [RECEIVE SUCCESS] : finish
+[2021-09-15 13:09:25] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 13:09:44] [SURVEY ERROR] : local variable 'survey' referenced before assignment
+[2021-09-15 13:09:31] [SURVEY ERROR] : (mysql.connector.errors.ProgrammingError) Failed processing pyformat-parameters; Python 'result' cannot be converted to a MySQL type
+[SQL: SELECT survey.s_id AS survey_s_id 
+FROM survey 
+WHERE survey.s_id = %(s_id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'s_id_1': (339,), 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-09-15 13:09:21] [SURVEY ERROR] : (mysql.connector.errors.ProgrammingError) Failed processing pyformat-parameters; Python 'result' cannot be converted to a MySQL type
+[SQL: SELECT survey.s_id AS survey_s_id 
+FROM survey 
+WHERE survey.s_id = %(s_id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'s_id_1': (339,), 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-09-15 13:09:55] [SURVEY ERROR] : (mysql.connector.errors.ProgrammingError) Failed processing pyformat-parameters; Python 'result' cannot be converted to a MySQL type
+[SQL: SELECT survey.s_id AS survey_s_id 
+FROM survey 
+WHERE survey.s_id = %(s_id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'s_id_1': (339,), 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-09-15 13:09:36] [SURVEY ERROR] : (mysql.connector.errors.ProgrammingError) Failed processing pyformat-parameters; Python 'result' cannot be converted to a MySQL type
+[SQL: SELECT survey.s_id AS survey_s_id 
+FROM survey 
+WHERE survey.s_id = %(s_id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'s_id_1': (339,), 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-09-15 14:09:55] [SURVEY ERROR] : 'NoneType' object is not subscriptable
+[2021-09-15 14:09:03] [SURVEY ERROR] : name 'session' is not defined
+[2021-09-15 14:09:17] [SURVEY ERROR] : name 'session' is not defined
+[2021-09-15 14:09:04] [SURVEY ERROR] : (mysql.connector.errors.DatabaseError) 1366 (HY000): Incorrect integer value: 'u_id' for column 'uid' at row 1
+[SQL: INSERT INTO submit (uid, created_date) VALUES (%(uid)s, %(created_date)s)]
+[parameters: {'uid': 'u_id', 'created_date': datetime.datetime(2021, 9, 15, 14, 11, 4, 163692)}]
+(Background on this error at: http://sqlalche.me/e/13/4xp6)
+[2021-09-15 14:09:01] [SURVEY ERROR] : 'BaseQuery' object is not callable
+[2021-09-15 14:09:58] [ACC,REF TOKEN SUCCESS] : (ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-15 14:09:58] [LOGIN SUCCESS] : (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-15 14:09:10] [SURVEY ERROR] : (mysql.connector.errors.ProgrammingError) Failed processing pyformat-parameters; Python 'result' cannot be converted to a MySQL type
+[SQL: INSERT INTO submit (uid, created_date) VALUES (%(uid)s, %(created_date)s)]
+[parameters: {'uid': (205,), 'created_date': datetime.datetime(2021, 9, 15, 14, 17, 10, 282490)}]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-09-15 14:09:23] [MESSAGE SEND SUCCESS] : 342
+[2021-09-15 14:09:23] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 14:09:23] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 14:09:23] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 14:09:24] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-15 14:09:24] [RECEIVE SUCCESS] : finish
+[2021-09-15 14:09:24] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 14:09:24] [MESSAGE SEND SUCCESS] : 342
+[2021-09-15 14:09:24] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-15 14:09:24] [IMAGE SEND SUCCESS] : 2.jpg
+[2021-09-15 14:09:24] [RECEIVE SUCCESS] : finish
+[2021-09-15 14:09:24] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 14:09:55] [MESSAGE SEND SUCCESS] : 342
+[2021-09-15 14:09:55] [MESSAGE SEND SUCCESS] : FULL_FACE
+[2021-09-15 14:09:55] [MESSAGE SEND SUCCESS] : ncyc5
+[2021-09-15 14:09:55] [MESSAGE SEND SUCCESS] : PostmanRuntime/7.28.4
+[2021-09-15 14:09:56] [IMAGE SEND SUCCESS] : 1.jpg
+[2021-09-15 14:09:56] [RECEIVE SUCCESS] : finish
+[2021-09-15 14:09:56] [SURVEY SOCKET SUCCESS] : (ncyc5) finish
+[2021-09-15 14:09:56] [MESSAGE SEND SUCCESS] : 342
+[2021-09-15 14:09:56] [MESSAGE SEND SUCCESS] : OIL_PAPER
+[2021-09-15 14:09:56] [IMAGE SEND SUCCESS] : 2.jpg
+[2021-09-15 14:09:56] [RECEIVE SUCCESS] : finish
+[2021-09-15 14:09:56] [SURVEY SOCKET SUCCESS] : (ncyc5) finish

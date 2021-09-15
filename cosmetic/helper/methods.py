@@ -2,12 +2,41 @@ import os
 import time
 from datetime import datetime
 
-from cosmetic.model.db_models import TotalScoreOutput, Submit, UserInfo, db
+from cosmetic.model.db_models import TotalScoreOutput, Submit, Survey, UserInfo, db
 from sqlalchemy import and_
 from sqlalchemy.sql import func
 
 
 from typing import Dict
+
+def find_or_create_subtmit(acc_id:str)->str:
+    uid = db.session.query(UserInfo.id) \
+                        .select_from(UserInfo) \
+                        .filter(UserInfo.acc_id==acc_id) \
+                        .first()
+    s_id = db.session.query(Submit.id) \
+                        .select_from(Submit) \
+                        .filter(Submit.uid == uid[0])  \
+                        .order_by(Submit.created_date.desc()) \
+                        .first()
+
+    survey = db.session.query(Survey.s_id) \
+                        .select_from(Survey) \
+                        .filter(Survey.s_id == s_id[0]) \
+                        .first()
+
+    if survey != None:
+
+        submit = Submit(uid=uid[0], created_date=datetime.now())
+        db.session.add(submit)
+        db.session.commit()
+
+        s_id = db.session.query(Submit.id) \
+                            .select_from(Submit) \
+                            .filter(Submit.uid == uid[0])  \
+                            .order_by(Submit.created_date.desc()) \
+                            .first()
+    return str(s_id[0])
 
 def calculate_user_skin_history(acc_id:str)->list:
     '''

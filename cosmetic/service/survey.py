@@ -98,18 +98,34 @@ def suervey():
             etc_Q16 = request.form.get('etc_Q16'),
             etc_Q17 = request.form.get('etc_Q17')
         )
+
+        s_id = find_or_create_subtmit(acc_id)
         
         #소켓통신 준비
-        socket_json = json.dumps(socket_json)
-        msg_mapping_list = [FULL_FACE, OIL_PAPER, SURVEY]
+        msg_mapping_list = []
+
+        if request.files['fullface'].filename != '':
+            msg_mapping_list.append('FULL_FACE')
         
+        if request.files['oilpaper'].filename != '':
+            msg_mapping_list.append('OIL_PAPER')
+
+        come_data_complete = True
+        for _, value in socket_json.items():
+            if value is None or value == '':
+                come_data_complete = False
+                # return jsonify(msg_dict(rt="fail", content="입력값을 확인하세요"))
+
+        if come_data_complete:
+            socket_json = json.dumps(socket_json)
+            msg_mapping_list.append('SURVEY')
+
         # 디바이스 정보
         device_info = request.headers.get('User_Agent')
-        print(type(request.files["fullface"]))
         
         # AI 서버와 소켓통신
         for msg in msg_mapping_list:
-
+            send_msg_socket(s_id, client_socket)
             send_msg_socket(msg, client_socket)
 
             if msg == FULL_FACE:

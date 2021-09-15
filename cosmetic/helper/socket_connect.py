@@ -64,7 +64,7 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
     else:
         # 보낼 파일 선언
         send_file = open(load_file_path, 'rb')
-    print(type(send_file))
+    
     # 이미지 데이터 정보가 변수
     image_data = send_file.read()
     # 이미지 데이터의 전체 길이
