@@ -338,7 +338,7 @@ def msg_dict(rt:str, content:Dict=None) -> Dict:
     @return
     json_dict (json) : API json
     '''
-    json_dict = {'rt': rt ,'pubDate': time.strftime('%Y-%m-%d %H:%m:%S')}
+    json_dict = {'rt': rt ,'pubDate': datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')}
     if content is not None:
         json_dict['contents'] = content
     return json_dict
@@ -353,8 +353,8 @@ class save_log:
     '''
     error = False
     base_path = os.getcwd()+'/cosmetic/log'
-    year = time.strftime('%Y')
-    month_day = time.strftime('%m.%d')
+    year = datetime.strftime(datetime.now(),'%Y')
+    month_day = datetime.strftime(datetime.now(),'%m.%d')
     log_file_name = "log.txt"
     error_log_file_name = "error_log.txt"
 
@@ -432,4 +432,4 @@ def time_log() -> str:
     @return
     time (str) : %Y-%m-%d %H:%m:%S 형태의 시간
     '''
-    return time.strftime('%Y-%m-%d %H:%m:%S')
+    return datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')

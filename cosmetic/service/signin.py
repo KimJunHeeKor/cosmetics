@@ -50,7 +50,9 @@ def signin():
         user_info_dict = {'accToken':access_token, 'refToken':refresh_token}
 
         #login 정보를 DB에 기입
-        log_query = LogInfo(uid=user_info.id, login_time=datetime.now(), logout_time=datetime.now())
+        log_query = LogInfo(uid=user_info.id, login_time=datetime.now(), logout_time=datetime.now()+current_app.config["JWT_ACCESS_TOKEN_EXPIRES"])
+        print(type(current_app.config["JWT_ACCESS_TOKEN_EXPIRES"]))
+        print(type(datetime.now()))
         db.session.add(log_query)
         db.session.commit()
         save_log.info(f"(LOGIN) ({acc_id}) 접속 로그 DB에 저장, 로그인 성공")
