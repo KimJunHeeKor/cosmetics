@@ -31,12 +31,11 @@ def create_app():
     from cosmetic.model import db_models
 
     #Blueprint
-    from cosmetic.service import userskin, curation, recommend, userinfo, pushmessage, signin, signout, signup, survey
+    from cosmetic.service import userskin, curation, recommend, userinfo, signin, signout, signup, survey
     app.register_blueprint(userskin.bp)
     app.register_blueprint(curation.bp)
     app.register_blueprint(recommend.bp)
     app.register_blueprint(userinfo.bp)
-    app.register_blueprint(pushmessage.bp)
     app.register_blueprint(signin.bp)
     app.register_blueprint(signout.bp)
     app.register_blueprint(signup.bp)
