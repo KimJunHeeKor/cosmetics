@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from cosmetic.helper.methods import msg_dict, save_log
+from cosmetic.helper.methods import msg_dict, save_log, update_db_logout
 from cosmetic.model.db_models import db, UserInfo, LogInfo
 
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token
@@ -51,8 +51,6 @@ def signin():
 
         #login 정보를 DB에 기입
         log_query = LogInfo(uid=user_info.id, login_time=datetime.now(), logout_time=datetime.now()+current_app.config["JWT_ACCESS_TOKEN_EXPIRES"])
-        print(type(current_app.config["JWT_ACCESS_TOKEN_EXPIRES"]))
-        print(type(datetime.now()))
         db.session.add(log_query)
         db.session.commit()
         save_log.info(f"(LOGIN) ({acc_id}) 접속 로그 DB에 저장, 로그인 성공")
@@ -66,7 +64,7 @@ def signin():
         return jsonify(msg_dict('fail'))
 
 
-@bp.route("/token/refresh", methods=["POST"])
+@bp.route("/token/refresh", methods=["GET"])
 @jwt_required(refresh=True)
 def refresh():
     '''
@@ -89,5 +87,7 @@ def refresh():
         access_token = create_access_token(identity=acc_id, fresh=current_app.config["JWT_ACCESS_TOKEN_EXPIRES"])
         #로그 기록
         save_log.info(f"(REF TOKEN SUCCESS) ({acc_id}) refresh token 재발행")
+        #DB 로그 갱신    
+        update_db_logout(user_check, timedelta(hours=1))
         #json 형태의 결과값 return
         return jsonify(msg_dict('ok',{'access_token':access_token}))

@@ -1,8 +1,7 @@
 import os
-import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from cosmetic.model.db_models import TotalScoreOutput, Submit, Survey, UserInfo, db
+from cosmetic.model.db_models import TotalScoreOutput, Submit, Survey, UserInfo, db, LogInfo
 from sqlalchemy import and_
 from sqlalchemy.sql import func
 
@@ -315,19 +314,6 @@ def convert_url_to_timeformat(input_url:str)->datetime:
 
     return search_datetime
 
-# def make_log_msg(log_result:str, log_msg:str)->str:
-#     '''
-#     log 메시지 기본 포멧 제공 메서드 @20210902 KJH
-#     @params
-#     log_result(str) - 실행 결과 메시지
-#     log_msg(str)    - 실행 결과 상세 메시지
-    
-#     @return
-#     log_msg(str) : 로그 메시지
-#     '''
-#     log_msg = f'[{time_log()}] [{log_result}] : {log_msg}'
-#     return log_msg
-
 def msg_dict(rt:str, content:Dict=None) -> Dict:
     '''
     JSON 메시지를 위한 고정된 딕셔러니 제작 메소드 @20210824 KJH  
@@ -342,6 +328,22 @@ def msg_dict(rt:str, content:Dict=None) -> Dict:
     if content is not None:
         json_dict['contents'] = content
     return json_dict
+
+def update_db_logout(user:UserInfo, time_delta:timedelta):
+    '''
+    DB의 logout 정보 수정
+    @params
+    user(UserInfo) : log가 수정될 user의 개체
+    time_delta(timedelta) : 로그아웃
+    '''
+
+    log_info = db.session.query(LogInfo) \
+                        .filter(LogInfo.uid==user.id) \
+                        .order_by(LogInfo.login_time.desc()) \
+                        .first()
+    log_info.logout_time = datetime.now()+time_delta
+    db.session.commit()
+    save_log.info(f"({user.acc_id}) logout 시간 갱신")
 
 class save_log:
     '''
