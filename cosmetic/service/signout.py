@@ -1,24 +1,18 @@
-from datetime import datetime, timedelta
-
 from cosmetic.helper.methods import msg_dict, save_log
-from cosmetic.model.db_models import db, UserInfo, LogInfo
+from cosmetic.model.db_models import db, UserInfo
 
 from flask_jwt_extended import *
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, current_app
 
 
 ## 전역변수 설정
 # 블루프린트
 bp = Blueprint('signout', __name__, url_prefix='/signout')
-# 토큰 유지시간
-acc_token_maintain_time=timedelta(hours=1)
-refresh_token_maintain_time = timedelta(days=1)
-
 
 
 @bp.route('', methods=["GET"])
 @jwt_required(fresh=True)
-def logout():
+def signout():
     '''
     로그아웃 API
     '''
@@ -30,13 +24,13 @@ def logout():
         user_info.jwt = None
         db.session.commit()
         #로그 기록
-        save_log("LOGOUT SUCCESS", f"({acc_id})Ref token 삭제 및 로그아웃 완료")
+        save_log.info(f"({acc_id})LOGOUT SUCCESS - Ref token 삭제 및 로그아웃 완료")
         
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
 
         #로그 기록
-        save_log("LOGOUT ERROR", err, error=True)
+        save_log.error("LOGOUT -"+ err, error=True)
 
         return jsonify(msg_dict('fail'))

@@ -11,14 +11,14 @@ from cosmetic import bcrypt
 bp = Blueprint('signup', __name__, url_prefix='/signup')
 
 @bp.route('', methods=['POST'])
-def sign_up():
+def signup():
     '''
     회원 가입을 위한 API
     '''
     try:
         #POST 전송 확인
         if request.method != 'POST':
-            save_log('SIGNUP ERROR','POST 전송이 아닙니다', error=True)
+            save_log.error(f'(SIGNUP) POST 전송이 아닙니다', error=True)
             return jsonify(msg_dict('fail','POST 전송이 아닙니다.')), 400
         
         # POST parameters 확인
@@ -38,7 +38,7 @@ def sign_up():
         created_date = datetime.now()
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
-            save_log("SIGNUP ERROR", f"({acc_id})아이디가 존재합니다.",error=True)
+            save_log.error(f"(SIGNUP) ({acc_id})아이디가 존재합니다.",error=True)
             return jsonify(msg_dict('fail',"아이디가 존재합니다.")), 400
 
         #hashing password
@@ -55,12 +55,12 @@ def sign_up():
                          nation = nation)
         db.session.add(query)
         db.session.commit()
-        save_log("SIGNUP SUCCESS", f"({acc_id})아이디 생성 완료")
+        save_log.info(f"(SIGNUP SUCCESS) ({acc_id})아이디 생성 완료")
 
         return jsonify(msg_dict('ok')), 200
 
     except Exception as err:
         # 에러메시지 생성
-        save_log("SIGNUP ERROR", err, error=True)
+        save_log.error(f"(SIGNUP) {err}", error=True)
 
         return jsonify(msg_dict('fail', "아이디 생성 실패")), 400

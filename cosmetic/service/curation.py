@@ -1,7 +1,7 @@
 import time
 import random
 
-from flask import Blueprint,jsonify
+from flask import Blueprint, jsonify
 from cosmetic.model.db_models import CurKw1, CurKw2
 
 _fail_dict={
@@ -11,7 +11,6 @@ _fail_dict={
     }
 
 bp = Blueprint('curation', __name__, url_prefix='/curation')
-
 
 # 사용자 별 큐레이션 메시지 API
 @bp.route('/msg', methods=['POST'])

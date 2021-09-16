@@ -6,12 +6,10 @@ from cosmetic.model.db_models import UserInfo
 
 
 
-from flask import Blueprint, json, jsonify, request
+from flask import Blueprint, jsonify, request
 from flask_jwt_extended import *
 
 bp = Blueprint('userskin', __name__, url_prefix='/userskin')
-
-
 
 @bp.route('/values', methods=['POST'])
 def userskin_anal_status():
@@ -35,7 +33,6 @@ def userskin_anal_status():
             'min': min_dict
         }))
 
-
 @bp.route("/values/history", methods=["GET"])
 @jwt_required(fresh=True)
 def search_user_skin_history():
@@ -50,11 +47,11 @@ def search_user_skin_history():
         
         for history in user_history:
             user_history_date.append(datetime.strftime(history.date, "%Y-%m-%d %H:%M:%S"))
-        save_log("SEARCH USER SKIN HISTORY SUCCESS", f"({acc_id}) 사용자의 피부 히스토리를 불러왔습니다.")
+        save_log.info(f"(SEARCH USER SKIN HISTORY) ({acc_id}) 사용자의 피부 히스토리를 불러왔습니다.")
         return jsonify(msg_dict("ok", {'history':user_history_date})), 200
 
     except Exception as err:
-        save_log("SEARCH USER SKIN HISTORY ERROR", err, error=True)
+        save_log.error(f"(SEARCH USER SKIN HISTORY) {err}", error=True)
         return jsonify(msg_dict('fail')), 400
 
 
@@ -78,7 +75,7 @@ def seach_user_skin_values(compared_column, search_date):
         # 해당 유저의 정보를 DB에서 찾는다.
         user = UserInfo.query.filter(UserInfo.acc_id == acc_id).first_or_404()
         if user is None:
-            save_log("SEARCH USER SKIN VALUES ERROR", f"({acc_id})사용자를 검색하지 못했습니다.", error=True)
+            save_log.error(f"(SEARCH USER SKIN VALUES) ({acc_id})사용자를 검색하지 못했습니다.", error=True)
             return jsonify(msg_dict('fail')), 400
         
         
@@ -87,7 +84,7 @@ def seach_user_skin_values(compared_column, search_date):
         average_dict = calculate_average_user_skinvalue(compared_column,user, search_datetime)
         max_dict = calculate_max_user_skinvalue(compared_column,user, search_datetime)
         min_dict = calculate_min_user_skinvalue(compared_column,user, search_datetime)
-        save_log("SEARCH USER SKIN VALUES SUCCESS", f"({acc_id})사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.")
+        save_log.info(f"(SEARCH USER SKIN VALUES SUCCESS) ({acc_id})사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.")
 
         return jsonify(msg_dict('ok', {
                 'anal': analyzed_dict,
@@ -96,5 +93,5 @@ def seach_user_skin_values(compared_column, search_date):
                 'min': min_dict
             }))
     except Exception as err:
-        save_log("SEARCH USER SKIN VALUES ERROR", err, error=True)
+        save_log.error(f"(SEARCH USER SKIN VALUES) {err}", error=True)
         return jsonify(msg_dict('fail')), 400

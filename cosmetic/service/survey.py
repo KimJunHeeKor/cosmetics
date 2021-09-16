@@ -114,13 +114,11 @@ def suervey():
         for _, value in socket_json.items():
             if value is None or value == '':
                 come_data_complete = False
+                break
                 # return jsonify(msg_dict(rt="fail", content="입력값을 확인하세요"))
-        print(type(socket_json))
         if come_data_complete:
             socket_json = json.dumps(socket_json)
             msg_mapping_list.append('SURVEY')
-        print(type(socket_json))
-        print(socket_json)
 
         # 디바이스 정보
         device_info = request.headers.get('User_Agent')
@@ -154,13 +152,13 @@ def suervey():
                 raise Exception
             
             # 로그 기록
-            save_log("SURVEY SOCKET SUCCESS", f"({acc_id}) {msg}")
+            save_log.info(f"(SURVEY SOCKET SUCCESS) ({acc_id}) {msg}")
 
         client_socket.close()
         return jsonify(msg_dict('ok'))
 
     except Exception as err:
         #로그 기록
-        save_log("SURVEY ERROR", err, error=True)
+        save_log.error(f"(SURVEY) {err}", error=True)
 
         return jsonify(msg_dict('fail', "전송 실패"))

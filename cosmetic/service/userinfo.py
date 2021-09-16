@@ -1,20 +1,14 @@
-from datetime import datetime, timedelta
-
-from cosmetic.helper.methods import time_log, msg_dict, save_log
-from cosmetic.model.db_models import db, UserInfo, LogInfo
+from cosmetic.helper.methods import msg_dict, save_log
+from cosmetic.model.db_models import db, UserInfo
 
 from flask_jwt_extended import *
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 from cosmetic import bcrypt
 
 
 ## 전역변수 설정
 # 블루프린트
 bp = Blueprint('userinfo', __name__, url_prefix='/userinfo')
-# 토큰 유지시간
-acc_token_maintain_time=timedelta(hours=1)
-refresh_token_maintain_time = timedelta(days=1)
-
 
 @bp.route('/get', methods=["GET"])
 @jwt_required(fresh=True)
@@ -24,7 +18,7 @@ def userinfo():
         user_info =  UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
 
         if user_info is None:
-            save_log("GET USERINFO ERROR",f"({acc_id}) DB에 없는 유저입니다.", error=True)
+            save_log.error(f"(GET USERINFO) ({acc_id}) DB에 없는 유저입니다.", error=True)
 
             return jsonify(msg_dict('fail', '없는 유저입니다.'))
 
@@ -41,13 +35,13 @@ def userinfo():
             "residence" : user_info.residence,
             "nation" : user_info.nation
         }))
-        save_log("GET USERINFO SUCCESS", f"({acc_id}) DB에서 유저 정보를 찾았습니다.")
+        save_log.info(f"(GET USERINFO SUCCESS) ({acc_id}) DB에서 유저 정보를 찾았습니다.")
         
         return user_info_json
 
     except Exception as err:
 
-        save_log("GET USERINFO ERROR", err, error=True)
+        save_log.error(f"(GET USERINFO) +{err}", error=True)
 
         return jsonify(msg_dict('fail'))
 

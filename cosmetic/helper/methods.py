@@ -315,18 +315,18 @@ def convert_url_to_timeformat(input_url:str)->datetime:
 
     return search_datetime
 
-def make_log_msg(log_result:str, log_msg:str)->str:
-    '''
-    log 메시지 기본 포멧 제공 메서드 @20210902 KJH
-    @params
-    log_result(str) - 실행 결과 메시지
-    log_msg(str)    - 실행 결과 상세 메시지
+# def make_log_msg(log_result:str, log_msg:str)->str:
+#     '''
+#     log 메시지 기본 포멧 제공 메서드 @20210902 KJH
+#     @params
+#     log_result(str) - 실행 결과 메시지
+#     log_msg(str)    - 실행 결과 상세 메시지
     
-    @return
-    log_msg(str) : 로그 메시지
-    '''
-    log_msg = f'[{time_log()}] [{log_result}] : {log_msg}'
-    return log_msg
+#     @return
+#     log_msg(str) : 로그 메시지
+#     '''
+#     log_msg = f'[{time_log()}] [{log_result}] : {log_msg}'
+#     return log_msg
 
 def msg_dict(rt:str, content:Dict=None) -> Dict:
     '''
@@ -343,8 +343,7 @@ def msg_dict(rt:str, content:Dict=None) -> Dict:
         json_dict['contents'] = content
     return json_dict
 
-
-def save_log(log_msg:str, log_result:str, error:bool=False):
+class save_log:
     '''
     로그 저장 @20210823 KJH
     @params
@@ -352,41 +351,80 @@ def save_log(log_msg:str, log_result:str, error:bool=False):
     log_msg(str)    - 실행 결과 상세 메시지
     error(bool) :  에러 메시지 저장 여부
     '''
+    error = False
     base_path = os.getcwd()+'/cosmetic/log'
     year = time.strftime('%Y')
     month_day = time.strftime('%m.%d')
     log_file_name = "log.txt"
     error_log_file_name = "error_log.txt"
-    try:
-        if not os.path.exists(base_path):
-            os.makedirs(base_path)
 
-        if not os.path.exists(base_path+'/'+year):
-            os.makedirs(base_path+'/'+year)
+    @classmethod
+    def info(cls, log_message:str, error:bool=False):
+        cls._save_logging("INFO", log_message, error=error)
 
-        if not os.path.exists(base_path+'/'+year+'/'+month_day):
-            os.makedirs(base_path+'/'+year+'/'+month_day)
-        log_msg = make_log_msg(log_msg, log_result)
-        f = open(base_path+'/'+year+'/'+month_day+'/'+log_file_name, 'a+',encoding='utf8')
-        f.write(log_msg+'\n')
-        f.close()
+    @classmethod
+    def error(cls, log_message:str, error:bool=False):
+        cls._save_logging("ERROR", log_message, error=error)
 
-        if error:
-            err_log_msg = make_log_msg(log_msg, log_result)
-            err_file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
-            err_file.write(err_log_msg+"\n")
-            err_file.close()
+    @classmethod
+    def critical(cls, log_message:str, error:bool=False):
+        cls._save_logging("CRITICAL", log_message, error=error)
 
-        print(log_msg)
+    @classmethod
+    def debug(cls, log_message:str, error:bool=False):
+        cls._save_logging("DEBUG", log_message, error=error)
 
-    except Exception as err:
+    @classmethod
+    def warning(cls, log_message:str, error:bool=False):
+        cls._save_logging("WARNING", log_message, error=error)
+
+    @classmethod
+    def _save_logging(cls, log_rt:str, log_msg:str, error:bool=False):
+        try:
+            if not os.path.exists(cls.base_path):
+                os.makedirs(cls.base_path)
+
+            if not os.path.exists(cls.base_path+'/'+cls.year):
+                os.makedirs(cls.base_path+'/'+cls.year)
+
+            if not os.path.exists(cls.base_path+'/'+cls.year+'/'+cls.month_day):
+                os.makedirs(cls.base_path+'/'+cls.year+'/'+cls.month_day)
+
+            log_messsage = cls._make_log_msg(log_rt, log_msg)
+            f = open(cls.base_path+'/'+cls.year+'/'+cls.month_day+'/'+cls.log_file_name, 'a+',encoding='utf8')
+            f.write(log_messsage+'\n')
+            f.close()
+
+            if error:
+                err_log_msg = cls._make_log_msg(log_rt, log_msg)
+                err_file = open(cls.base_path+'/'+cls.year+'/'+cls.month_day+'/'+cls.error_log_file_name, 'a+',encoding='utf8')
+                err_file.write(err_log_msg+"\n")
+                err_file.close()
+
+            print(log_messsage)
+
+        except Exception as err:
+            
+            exc_log_msg = cls._make_log_msg("ERROR", "SAVE LOG - "+ err)
+            except_file = open(cls.base_path+'/'+cls.year+'/'+cls.month_day+'/'+cls.error_log_file_name, 'a+',encoding='utf8')
+            except_file.write(exc_log_msg+"\n")
+            except_file.close()
+
+            print(exc_log_msg)
+
+    @classmethod
+    def _make_log_msg(cls, log_result:str, log_msg:str)->str:
+        '''
+        log 메시지 기본 포멧 제공 메서드 @20210902 KJH
+        @params
+        log_result(str) - 실행 결과 메시지
+        log_msg(str)    - 실행 결과 상세 메시지
         
-        exc_log_msg = make_log_msg('SAVE LOG ERROR', err)
-        except_file = open(base_path+'/'+year+'/'+month_day+'/'+error_log_file_name, 'a+',encoding='utf8')
-        except_file.write(exc_log_msg+"\n")
-        except_file.close()
-
-        print(exc_log_msg)
+        @return
+        log_msg(str) : 로그 메시지
+        '''
+        log = f'[{time_log()}] [{log_result}] : {log_msg}'
+        return log
 
 def time_log() -> str:
     '''
