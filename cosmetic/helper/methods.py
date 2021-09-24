@@ -83,51 +83,19 @@ def calculate_user_skin_status(user:UserInfo, search_datetime:datetime) -> Dict:
     return analyzed_dict
 
 
-def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:datetime) -> Dict:
+def calculate_average_user_skinvalue(user:UserInfo, search_datetime:datetime, **kwargs) -> Dict:
     '''
     해당 카테고리에 대한 피부 평가 평균 점수를 DB에서 가져오는 메소드   @20210903 KJH
     @params
-    column(str) : 비교 카테고리
     user(UserInfo) : DB에서 가져온 user정보 개체
     search_datetime(datetime) : 검색하고자 하는 시간
+    **kwargs(dict) : 비교 카테고리
 
     @return
     average_dict(Dict) : 결과 값
     '''
-    if column == "yearofbirth":
-        user_info = UserInfo.year_of_birth
-        compared_user_info = user.year_of_birth
-    elif column == "sex":
-        user_info = UserInfo.sex
-        compared_user_info = user.sex
-    elif column == "residence":
-        user_info = UserInfo.residence
-        compared_user_info = user.residence
-    elif column == "nation":
-        user_info = UserInfo.nation
-        compared_user_info = user.nation
-    elif column == "marriage":
-        user_info = UserInfo.marriage
-        compared_user_info = user.marriage
-    elif column == "job":
-        user_info = UserInfo.job
-        compared_user_info = user.job
-    elif column == "education":
-        user_info = UserInfo.education
-        compared_user_info = user.education
-    else:
-        return
-
-    '''
-    SELECT avg(total_score_output.total_score) AS avg_total_skin_val, 
-    avg(total_score_output.moisture) AS avg_moisture_val, avg(total_score_output.oily) AS avg_oily_val, 
-    avg(total_score_output.pore) AS avg_pore_val, avg(total_score_output.pigment) AS avg_pigm_val, 
-    avg(total_score_output.sensitivity) AS avg_sen_val FROM submit INNER JOIN user_info 
-    ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
-    WHERE user_info.year_of_birth = '{user.year_of_birth} AND date_format(submit.created_date, '%Y-%m-%d %H:%i:%S') <= 
-    '{search_datetime}' LIMIT 1;
-    '''
-    avg_total_score = db.session.query(func.avg(TotalScoreOutput.total_score).label("avg_total_skin_val"),\
+    if not kwargs:
+        avg_total_score = db.session.query(func.avg(TotalScoreOutput.total_score).label("avg_total_skin_val"),\
                         func.avg(TotalScoreOutput.moisture).label("avg_moisture_val"),\
                         func.avg(TotalScoreOutput.oily).label("avg_oily_val"),\
                         func.avg(TotalScoreOutput.pore).label("avg_pore_val"),\
@@ -136,8 +104,20 @@ def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:
                         select_from(Submit). \
                         join(UserInfo, UserInfo.id == Submit.uid). \
                         join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
-                        filter(user_info == compared_user_info, Submit.created_date <= search_datetime).  \
+                        filter(Submit.created_date <= search_datetime).  \
                         first_or_404()
+    else:
+        avg_total_score = db.session.query(func.avg(TotalScoreOutput.total_score).label("avg_total_skin_val"),\
+                            func.avg(TotalScoreOutput.moisture).label("avg_moisture_val"),\
+                            func.avg(TotalScoreOutput.oily).label("avg_oily_val"),\
+                            func.avg(TotalScoreOutput.pore).label("avg_pore_val"),\
+                            func.avg(TotalScoreOutput.pigment).label("avg_pigm_val"),\
+                            func.avg(TotalScoreOutput.sensitivity).label("avg_sen_val")). \
+                            select_from(Submit). \
+                            join(UserInfo, UserInfo.id == Submit.uid). \
+                            join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
+                            filter(and_(kwargs), Submit.created_date <= search_datetime).  \
+                            first_or_404()
     average_dict = {
         'avgTot' : float(avg_total_score.avg_total_skin_val),  #Average total skin value : 평균 피부상태분석결과값
         'avgMois' : float(avg_total_score.avg_moisture_val),   #Average moisture : 평균 수분값
@@ -150,60 +130,41 @@ def calculate_average_user_skinvalue(column:str, user:UserInfo, search_datetime:
 
         
 
-def calculate_max_user_skinvalue(column:str, user:UserInfo, search_datetime:datetime) -> Dict:
+def calculate_max_user_skinvalue(user:UserInfo, search_datetime:datetime, **kwargs) -> Dict:
     '''
     해당 카테고리에 대한 피부 평가 최대 점수를 DB에서 가져오는 메소드   @20210903 KJH
     @params
-    column(str) : 비교 카테고리
     user(UserInfo) : DB에서 가져온 user정보 개체
     search_datetime(datetime) : 검색하고자 하는 시간
+    **kwargs(dict) : 비교 카테고리
 
     @return
     max_dict(Dict) : 결과 값
     '''
-    if column == "yearofbirth":
-        user_info = UserInfo.year_of_birth
-        compared_user_info = user.year_of_birth
-    elif column == "sex":
-        user_info = UserInfo.sex
-        compared_user_info = user.sex
-    elif column == "residence":
-        user_info = UserInfo.residence
-        compared_user_info = user.residence
-    elif column == "nation":
-        user_info = UserInfo.nation
-        compared_user_info = user.nation
-    elif column == "marriage":
-        user_info = UserInfo.marriage
-        compared_user_info = user.marriage
-    elif column == "job":
-        user_info = UserInfo.job
-        compared_user_info = user.job
-    elif column == "education":
-        user_info = UserInfo.education
-        compared_user_info = user.education
+    if not kwargs:
+        max_total_score = db.session.query(func.max(TotalScoreOutput.total_score).label("max_total_skin_val"),
+                            func.max(TotalScoreOutput.moisture).label("max_moisture_val"),
+                            func.max(TotalScoreOutput.oily).label("max_oily_val"),
+                            func.max(TotalScoreOutput.pore).label("max_pore_val"),
+                            func.max(TotalScoreOutput.pigment).label("max_pigm_val"),
+                            func.max(TotalScoreOutput.sensitivity).label("max_sen_val")). \
+                            select_from(Submit). \
+                            join(UserInfo, UserInfo.id == Submit.uid). \
+                            join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
+                            filter(Submit.created_date <= search_datetime).  \
+                            first_or_404()
     else:
-        return
-    '''
-    SELECT max(total_score_output.total_score) AS max_total_skin_val, 
-    max(total_score_output.moisture) AS max_moisture_val, max(total_score_output.oily) AS max_oily_val, 
-    max(total_score_output.pore) AS max_pore_val, avg(total_score_output.pigment) AS max_pigm_val, 
-    max(total_score_output.sensitivity) AS max_sen_val FROM submit INNER JOIN user_info 
-    ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
-    WHERE user_info.year_of_birth = '{user.year_of_birth} AND date_format(submit.created_date, '%Y-%m-%d %H:%i:%S') <= 
-    '{search_datetime}' LIMIT 1;
-    '''
-    max_total_score = db.session.query(func.max(TotalScoreOutput.total_score).label("max_total_skin_val"),
-                        func.max(TotalScoreOutput.moisture).label("max_moisture_val"),
-                        func.max(TotalScoreOutput.oily).label("max_oily_val"),
-                        func.max(TotalScoreOutput.pore).label("max_pore_val"),
-                        func.max(TotalScoreOutput.pigment).label("max_pigm_val"),
-                        func.max(TotalScoreOutput.sensitivity).label("max_sen_val")). \
-                        select_from(Submit). \
-                        join(UserInfo, UserInfo.id == Submit.uid). \
-                        join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
-                        filter(user_info == compared_user_info, Submit.created_date <= search_datetime).  \
-                        first_or_404()
+        max_total_score = db.session.query(func.max(TotalScoreOutput.total_score).label("max_total_skin_val"),
+                            func.max(TotalScoreOutput.moisture).label("max_moisture_val"),
+                            func.max(TotalScoreOutput.oily).label("max_oily_val"),
+                            func.max(TotalScoreOutput.pore).label("max_pore_val"),
+                            func.max(TotalScoreOutput.pigment).label("max_pigm_val"),
+                            func.max(TotalScoreOutput.sensitivity).label("max_sen_val")). \
+                            select_from(Submit). \
+                            join(UserInfo, UserInfo.id == Submit.uid). \
+                            join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
+                            filter(and_(kwargs), Submit.created_date <= search_datetime).  \
+                            first_or_404()
 
     max_dict = {
         'maxTot' : max_total_score.max_total_skin_val,  #Max total skin value : 최대 피부상태분석결과값
@@ -217,61 +178,41 @@ def calculate_max_user_skinvalue(column:str, user:UserInfo, search_datetime:date
     return max_dict
 
 
-def calculate_min_user_skinvalue(column:str, user:UserInfo, search_datetime:datetime) -> Dict:
+def calculate_min_user_skinvalue(user:UserInfo, search_datetime:datetime, **kwargs) -> Dict:
     '''
     해당 카테고리에 대한 피부 평가 최소 점수를 DB에서 가져오는 메소드   @20210903 KJH
     @params
-    column(str) : 비교 카테고리
     user(UserInfo) : DB에서 가져온 user정보 개체
     search_datetime(datetime) : 검색하고자 하는 시간
+    **kwargs(dict) : 비교 카테고리
 
     @return
     min_dict(Dict) : 결과 값
     '''
-    if column == "yearofbirth":
-        user_info = UserInfo.year_of_birth
-        compared_user_info = user.year_of_birth
-    elif column == "sex":
-        user_info = UserInfo.sex
-        compared_user_info = user.sex
-    elif column == "residence":
-        user_info = UserInfo.residence
-        compared_user_info = user.residence
-    elif column == "nation":
-        user_info = UserInfo.nation
-        compared_user_info = user.nation
-    elif column == "marriage":
-        user_info = UserInfo.marriage
-        compared_user_info = user.marriage
-    elif column == "job":
-        user_info = UserInfo.job
-        compared_user_info = user.job
-    elif column == "education":
-        user_info = UserInfo.education
-        compared_user_info = user.education
+    if not kwargs:
+        min_total_score = db.session.query(func.min(TotalScoreOutput.total_score).label("min_total_skin_val"),
+                            func.min(TotalScoreOutput.moisture).label("min_moisture_val"),
+                            func.min(TotalScoreOutput.oily).label("min_oily_val"),
+                            func.min(TotalScoreOutput.pore).label("min_pore_val"),
+                            func.min(TotalScoreOutput.pigment).label("min_pigm_val"),
+                            func.min(TotalScoreOutput.sensitivity).label("min_sen_val")). \
+                            select_from(Submit). \
+                            join(UserInfo, UserInfo.id == Submit.uid). \
+                            join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
+                            filter(Submit.created_date <= search_datetime).  \
+                            first_or_404()
     else:
-        return
-
-    '''
-    SELECT min(total_score_output.total_score) AS min_total_skin_val, 
-    min(total_score_output.moisture) AS min_moisture_val, min(total_score_output.oily) AS min_oily_val, 
-    min(total_score_output.pore) AS min_pore_val, avg(total_score_output.pigment) AS min_pigm_val, 
-    min(total_score_output.sensitivity) AS min_sen_val FROM submit INNER JOIN user_info 
-    ON user_info.id = submit.uid INNER JOIN total_score_output ON submit.id = total_score_output.s_id 
-    WHERE user_info.year_of_birth = '{user.year_of_birth} AND date_format(submit.created_date, '%Y-%m-%d %H:%i:%S') <= 
-    '{search_datetime}' LIMIT 1;
-    '''
-    min_total_score = db.session.query(func.min(TotalScoreOutput.total_score).label("min_total_skin_val"),
-                        func.min(TotalScoreOutput.moisture).label("min_moisture_val"),
-                        func.min(TotalScoreOutput.oily).label("min_oily_val"),
-                        func.min(TotalScoreOutput.pore).label("min_pore_val"),
-                        func.min(TotalScoreOutput.pigment).label("min_pigm_val"),
-                        func.min(TotalScoreOutput.sensitivity).label("min_sen_val")). \
-                        select_from(Submit). \
-                        join(UserInfo, UserInfo.id == Submit.uid). \
-                        join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
-                        filter(user_info == compared_user_info, Submit.created_date <= search_datetime).  \
-                        first_or_404()
+        min_total_score = db.session.query(func.min(TotalScoreOutput.total_score).label("min_total_skin_val"),
+                            func.min(TotalScoreOutput.moisture).label("min_moisture_val"),
+                            func.min(TotalScoreOutput.oily).label("min_oily_val"),
+                            func.min(TotalScoreOutput.pore).label("min_pore_val"),
+                            func.min(TotalScoreOutput.pigment).label("min_pigm_val"),
+                            func.min(TotalScoreOutput.sensitivity).label("min_sen_val")). \
+                            select_from(Submit). \
+                            join(UserInfo, UserInfo.id == Submit.uid). \
+                            join(TotalScoreOutput, Submit.id == TotalScoreOutput.s_id). \
+                            filter(and_(kwargs), Submit.created_date <= search_datetime).  \
+                            first_or_404()
     min_dict = {
         'minTot' : min_total_score.min_total_skin_val,  #Min total skin value : 최소 피부상태분석결과값
         'minMois' : min_total_score.min_moisture_val,   #Min moisture : 최소 수분값

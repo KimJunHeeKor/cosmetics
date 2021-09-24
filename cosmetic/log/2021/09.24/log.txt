@@ -1,0 +1,125 @@
+[2021-09-24 11:04:55] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-24 11:04:55] [INFO] : (LOGIN) (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-24 11:05:19] [INFO] : (SEARCH USER SKIN HISTORY) (ncyc5) 사용자의 피부 히스토리를 불러왔습니다.
+[2021-09-24 11:07:03] [ERROR] : (SEARCH USER SKIN VALUES) calculate_average_user_skinvalue() takes 2 positional arguments but 3 were given
+[2021-09-24 11:08:02] [ERROR] : (SEARCH USER SKIN VALUES) calculate_average_user_skinvalue() takes 2 positional arguments but 3 were given
+[2021-09-24 11:13:10] [ERROR] : (SEARCH USER SKIN VALUES) SQL expression for WHERE/HAVING role expected, got {'UserInfo.year_of_birth': '', 'UserInfo.sex': '', 'UserInfo.residence': '', 'UserInfo.nation': '', 'UserInfo.marriage': '', 'UserInfo.job': '', 'UserInfo.education': ''}.
+[2021-09-24 11:14:12] [ERROR] : (SEARCH USER SKIN VALUES) calculate_average_user_skinvalue() keywords must be strings
+[2021-09-24 11:15:23] [ERROR] : (SEARCH USER SKIN VALUES) SQL expression for WHERE/HAVING role expected, got {'UserInfo.year_of_birth': '', 'UserInfo.sex': '', 'UserInfo.residence': '', 'UserInfo.nation': '', 'UserInfo.marriage': '', 'UserInfo.job': '', 'UserInfo.education': ''}.
+[2021-09-24 11:16:36] [ERROR] : (SEARCH USER SKIN VALUES) SQL expression for WHERE/HAVING role expected, got {'UserInfo.year_of_birth': '', 'UserInfo.sex': '', 'UserInfo.residence': '', 'UserInfo.nation': '', 'UserInfo.marriage': '', 'UserInfo.job': '', 'UserInfo.education': ''}.
+[2021-09-24 11:17:44] [ERROR] : (SEARCH USER SKIN VALUES) SQL expression for WHERE/HAVING role expected, got {}.
+[2021-09-24 11:21:45] [ERROR] : (SEARCH USER SKIN VALUES) SQL expression for WHERE/HAVING role expected, got {}.
+[2021-09-24 11:27:15] [INFO] : (SEARCH USER SKIN VALUES SUCCESS) (ncyc5)사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.
+[2021-09-24 12:05:54] [INFO] : (SIGNUP SUCCESS) (ncyc1)아이디 생성 완료
+[2021-09-24 12:05:59] [INFO] : (SIGNUP SUCCESS) (ncyc2)아이디 생성 완료
+[2021-09-24 12:06:02] [INFO] : (SIGNUP SUCCESS) (ncyc3)아이디 생성 완료
+[2021-09-24 12:06:06] [INFO] : (SIGNUP SUCCESS) (ncyc4)아이디 생성 완료
+[2021-09-24 12:06:09] [INFO] : (SIGNUP SUCCESS) (ncyc5)아이디 생성 완료
+[2021-09-24 15:08:09] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-24 15:08:09] [INFO] : (LOGIN) (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-24 15:09:11] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:09:11] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character '"' (0x22) at index 194
+[2021-09-24 15:10:22] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:10:22] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character '"' (0x22) at index 194
+[2021-09-24 15:11:30] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:11:32] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:12:42] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:12:42] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character '"' (0x22) at index 194
+[2021-09-24 15:13:55] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:13:55] [ERROR] : (PASSWORD CHANGED ERROR) not all arguments converted during string formatting
+[2021-09-24 15:14:52] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:14:55] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:15:17] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:15:17] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character '"' (0x22) at index 194
+[2021-09-24 15:15:43] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:15:43] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 194
+[2021-09-24 15:17:03] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:17:03] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 195
+[2021-09-24 15:17:47] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:17:47] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 406
+[2021-09-24 15:18:02] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:18:02] [ERROR] : (PASSWORD CHANGED ERROR) not all arguments converted during string formatting
+[2021-09-24 15:18:33] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:18:35] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:18:52] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:18:53] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 195
+[2021-09-24 15:19:24] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:19:24] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 195
+[2021-09-24 15:19:44] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:19:46] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:20:06] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:20:06] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character '"' (0x22) at index 195
+[2021-09-24 15:21:15] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:21:15] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 196
+[2021-09-24 15:23:29] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:23:29] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 195
+[2021-09-24 15:25:10] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:25:10] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 196
+[2021-09-24 15:26:44] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:26:44] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 385
+[2021-09-24 15:27:50] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:27:50] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 196
+[2021-09-24 15:28:04] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:28:07] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:28:29] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:28:31] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:28:52] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:28:52] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 213
+[2021-09-24 15:29:13] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:29:13] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 213
+[2021-09-24 15:29:38] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:29:38] [ERROR] : (PASSWORD CHANGED ERROR) unsupported format character ';' (0x3b) at index 213
+[2021-09-24 15:30:10] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:30:12] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:32:33] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:32:35] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:32:55] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:32:57] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:38:13] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:38:15] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:39:17] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:39:19] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:44:00] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:44:02] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:46:06] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:46:09] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:47:08] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:47:11] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:49:20] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:49:22] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:52:28] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:52:30] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 15:59:26] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 15:59:29] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:00:26] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 16:00:28] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:04:30] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 16:04:33] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:05:32] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 16:05:35] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:06:22] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 16:06:24] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:06:47] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 16:06:49] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:29:46] [ERROR] : (LOGIN) (ncyc1) 암호가 일치하지 않습니다.
+[2021-09-24 16:29:51] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-24 16:29:51] [INFO] : (LOGIN) (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-24 16:34:28] [INFO] : (USER UPDATE SUCCESS) (ncyc1) 유저 정보 수정 완료
+[2021-09-24 16:34:49] [ERROR] : (USER UPDATE ERROR) Invalid salt
+[2021-09-24 16:35:52] [ERROR] : (USER UPDATE ERROR) Invalid salt
+[2021-09-24 16:38:32] [ERROR] : (USER UPDATE ERROR) Invalid salt
+[2021-09-24 16:39:26] [ERROR] : (USER UPDATE ERROR) Invalid salt
+[2021-09-24 16:40:58] [ERROR] : (USER UPDATE ERROR) Invalid salt
+[2021-09-24 16:43:22] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-24 16:43:25] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-24 16:44:40] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-24 16:44:40] [INFO] : (LOGIN) (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-24 16:45:20] [INFO] : (USER UPDATE SUCCESS) (ncyc1) 유저 정보 수정 완료
+[2021-09-24 16:47:14] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-24 16:47:14] [INFO] : (LOGIN) (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-24 16:47:27] [INFO] : (USER UPDATE SUCCESS) (ncyc1) 유저 정보 수정 완료
+[2021-09-24 16:48:44] [ERROR] : (USER UPDATE ERROR) save_log() takes no arguments
+[2021-09-24 16:50:24] [ERROR] : (USER UPDATE ERROR) (ncyc1)이전의 비밀번호와 동일합니다.
+[2021-09-24 16:50:31] [INFO] : (USER UPDATE SUCCESS) (ncyc1) 유저 정보 수정 완료
+[2021-09-24 16:54:30] [INFO] : (GET USERINFO SUCCESS) (ncyc1) DB에서 유저 정보를 찾았습니다.
+[2021-09-24 16:55:34] [ERROR] : (SEARCH USER SKIN VALUES) 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.

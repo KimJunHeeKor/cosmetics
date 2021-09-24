@@ -1,0 +1,10 @@
+[2021-09-23 10:17:09] [ERROR] : (FIND USER ERROR) 'NoneType' object has no attribute 'acc_id'
+[2021-09-23 10:17:36] [INFO] : (FIND USER) n
+[2021-09-23 10:23:12] [INFO] : (FIND USER) n
+[2021-09-23 10:25:30] [INFO] : (FIND USER) n
+[2021-09-23 10:25:59] [INFO] : (FIND USER) ncyc1
+[2021-09-23 14:39:27] [INFO] : (PASSWORD CHANGED) (ncyc1) 임의의 암호가 저장되었습니다.
+[2021-09-23 14:39:30] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc1) 임의의 암호가 이메일로 전송되었습니다.
+[2021-09-23 16:32:36] [INFO] : (SIGNUP SUCCESS) (ncyc)아이디 생성 완료
+[2021-09-23 16:35:06] [INFO] : (PASSWORD CHANGED) (ncyc) 임의의 암호가 저장되었습니다.
+[2021-09-23 16:35:08] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc) 임의의 암호가 이메일로 전송되었습니다.

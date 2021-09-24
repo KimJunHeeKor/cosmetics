@@ -55,18 +55,38 @@ def search_user_skin_history():
         return jsonify(msg_dict('fail')), 400
 
 
-@bp.route('/values/<compared_column>/<search_date>', methods=['GET'])
+@bp.route('/values/filter', methods=['GET'])
 @jwt_required(fresh=True)
-def seach_user_skin_values(compared_column, search_date):
+def seach_user_skin_values():
     '''
     사용자에 대한 피부정보를 전달해주는 API
     '''
     try:
-        if compared_column != "yearofbirth" and compared_column != "sex" \
-            and compared_column!="residence" and compared_column!="nation"\
-            and compared_column!="marriage" and compared_column!="job"\
-            and compared_column!="education":
-            return jsonify(msg_dict('fail')), 400
+        sql_condition_dict = {}
+        yearofbirth = request.args.get("yearofbirth")
+        sex = request.args.get("sex")
+        residence = request.args.get("residence")
+        nation = request.args.get("nation")
+        marriage = request.args.get("marriage")
+        job = request.args.get("job")
+        education = request.args.get("education")
+        search_date = request.args.get("search_date")
+
+
+        if yearofbirth != None and yearofbirth != "":
+            sql_condition_dict["UserInfo.year_of_birth"] = yearofbirth
+        if sex != None and sex != "":
+            sql_condition_dict["UserInfo.sex"] = sex
+        if residence != None and residence != "":
+            sql_condition_dict["UserInfo.residence"] = residence
+        if nation != None and nation != "":
+            sql_condition_dict["UserInfo.nation"] = nation
+        if marriage != None and marriage != "":
+            sql_condition_dict["UserInfo.marriage"] = marriage
+        if job != None and job != "":
+            sql_condition_dict["UserInfo.job"] = job
+        if education != None and education != "":
+            sql_condition_dict["UserInfo.education"] = education
 
         #유저 id를 토큰으로 얻고 전달받은 시간정보를 설정된 datetime 형태로 변환
         acc_id = get_jwt_identity()
@@ -81,9 +101,9 @@ def seach_user_skin_values(compared_column, search_date):
         
         #DB에서 값 받아오기
         analyzed_dict = calculate_user_skin_status(user, search_datetime)
-        average_dict = calculate_average_user_skinvalue(compared_column,user, search_datetime)
-        max_dict = calculate_max_user_skinvalue(compared_column,user, search_datetime)
-        min_dict = calculate_min_user_skinvalue(compared_column,user, search_datetime)
+        average_dict = calculate_average_user_skinvalue(user, search_datetime, **sql_condition_dict)
+        max_dict = calculate_max_user_skinvalue(user, search_datetime, **sql_condition_dict)
+        min_dict = calculate_min_user_skinvalue(user, search_datetime, **sql_condition_dict)
         save_log.info(f"(SEARCH USER SKIN VALUES SUCCESS) ({acc_id})사용자의 피부상태, 평균값, 최대값, 최소값을 DB에서 가져왔습니다.")
 
         return jsonify(msg_dict('ok', {

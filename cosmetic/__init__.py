@@ -22,9 +22,11 @@ def create_app():
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
     app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=1)
 
+    #jwt
     jwt.init_app(app) 
     bcrypt.init_app(app)
     
+
     #ORM
     db.init_app(app)
     migrate.init_app(app, db)

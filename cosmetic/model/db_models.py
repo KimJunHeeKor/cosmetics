@@ -61,6 +61,9 @@ class ImgOutput(db.Model):
     pore_lvl = db.Column(db.String(10), nullable=False)
     oily_lvl = db.Column(db.String(10), nullable=False)
     pigment_lvl = db.Column(db.String(10), nullable=False)
+    pigment_ori = db.Column(db.Integer, nullable=False)
+    pore_ori = db.Column(db.Integer, nullable=False)
+    oily_ori = db.Column(db.Integer, nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now) 
 
 class LogInfo(db.Model):
@@ -195,6 +198,12 @@ class TotalScoreOutput(db.Model):
     oily = db.Column(db.Integer, nullable=False)
     pigment = db.Column(db.Integer, nullable=False)
     sensitivity = db.Column(db.Integer, nullable=False)
+    total_lvl = db.Column(db.String(10), nullable=False)
+    moisture_lvl = db.Column(db.String(10), nullable=False)
+    pore_lvl = db.Column(db.String(10), nullable=False)
+    oily_lvl = db.Column(db.String(10), nullable=False)
+    pigment_lvl = db.Column(db.String(10), nullable=False)
+    sensitivity_lvl= db.Column(db.String(10), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
 class UserInfo(db.Model):
