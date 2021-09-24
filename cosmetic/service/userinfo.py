@@ -96,9 +96,9 @@ def update():
         user_info.nation = nation
         db.session.commit()
         #로그 저장
-        save_log.info(f"(USER UPDATE SUCCESS) ({acc_id}) 유저 정보 수정 완료, 임시비밀번호를 {user_info.email}에 전달")
+        save_log.info(f"(USER UPDATE SUCCESS) ({acc_id}) 유저 정보 수정 완료")
 
-        return jsonify(msg_dict('ok', {"email": user_info.email}))
+        return jsonify(msg_dict('ok'))
 
     except Exception as err:
         save_log.error(f"(USER UPDATE ERROR) {err}", error=True)
@@ -197,9 +197,9 @@ def send_newpassword():
             smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD) 
             smtp.send_message(msg)
     
-        save_log.info(f"(PASSWORD SENT TO EMAIL) ({acc_id}) 임의의 암호가 이메일로 전송되었습니다.")
+        save_log.info(f"(PASSWORD SENT TO EMAIL) ({acc_id}) 임의의 암호가 이메일({SEND_EMAIL_LIST})로 전송되었습니다.")
 
-        return jsonify(msg_dict("ok"))
+        return jsonify(msg_dict("ok", {"email": SEND_EMAIL_LIST}))
 
     except Exception as err:
         save_log.error(f"(PASSWORD CHANGED ERROR) {err}", error=True)
