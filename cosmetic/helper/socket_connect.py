@@ -1,7 +1,7 @@
 import socket
 from io import BytesIO
 
-from cosmetic.helper.methods import save_log, time_log
+from cosmetic.helper.methods import *
 
 FULL_FACE='FULL_FACE'
 OIL_PAPER='OIL_PAPER'
@@ -24,7 +24,7 @@ def rev_msg_socket(client_socket:socket) -> str:
     # 데이터를 수신한다.
     msg = data.decode()
     
-    save_log("RECEIVE SUCCESS",msg)
+    save_log.info(f"(RECEIVE SUCCESS) {msg}")
 
     return msg
 
@@ -42,7 +42,7 @@ def send_msg_socket(msg:str, client_socket:socket):
     client_socket.sendall(encode_msg_len.to_bytes(4, byteorder="little"))
     # 해당 메시지 전달
     client_socket.sendall(encode_msg)
-    save_log("MESSAGE SEND SUCCESS",msg)
+    save_log.info(f"(MESSAGE SEND SUCCESS) {msg}")
 
 def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=1024):
     '''
@@ -80,5 +80,4 @@ def send_img_socket(load_file_path:str, client_socket:socket, buffer_size:int=10
         client_socket.send(image_data)
         image_data = send_file.read(buffer_size)
     send_file.close()
-    # save_log("IMAGE SEND SUCCESS", load_file_path)
-    save_log("IMAGE SEND SUCCESS", load_file_path.filename)
+    save_log.info(f"(IMAGE SEND SUCCESS) {load_file_path.filename}")

@@ -111,11 +111,13 @@ def suervey():
             msg_mapping_list.append('OIL_PAPER')
 
         come_data_complete = True
+
+        # json 데이터의 value 존재 유무 확인
         for _, value in socket_json.items():
             if value is None or value == '':
                 come_data_complete = False
-                break
-                # return jsonify(msg_dict(rt="fail", content="입력값을 확인하세요"))
+                return jsonify(msg_dict(rt="fail", content="입력값을 확인하세요"))
+                
         if come_data_complete:
             socket_json = json.dumps(socket_json)
             msg_mapping_list.append('SURVEY')
@@ -125,7 +127,9 @@ def suervey():
         
         # AI 서버와 소켓통신
         for msg in msg_mapping_list:
+            #submit id 전송
             send_msg_socket(s_id, client_socket)
+            #전송 데이터에 대한 메시지 전송
             send_msg_socket(msg, client_socket)
 
             if msg == FULL_FACE:
@@ -151,8 +155,8 @@ def suervey():
                 print('no data')
                 raise Exception
             
-            # 로그 기록
-            save_log.info(f"(SURVEY SOCKET SUCCESS) ({acc_id}) {msg}")
+        # 로그 기록
+        save_log.info(f"(SURVEY SOCKET SUCCESS) ({acc_id}) {msg}")
 
         client_socket.close()
         return jsonify(msg_dict('ok'))

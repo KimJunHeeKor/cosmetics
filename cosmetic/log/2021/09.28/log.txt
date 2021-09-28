@@ -1,0 +1,52 @@
+[2021-09-28 12:18:01] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc1) 토큰 생성 및 DB에 저장 성공
+[2021-09-28 12:18:01] [INFO] : (LOGIN) (ncyc1) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-28 12:18:20] [INFO] : (ncyc1)LOGOUT SUCCESS - Ref token 삭제 및 로그아웃 완료
+[2021-09-28 12:19:50] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-28 12:19:50] [INFO] : (LOGIN) (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-28 12:37:22] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-28 12:37:22] [INFO] : (LOGIN) (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-28 12:38:27] [INFO] : (GET USERINFO SUCCESS) (ncyc5) DB에서 유저 정보를 찾았습니다.
+[2021-09-28 14:02:12] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-28 14:02:12] [INFO] : (LOGIN) (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-28 14:04:10] [INFO] : (USER UPDATE SUCCESS) (ncyc5) 유저 정보 수정 완료
+[2021-09-28 14:23:53] [ERROR] : (userInfo/update) marriage 데이터가 없습니다.
+[2021-09-28 14:39:02] [INFO] : (FIND USER) ncyc5
+[2021-09-28 14:41:26] [INFO] : (FIND USER) ncyc5
+[2021-09-28 14:42:48] [ERROR] : (FIND USER ERROR) 'NoneType' object has no attribute 'acc_id'
+[2021-09-28 14:44:44] [ERROR] : (FIND USER ERROR) 해당 정보에 맞는 유저가 없습니다.
+[2021-09-28 14:45:26] [ERROR] : (FIND USER ERROR) name 데이터가 없습니다.
+[2021-09-28 15:04:51] [INFO] : (PASSWORD CHANGED) (ncyc5) 임의의 암호가 저장되었습니다.
+[2021-09-28 15:04:54] [INFO] : (PASSWORD SENT TO EMAIL) (ncyc5) 임의의 암호가 이메일(['gengster@naver.com'])로 전송되었습니다.
+[2021-09-28 15:07:09] [ERROR] : (PASSWORD CHANGED ERROR) 'NoneType' object has no attribute 'email'
+[2021-09-28 15:08:05] [ERROR] : (PASSWORD CHANGED ERROR) 해당 유저가 없습니다.
+[2021-09-28 15:08:34] [ERROR] : (PASSWORD CHANGED ERROR) acc_id 데이터가 없습니다.
+[2021-09-28 15:21:36] [ERROR] : (LOGIN) (ncyc5) 암호가 일치하지 않습니다.
+[2021-09-28 15:21:40] [ERROR] : (LOGIN) (ncyc5) 암호가 일치하지 않습니다.
+[2021-09-28 15:22:18] [INFO] : (ACC,REF TOKEN SUCCESS)(ncyc5) 토큰 생성 및 DB에 저장 성공
+[2021-09-28 15:22:18] [INFO] : (LOGIN) (ncyc5) 접속 로그 DB에 저장, 로그인 성공
+[2021-09-28 15:22:36] [ERROR] : (SURVEY) 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+[2021-09-28 15:24:47] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:26:11] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:26:55] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:28:36] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:29:06] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:31:11] [INFO] : (MESSAGE SEND SUCCESS) 201
+[2021-09-28 15:31:11] [INFO] : (MESSAGE SEND SUCCESS) FULL_FACE
+[2021-09-28 15:31:11] [INFO] : (MESSAGE SEND SUCCESS) ncyc5
+[2021-09-28 15:31:11] [INFO] : (MESSAGE SEND SUCCESS) PostmanRuntime/7.28.4
+[2021-09-28 15:31:11] [INFO] : (IMAGE SEND SUCCESS) 1.jpg
+[2021-09-28 15:31:11] [INFO] : (RECEIVE SUCCESS) finish
+[2021-09-28 15:31:11] [INFO] : (MESSAGE SEND SUCCESS) 201
+[2021-09-28 15:31:11] [INFO] : (MESSAGE SEND SUCCESS) OIL_PAPER
+[2021-09-28 15:31:11] [INFO] : (IMAGE SEND SUCCESS) 2.jpg
+[2021-09-28 15:31:12] [INFO] : (RECEIVE SUCCESS) finish
+[2021-09-28 15:31:12] [INFO] : (MESSAGE SEND SUCCESS) 201
+[2021-09-28 15:31:12] [INFO] : (MESSAGE SEND SUCCESS) SURVEY
+[2021-09-28 15:31:12] [INFO] : (MESSAGE SEND SUCCESS) {"air_condition": "good", "dry_Q1": "dry11", "dry_Q2": "dry21", "dry_Q3": "dry31", "dry_Q4": "dry41", "dry_Q5": "dry51", "dry_Q6": "dry61", "env_Q1": "env13", "env_Q2": "env20", "env_Q3": "env30", "env_Q4": "env40", "etc_Q1": "etc12", "etc_Q10": "etc102", "etc_Q11": "etc112", "etc_Q12": "etc122", "etc_Q13": "etc132", "etc_Q14": "etc142", "etc_Q15": "etc152", "etc_Q16": "etc162", "etc_Q17": "123", "etc_Q2": "etc22", "etc_Q3": "etc32", "etc_Q4": "etc42", "etc_Q5": "etc52", "etc_Q6": "etc62", "etc_Q7": "etc72", "etc_Q8": "etc82", "etc_Q9": "etc92", "freel_env": "NULL", "life_Q1": "life13", "life_Q10": "life103", "life_Q2": "life23", "life_Q3": "life33", "life_Q4": "life43", "life_Q5": "life53", "life_Q6": "life63", "life_Q7": "life73", "life_Q8": "life83", "life_Q9": "life93", "pigment_Q1": "pigment11", "pigment_Q2": "pigment21", "pigment_Q3": "pigment31", "pigment_Q4": "pigment41", "pigment_Q5": "pigment51", "pigment_Q6": "pigment61", "pigment_Q7": "pigment71", "sensitive_Q1": "sensitive13", "sensitive_Q2": "sensitive23", "sensitive_Q3": "sensitive33", "sensitive_Q4": "sensitive43", "sensitive_Q5": "sensitive53", "sensitive_Q6": "sensitive63", "sensitive_Q7": "sensitive73", "sensitive_Q8": "sensitive83", "sensitive_Q9": "sensitive93", "student_env": "senv_2", "town": "town", "work_env": "NULL", "wrinkle_Q1": "wrinkle13", "wrinkle_Q10": "wrinkle103", "wrinkle_Q11": "wrinkle113", "wrinkle_Q2": "wrinkle23", "wrinkle_Q3": "wrinkle33", "wrinkle_Q4": "wrinkle43", "wrinkle_Q5": "wrinkle53", "wrinkle_Q6": "wrinkle63", "wrinkle_Q7": "wrinkle73", "wrinkle_Q8": "wrinkle83", "wrinkle_Q9": "wrinkle93"}
+[2021-09-28 15:31:12] [INFO] : (RECEIVE SUCCESS) finish
+[2021-09-28 15:31:12] [INFO] : (SURVEY SOCKET SUCCESS) (ncyc5) finish
+[2021-09-28 16:09:01] [ERROR] : (SURVEY) [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2021-09-28 16:09:21] [ERROR] : (SURVEY) [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2021-09-28 16:10:06] [INFO] : (MESSAGE SEND SUCCESS) 201
+[2021-09-28 16:10:06] [INFO] : (MESSAGE SEND SUCCESS) OIL_PAPER
+[2021-09-28 16:10:06] [ERROR] : (SURVEY) [WinError 10054] 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다

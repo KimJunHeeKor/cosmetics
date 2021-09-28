@@ -1,0 +1,18 @@
+[2021-09-28 14:23:53] [ERROR] : (userInfo/update) marriage 데이터가 없습니다.
+[2021-09-28 14:42:48] [ERROR] : (FIND USER ERROR) 'NoneType' object has no attribute 'acc_id'
+[2021-09-28 14:44:44] [ERROR] : (FIND USER ERROR) 해당 정보에 맞는 유저가 없습니다.
+[2021-09-28 14:45:26] [ERROR] : (FIND USER ERROR) name 데이터가 없습니다.
+[2021-09-28 15:07:09] [ERROR] : (PASSWORD CHANGED ERROR) 'NoneType' object has no attribute 'email'
+[2021-09-28 15:08:05] [ERROR] : (PASSWORD CHANGED ERROR) 해당 유저가 없습니다.
+[2021-09-28 15:08:34] [ERROR] : (PASSWORD CHANGED ERROR) acc_id 데이터가 없습니다.
+[2021-09-28 15:21:36] [ERROR] : (LOGIN) (ncyc5) 암호가 일치하지 않습니다.
+[2021-09-28 15:21:40] [ERROR] : (LOGIN) (ncyc5) 암호가 일치하지 않습니다.
+[2021-09-28 15:22:36] [ERROR] : (SURVEY) 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+[2021-09-28 15:24:47] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:26:11] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:26:55] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:28:36] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 15:29:06] [ERROR] : (SURVEY) save_log() takes no arguments
+[2021-09-28 16:09:01] [ERROR] : (SURVEY) [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2021-09-28 16:09:21] [ERROR] : (SURVEY) [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다
+[2021-09-28 16:10:06] [ERROR] : (SURVEY) [WinError 10054] 현재 연결은 원격 호스트에 의해 강제로 끊겼습니다

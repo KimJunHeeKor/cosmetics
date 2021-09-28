@@ -60,6 +60,7 @@ def update():
     개인정보 수정
     '''
     try:
+        # 파라미터로 받은 변수 정의
         acc_id = get_jwt_identity()
         user_info =  UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
 
@@ -76,6 +77,51 @@ def update():
         residence = request.form.get("residence", type=str)
         nation = request.form.get("nation", type=str)
 
+        #파라미터 데이터 존재 유무 확인
+        if name == None or name == "":
+            save_log.error(f"(userInfo/update) name 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"name 데이터가 없습니다.")), 400
+
+        if year_of_birth == None or year_of_birth == "":
+            save_log.error(f"(userInfo/update) year_of_birth 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"year_of_birth 데이터가 없습니다.")), 400
+
+        if marriage == None or marriage == "":
+            save_log.error(f"(userInfo/update) marriage 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"marriage 데이터가 없습니다.")), 400
+
+        if childbirth == None or childbirth == "":
+            save_log.error(f"(userInfo/update) childbirth 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"childbirth 데이터가 없습니다.")), 400
+
+        if job == None or job == "":
+            save_log.error(f"(userInfo/update) job 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"job 데이터가 없습니다.")), 400
+
+        if education == None or education == "":
+            save_log.error(f"(userInfo/update) education 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"education 데이터가 없습니다.")), 400
+
+        if hp_no == None or hp_no == "":
+            save_log.error(f"(userInfo/update) hp_no 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"hp_no 데이터가 없습니다.")), 400
+
+        if email == None or email == "":
+            save_log.error(f"(userInfo/update) email 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"email 데이터가 없습니다.")), 400
+
+        if sex == None or sex == "":
+            save_log.error(f"(userInfo/update) sex 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"sex 데이터가 없습니다.")), 400
+
+        if residence == None or residence == "":
+            save_log.error(f"(userInfo/update) residence 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"residence 데이터가 없습니다.")), 400
+
+        if nation == None or nation == "":
+            save_log.error(f"(userInfo/update) nation 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"nation 데이터가 없습니다.")), 400
+
         user_info.name = name
         hash_password = bcrypt.check_password_hash(user_info.password, password)
         if hash_password:
@@ -83,7 +129,8 @@ def update():
 
             return jsonify(msg_dict('fail', '이전의 비밀번호와 동일합니다.')), 400
         
-        user_info.password = bcrypt.generate_password_hash(password, 10)
+        if password != None or password != "":
+            user_info.password = bcrypt.generate_password_hash(password, 10)
         user_info.year_of_birth = year_of_birth
         user_info.marriage = marriage
         user_info.childbirth = childbirth
@@ -111,12 +158,29 @@ def find_id():
     id 찾기 위한 api
     """
     try:
+        # 전달 받는 파라미터 정의
         name = request.args.get("name")
-        email = request.args.get("email")
-        user_info = UserInfo.query.filter(UserInfo.name==name, UserInfo.email==email).first()
+        hp_no = request.args.get("hp_no")
+
+        # 파라미터 존재 유무 확인
+        if name == None or name =="":
+            save_log.error(f"(FIND USER ERROR) name 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"name 데이터가 없습니다.")), 400
+
+        if hp_no == None or hp_no =="":
+            save_log.error(f"(FIND USER ERROR) hp_no 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"hp_no 데이터가 없습니다.")), 400
+
+        user_info = UserInfo.query.filter(UserInfo.name==name, UserInfo.hp_no==hp_no).first()
+
+        # 해당 유저 유무 확인
+        if user_info == None:
+            save_log.error(f"(FIND USER ERROR) 해당 정보에 맞는 유저가 없습니다.", error=True)
+            return jsonify(msg_dict('fail', "해당 정보에 맞는 유저가 없습니다."))
+
         acc_id = user_info.acc_id
         save_log.info(f"(FIND USER) {acc_id}")
-        return jsonify(msg_dict("ok", {"id":acc_id}))
+        return jsonify(msg_dict("ok", {"acc_id":acc_id}))
 
     except Exception as err:
         save_log.error(f"(FIND USER ERROR) {err}", error=True)
@@ -137,7 +201,19 @@ def send_newpassword():
 
     try:
         acc_id = request.args.get("acc_id")
+
+        # 파라미터 기입 확인
+        if acc_id == None or acc_id =="":
+            save_log.error(f"(PASSWORD CHANGED ERROR) acc_id 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"acc_id 데이터가 없습니다.")), 400
+
         user_info = UserInfo.query.filter(UserInfo.acc_id==acc_id).first()
+
+        #해당 유저가 없는 경우 찾기
+        if user_info == None or user_info =="":
+            save_log.error(f"(PASSWORD CHANGED ERROR) 해당 유저가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"해당 유저가 없습니다.")), 400
+
         user_email = user_info.email
 
         # (PASSWORD_LENGTH)자리 임의의 암호 생성
