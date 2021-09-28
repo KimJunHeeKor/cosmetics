@@ -62,7 +62,9 @@ def seach_user_skin_values():
     사용자에 대한 피부정보를 전달해주는 API
     '''
     try:
+
         sql_condition_dict = {}
+        #전송된 데이터를 변수에 저장
         yearofbirth = request.args.get("yearofbirth")
         sex = request.args.get("sex")
         residence = request.args.get("residence")
