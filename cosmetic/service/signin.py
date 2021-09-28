@@ -27,6 +27,14 @@ def signin():
         acc_id = request.form.get("acc_id", type=str)
         password = request.form.get("password", type=str)
 
+        if acc_id == None or acc_id == "":
+            save_log.error(f"(SIGNIN) acc_id 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"acc_id 데이터가 없습니다.")), 400
+
+        if password == None or password == "":
+            save_log.error(f"(SIGNIN) password 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"password 데이터가 없습니다.")), 400
+
         #DB에 저장된 user 정보 일치 확인
         user_info = UserInfo.query.filter(UserInfo.acc_id == acc_id).first()
         if user_info is None:

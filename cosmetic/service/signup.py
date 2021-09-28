@@ -19,8 +19,8 @@ def signup():
         #POST 전송 확인
         if request.method != 'POST':
             save_log.error(f'(SIGNUP) POST 전송이 아닙니다', error=True)
-            return jsonify(msg_dict('fail','POST 전송이 아닙니다.')), 400
-        
+            return jsonify(msg_dict('fail','POST 전송이 아닙니다.'))
+            
         # POST parameters 확인
         acc_id = request.form.get("acc_id", type=str)
         password = request.form.get("password", type=str)
@@ -36,6 +36,54 @@ def signup():
         residence = request.form.get("residence", type=str)
         nation = request.form.get("nation", type=str)
         created_date = datetime.now()
+        
+        if acc_id == None or acc_id == "":
+            save_log.error(f"(SIGNUP) acc_id 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"acc_id 데이터가 없습니다.")), 400
+
+        if password == None or password == "":
+            save_log.error(f"(SIGNUP) password 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"password 데이터가 없습니다.")), 400
+
+        if year_of_birth == None or year_of_birth == "":
+            save_log.error(f"(SIGNUP) year_of_birth 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"year_of_birth 데이터가 없습니다.")), 400
+
+        if marriage == None or marriage == "":
+            save_log.error(f"(SIGNUP) marriage 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"marriage 데이터가 없습니다.")), 400
+
+        if childbirth == None or childbirth == "":
+            save_log.error(f"(SIGNUP) childbirth 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"childbirth 데이터가 없습니다.")), 400
+
+        if job == None or job == "":
+            save_log.error(f"(SIGNUP) job 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"job 데이터가 없습니다.")), 400
+
+        if education == None or education == "":
+            save_log.error(f"(SIGNUP) education 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"education 데이터가 없습니다.")), 400
+
+        if hp_no == None or hp_no == "":
+            save_log.error(f"(SIGNUP) hp_no 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"hp_no 데이터가 없습니다.")), 400
+
+        if email == None or email == "":
+            save_log.error(f"(SIGNUP) email 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"email 데이터가 없습니다.")), 400
+
+        if sex == None or sex == "":
+            save_log.error(f"(SIGNUP) sex 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"sex 데이터가 없습니다.")), 400
+
+        if residence == None or residence == "":
+            save_log.error(f"(SIGNUP) residence 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"residence 데이터가 없습니다.")), 400
+
+        if nation == None or nation == "":
+            save_log.error(f"(SIGNUP) nation 데이터가 없습니다.",error=True)
+            return jsonify(msg_dict('fail',"nation 데이터가 없습니다.")), 400
 
         if UserInfo.query.filter(UserInfo.acc_id == acc_id).count() > 0:
             save_log.error(f"(SIGNUP) ({acc_id})아이디가 존재합니다.",error=True)
