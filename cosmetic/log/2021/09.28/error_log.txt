@@ -1,3 +1,0 @@
-[2021-09-28 09:52:54] [ERROR] : (SIGNUP) residence 데이터가 없습니다.
-[2021-09-28 09:53:03] [ERROR] : (SIGNUP) residence 데이터가 없습니다.
-[2021-09-28 10:05:01] [ERROR] : (SIGNUP) acc_id 데이터가 없습니다.
